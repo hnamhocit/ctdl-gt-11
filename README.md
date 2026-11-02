@@ -118,13 +118,15 @@ ctdl-gt-11/
 │   └── 07_oral_defense_and_live_coding.md     # Cẩm nang vấn đáp & sửa code
 ├── data/                        # Tệp dữ liệu (thành viên tự tạo khi làm task)
 ├── bin/                         # Chứa tệp thực thi sau khi build (bin/main)
+├── .gitvn/                      # Bảng Kanban & Quản trị tiến độ GitVN
+│   └── tasks.json               # 18 tasks phân công chi tiết 6 thành viên & 3 sprints
 ├── .agent/rules/                # Quy tắc dành cho Antigravity AI Agent
 ├── Makefile                     # Kịch bản biên dịch Make tự động
 ├── CMakeLists.txt               # Kịch bản biên dịch CMake đa nền tảng
 ├── AGENTS.md                    # Luật AI Agent cốt lõi
 ├── GEMINI.md                    # Hướng dẫn Gemini / Antigravity
 ├── .cursorrules                 # Cấu hình luật cho Cursor IDE
-├── MEMBER_WORKFLOW.md           # Quy trình Git & Jira nội bộ nhóm
+├── MEMBER_WORKFLOW.md           # Quy trình Git nội bộ nhóm
 └── README.md                    # Tài liệu giới thiệu chính
 ```
 
@@ -143,11 +145,39 @@ ctdl-gt-11/
 
 ---
 
-## 7. Quy Trình Git & Jira Workflow
+## 7. Quản Lý Tiến Độ Bằng GitVN (Kanban & Sprints)
 
-Nhóm tuân thủ nghiêm ngặt nguyên tắc: **1 Jira task = 1 branch = 1 Pull Request** theo tài liệu [MEMBER_WORKFLOW.md](file:///home/hnamhocit/Workspace/cpp/ctdl-gt-11/MEMBER_WORKFLOW.md).
+Toàn bộ tiến độ và phân công công việc của 6 thành viên được theo dõi trực tiếp trong dự án qua **GitVN** tại tệp [.gitvn/tasks.json](file:///home/hnamhocit/Workspace/cpp/ctdl-gt-11/.gitvn/tasks.json).
 
-1. Nhận Task trên Jira (`PROJ-xxx`) $\rightarrow$ Chuyển sang `In Progress`.
+### 📋 Cách Xem & Nhận Nhiệm Vụ (Task):
+- **Xem bảng trực quan**: Mở giao diện/tiện ích mở rộng **GitVN** trong IDE để xem bảng Kanban theo các cột `To Do`, `In Progress`, `Review`, `Done`.
+- **Xem trực tiếp file cấu hình**: Mở tệp [.gitvn/tasks.json](file:///home/hnamhocit/Workspace/cpp/ctdl-gt-11/.gitvn/tasks.json) để tra cứu ID task được giao (`PROJ-1` đến `PROJ-18`), mục tiêu và tiêu chí nghiệm thu (Acceptance Criteria).
+
+### ⏱️ Lộ Trình 3 Sprints (Thời hạn 16 ngày):
+- **Sprint 1 (02/11 - 07/11/2026) - Kiến Trúc Cốt Lõi & Khởi Động** (Active):
+  - `PROJ-1`, `PROJ-2`: Cấu trúc `PlateNode`, Bảng băm `LicensePlateHashTable`, băm DJB2 & Chaining (*Nguyễn Hoàng Nam*).
+  - `PROJ-3`: Module `Validator` kiểm tra định dạng `ab-cd-ghxyz` (*Trịnh Quốc Thái*).
+  - `PROJ-4`: Cấu trúc tệp dữ liệu TXT và module `FileIO` cơ bản (*Dư Quốc Hưng*).
+  - `PROJ-5`: Khung giao diện dòng lệnh Console Menu `MenuUI` (*Trịnh Quốc Thái*).
+  - `PROJ-6`: Dàn ý Báo cáo đồ án 8 chương & Mẫu ghi chép Mục 6 AI (*Huỳnh Thị Khánh Ly*).
+- **Sprint 2 (08/11 - 13/11/2026) - Nghiệp Vụ, File I/O & Tích Hợp Hệ Thống** (Planned):
+  - `PROJ-7`: Hoàn thiện Đăng ký mới & Tra cứu $O(1)$ (*Nguyễn Hoàng Nam*).
+  - `PROJ-8`, `PROJ-9`: Nạp/lưu file TXT & sinh bộ 1.000 bản ghi mẫu (*Dư Quốc Hưng*).
+  - `PROJ-10`, `PROJ-11`: Lọc danh sách xã của tỉnh & lọc danh sách biển số của xã (*Nguyễn Ngọc Hưng*).
+  - `PROJ-12`: Tích hợp điều hướng Console Menu hoàn chỉnh (*Trịnh Quốc Thái*).
+  - `PROJ-13`: Soạn thảo Mục 1 đến Mục 4 của Báo cáo đồ án (*Huỳnh Thị Khánh Ly*).
+- **Sprint 3 (14/11 - 17/11/2026) - Kiểm Thử, Review Toàn Diện & Chuẩn Bị Vấn Đáp (4 Ngày Cuối)** (Planned):
+  - `PROJ-14`, `PROJ-15`: 20 ca kiểm thử biên (Edge Cases), đo Benchmark chrono & kiểm tra rò rỉ Valgrind (*Huỳnh Quốc Việt*).
+  - `PROJ-16`, `PROJ-17`: Hoàn thiện Mục 6 AI, tổng hợp Báo cáo 8 chương & Slide thuyết trình (*Huỳnh Thị Khánh Ly*).
+  - `PROJ-18`: Code Review toàn hệ thống, tối ưu giải phóng bộ nhớ & Mock Interview Live Coding (*Nguyễn Hoàng Nam*).
+
+---
+
+## 8. Quy Trình Git & Jira / GitVN Workflow
+
+Nhóm tuân thủ nghiêm ngặt nguyên tắc: **1 Task = 1 Branch = 1 Pull Request** theo tài liệu [MEMBER_WORKFLOW.md](file:///home/hnamhocit/Workspace/cpp/ctdl-gt-11/MEMBER_WORKFLOW.md).
+
+1. Nhận Task trên GitVN (`PROJ-xxx`) $\rightarrow$ Chuyển trạng thái sang `In Progress`.
 2. Tạo branch từ `develop`:
    ```bash
    git checkout develop
@@ -163,7 +193,7 @@ Nhóm tuân thủ nghiêm ngặt nguyên tắc: **1 Jira task = 1 branch = 1 Pul
 
 ---
 
-## 8. Cẩm Nang Vấn Đáp & Tài Liệu AI-First
+## 9. Cẩm Nang Vấn Đáp & Tài Liệu AI-First
 
 - Mọi thành viên phải đọc kỹ [docs/07_oral_defense_and_live_coding.md](file:///home/hnamhocit/Workspace/cpp/ctdl-gt-11/docs/07_oral_defense_and_live_coding.md) để nắm chắc 10 câu hỏi vấn đáp cốt lõi và 5 kịch bản live coding (sửa code tại chỗ).
 - Chi tiết về khai thác AI và nhật ký prompt cho Mục 6 của Báo cáo được quy định tại [docs/05_ai_guidelines_and_report_sec6.md](file:///home/hnamhocit/Workspace/cpp/ctdl-gt-11/docs/05_ai_guidelines_and_report_sec6.md).
