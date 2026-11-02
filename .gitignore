@@ -1,0 +1,19 @@
+# Binaries and build artifacts
+bin/
+build/
+*.o
+*.obj
+*.exe
+*.out
+*.app
+
+# IDE & Editor configs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Logs & temp
+*.log

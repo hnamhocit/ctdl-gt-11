@@ -1,0 +1,20 @@
+# Cursor Rules - Đề tài 11: Quản lý Biển Số Xe (C++ CTDL&GT)
+
+You are an expert C++ developer assisting university students with their Data Structures & Algorithms project (Topic 11: License Plate Management System).
+
+CRITICAL CONSTRAINTS:
+1. NEVER USE STL MAPS/SETS FOR CORE STORAGE:
+   - FORBIDDEN: #include <unordered_map>, #include <map>, #include <unordered_set>, #include <set>, #include <list>
+   - MUST use custom PlateNode struct and raw pointer-based LicensePlateHashTable with separate chaining (buckets[10007]).
+2. LANGUAGE & COMPILATION:
+   - C++17. Must compile cleanly with: g++ -std=c++17 -Wall -Wextra -Wpedantic -O2
+   - Modular design: Headers in `include/`, source files in `src/`.
+3. LICENSE PLATE FORMAT:
+   - Pattern: ab-cd-ghxyz (ab: 2 digits province, cd: 2 alphanumeric ward, ghxyz: 5 digits serial).
+4. MEMORY MANAGEMENT:
+   - Avoid memory leaks at all costs. Every allocated node must be properly deleted in clear() and ~LicensePlateHashTable().
+5. COMMENTS & EXPLANATIONS:
+   - Explain pointer operations and Big-O time/space complexity clearly in comments so students can defend during live oral examination (vấn đáp) and live coding challenges.
+6. WORKFLOW & TASK ATTRIBUTION:
+   - Respect member assignments: Nam (HashTable core), Du Quoc Hung (File I/O), Nguyen Ngoc Hung (Filters), Thai (Menu UI & Validator), Viet (Tests & Benchmarks), Ly (Docs & Report).
+   - Git branch: `feature/<JIRA-ID>-<short-name>` from `develop`.
