@@ -1,0 +1,43 @@
+# GitVN Workspace Configuration Schema v2.0.0
+# Single Source of Truth (SSOT) for Agile Kanban, Sprints & Docs
+
+version: 2.0.0
+name: ctdl-gt-11
+description: Cấu hình chuẩn GitVN Workspace v2 cho ctdl-gt-11
+storage:
+  format: decoupled
+  tasks_dir: .gitvn/tasks
+  docs_dir: .gitvn/docs
+modules:
+  kanban: true
+  docs: true
+kanban:
+  columns:
+    - id: todo
+      title: To Do
+      color: "#3b82f6"
+    - id: in_progress
+      title: In Progress
+      color: "#eab308"
+    - id: review
+      title: In Review
+      color: "#a855f7"
+    - id: done
+      title: Done
+      color: "#22c55e"
+docs:
+  entry: docs/index.mdx
+  files:
+    - index.mdx
+    - architecture.mdx
+permissions:
+  userRoles:
+    hnamhocit: admin
+  defaultRole: member
+  canManageSprint:
+    - admin
+    - pm
+  canCreateBacklog:
+    - admin
+    - pm
+    - member
