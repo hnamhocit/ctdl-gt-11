@@ -1,14 +1,14 @@
 ---
 id: PROJ-4
 title: "Thiết kế kiến trúc bộ lọc hành chính AdministrativeFilter.h"
-status: todo
+status: review
 priority: high
 assignee: nguyenngochung
 reporter: hnamhocit
 sprintId: sprint-1
 storyPoints: 3
 createdAt: 2026-11-02T14:30:00.000Z
-updatedAt: 2026-11-02T14:30:00.000Z
+updatedAt: 2026-11-03T13:19:09.965Z
 ---
 
 ### Mục tiêu

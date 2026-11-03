@@ -61,25 +61,6 @@
       "updatedAt": "2026-11-02T14:30:00.000Z"
     },
     {
-      "id": "PROJ-4",
-      "title": "Thiết kế kiến trúc bộ lọc hành chính AdministrativeFilter.h",
-      "description": "### Mục tiêu\nThiết kế cấu trúc dữ liệu và giải thuật truy vấn lọc theo mã tỉnh và mã xã trên cấu trúc Bảng Băm.\n\n### Acceptance Criteria\n- Khai báo các hàm displayWardsOfProvince, displayPlatesOfWard, countPlatesInProvince.\n- Phân tích và thiết kế thuật toán mảng tạm để khử trùng lặp (distinct) mã xã.",
-      "status": "todo",
-      "priority": "high",
-      "assignee": {
-        "login": "nguyenngochung",
-        "name": "Nguyễn Ngọc Hưng"
-      },
-      "reporter": {
-        "login": "hnamhocit",
-        "name": "Nguyễn Hoàng Nam"
-      },
-      "sprintId": "sprint-1",
-      "storyPoints": 3,
-      "createdAt": "2026-11-02T14:30:00.000Z",
-      "updatedAt": "2026-11-02T14:30:00.000Z"
-    },
-    {
       "id": "PROJ-5",
       "title": "Thiết kế ma trận 20 Test Cases biên và kịch bản Benchmark",
       "description": "### Mục tiêu\nXây dựng bộ đặc tả 20 trường hợp kiểm thử biên (đúng, sai định dạng, tràn bộ nhớ, trùng lặp) và phương pháp đo chrono.\n\n### Acceptance Criteria\n- Bảng mô tả 20 test case chi tiết đầu vào và kết quả mong đợi trong docs/06_testing_and_benchmarks.md.\n- Thiết kế kiến trúc module Benchmark.h đo lường microsecond.",
@@ -344,6 +325,25 @@
       "storyPoints": 5,
       "createdAt": "2026-11-02T14:30:00.000Z",
       "updatedAt": "2026-11-02T14:30:00.000Z"
+    },
+    {
+      "id": "PROJ-4",
+      "title": "Thiết kế kiến trúc bộ lọc hành chính AdministrativeFilter.h",
+      "description": "### Mục tiêu\nThiết kế cấu trúc dữ liệu và giải thuật truy vấn lọc theo mã tỉnh và mã xã trên cấu trúc Bảng Băm.\n\n### Acceptance Criteria\n- Khai báo các hàm displayWardsOfProvince, displayPlatesOfWard, countPlatesInProvince.\n- Phân tích và thiết kế thuật toán mảng tạm để khử trùng lặp (distinct) mã xã.",
+      "status": "review",
+      "priority": "high",
+      "assignee": {
+        "login": "nguyenngochung",
+        "name": "Nguyễn Ngọc Hưng"
+      },
+      "reporter": {
+        "login": "hnamhocit",
+        "name": "Nguyễn Hoàng Nam"
+      },
+      "sprintId": "sprint-1",
+      "storyPoints": 3,
+      "createdAt": "2026-11-02T14:30:00.000Z",
+      "updatedAt": "2026-11-03T13:19:09.965Z"
     }
   ],
   "sprints": [
