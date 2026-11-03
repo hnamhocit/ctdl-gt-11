@@ -4,8 +4,11 @@
 #include <iostream>
 #include <string>
 
-// Khai báo trước để sửa lỗi PlateNode is undefined
-struct PlateNode;
+// Định nghĩa cấu trúc PlateNode đầy đủ để truy cập được các trường plateNumber và next
+struct PlateNode {
+    std::string plateNumber;
+    PlateNode* next;
+};
 
 class AdministrativeFilter {
 public:
