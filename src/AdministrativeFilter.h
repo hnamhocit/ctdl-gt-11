@@ -4,8 +4,8 @@
 #include <iostream>
 #include <string>
 
-// Cấu trúc Node giả định trong dự án
-// struct PlateNode { std::string plateNumber; PlateNode* next; };
+// Khai báo trước để sửa lỗi PlateNode is undefined
+struct PlateNode;
 
 class AdministrativeFilter {
 public:
