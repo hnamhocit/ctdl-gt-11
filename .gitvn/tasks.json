@@ -23,6 +23,25 @@
       "updatedAt": "2026-11-02T14:30:00.000Z"
     },
     {
+      "id": "PROJ-3",
+      "title": "Thiết kế giao thức tệp TXT và module FileIO.h",
+      "description": "### Mục tiêu\nThiết lập kiến trúc lưu trữ tệp dữ liệu phân cách bằng ký tự gạch đứng `|` và khai báo API nạp/lưu dữ liệu.\n\n### Acceptance Criteria\n- Định dạng bản ghi: fullPlate|provinceCode|wardCode|serialNum|date|ownerName.\n- Hỗ trợ mã hóa tiếng Việt UTF-8 không lỗi font chữ.\n- Khai báo giao diện các hàm: loadFromFile, saveToFile, generateSampleDataset.",
+      "status": "in_progress",
+      "priority": "high",
+      "assignee": {
+        "login": "duquochung",
+        "name": "Dư Quốc Hưng"
+      },
+      "reporter": {
+        "login": "hnamhocit",
+        "name": "Nguyễn Hoàng Nam"
+      },
+      "sprintId": "sprint-1",
+      "storyPoints": 3,
+      "createdAt": "2026-11-02T14:30:00.000Z",
+      "updatedAt": "2026-11-04T15:34:18.078Z"
+    },
+    {
       "id": "PROJ-2",
       "title": "Cài đặt module Validator kiểm tra định dạng biển số ab-cd-ghxyz",
       "description": "### Mục tiêu\nXây dựng bộ kiểm tra tính hợp lệ cú pháp nghiêm ngặt của biển số, mã tỉnh, mã xã và các hàm chuẩn hóa chuỗi.\n\n### Acceptance Criteria\n- Hàm isValidLicensePlateFormat kiểm tra chuẩn ab-cd-ghxyz (độ dài 11 ký tự).\n- Bắt lỗi mã tỉnh không phải số (00-99), mã xã sai ký tự, số serial không đủ 5 số.\n- Hàm normalizePlateString loại bỏ khoảng trắng thừa và viết hoa mã xã.",
@@ -40,25 +59,6 @@
       "storyPoints": 5,
       "createdAt": "2026-11-02T14:30:00.000Z",
       "updatedAt": "2026-11-02T14:30:00.000Z"
-    },
-    {
-      "id": "PROJ-3",
-      "title": "Thiết kế giao thức tệp TXT và module FileIO.h",
-      "description": "### Mục tiêu\nThiết lập kiến trúc lưu trữ tệp dữ liệu phân cách bằng ký tự gạch đứng `|` và khai báo API nạp/lưu dữ liệu.\n\n### Acceptance Criteria\n- Định dạng bản ghi: fullPlate|provinceCode|wardCode|serialNum|date|ownerName.\n- Hỗ trợ mã hóa tiếng Việt UTF-8 không lỗi font chữ.\n- Khai báo giao diện các hàm: loadFromFile, saveToFile, generateSampleDataset.",
-      "status": "todo",
-      "priority": "high",
-      "assignee": {
-        "login": "duquochung",
-        "name": "Dư Quốc Hưng"
-      },
-      "reporter": {
-        "login": "hnamhocit",
-        "name": "Nguyễn Hoàng Nam"
-      },
-      "sprintId": "sprint-1",
-      "storyPoints": 3,
-      "createdAt": "2026-11-02T14:30:00.000Z",
-      "updatedAt": "2026-11-04T15:33:19.422Z"
     },
     {
       "id": "PROJ-5",
