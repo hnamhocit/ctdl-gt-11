@@ -1,14 +1,14 @@
 ---
 id: PROJ-3
 title: "Thiết kế giao thức tệp TXT và module FileIO.h"
-status: in_progress
+status: review
 priority: high
 assignee: duquochung
 reporter: hnamhocit
 sprintId: sprint-1
 storyPoints: 3
 createdAt: 2026-11-02T14:30:00.000Z
-updatedAt: 2026-11-04T15:34:18.078Z
+updatedAt: 2026-11-05T16:43:23.120Z
 ---
 
 ### Mục tiêu
