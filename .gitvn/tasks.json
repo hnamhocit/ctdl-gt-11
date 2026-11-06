@@ -4,28 +4,6 @@
   "taskSeq": 18,
   "tasks": [
     {
-      "id": "PROJ-1",
-      "title": "Thiết kế PlateNode và LicensePlateHashTable (Separate Chaining)",
-      "description": "### Mục tiêu\nHiện thực cấu trúc PlateNode với mảng ký tự tĩnh char[] thuần và bảng băm LicensePlateHashTable (TABLE_SIZE = 10007).\n\n### Acceptance Criteria\n- Struct PlateNode đầy đủ các trường: fullPlate[16], provinceCode[4], wardCode[4], serialNum[8], registeredDate[12], ownerName[50], con trỏ next.\n- Khởi tạo mảng buckets[10007] bằng nullptr.\n- Giải thuật băm DJB2 ((hash << 5) + hash) + c phân bố đều và hạn chế va chạm.",
-      "status": "review",
-      "priority": "urgent",
-      "assignee": {
-        "login": "hnamhocit",
-        "name": "Nguyễn Hoàng Nam"
-      },
-      "reporter": {
-        "login": "hnamhocit",
-        "name": "Nguyễn Hoàng Nam"
-      },
-      "sprintId": "sprint-1",
-      "storyPoints": 5,
-      "createdAt": "2026-11-02T14:30:00.000Z",
-      "updatedAt": "2026-11-05T16:52:39.431Z",
-      "pullNumber": 2,
-      "pullUrl": "https://github.com/hnamhocit/ctdl-gt-11/pull/2",
-      "branch": "feature/PROJ-3-fileio"
-    },
-    {
       "id": "PROJ-2",
       "title": "Cài đặt module Validator kiểm tra định dạng biển số ab-cd-ghxyz",
       "description": "### Mục tiêu\nXây dựng bộ kiểm tra tính hợp lệ cú pháp nghiêm ngặt của biển số, mã tỉnh, mã xã và các hàm chuẩn hóa chuỗi.\n\n### Acceptance Criteria\n- Hàm isValidLicensePlateFormat kiểm tra chuẩn ab-cd-ghxyz (độ dài 11 ký tự).\n- Bắt lỗi mã tỉnh không phải số (00-99), mã xã sai ký tự, số serial không đủ 5 số.\n- Hàm normalizePlateString loại bỏ khoảng trắng thừa và viết hoa mã xã.",
@@ -350,6 +328,28 @@
       "storyPoints": 3,
       "createdAt": "2026-11-02T14:30:00.000Z",
       "updatedAt": "2026-11-05T16:43:23.120Z",
+      "pullNumber": 2,
+      "pullUrl": "https://github.com/hnamhocit/ctdl-gt-11/pull/2",
+      "branch": "feature/PROJ-3-fileio"
+    },
+    {
+      "id": "PROJ-1",
+      "title": "Thiết kế PlateNode và LicensePlateHashTable (Separate Chaining)",
+      "description": "### Mục tiêu\nHiện thực cấu trúc PlateNode với mảng ký tự tĩnh char[] thuần và bảng băm LicensePlateHashTable (TABLE_SIZE = 10007).\n\n### Acceptance Criteria\n- Struct PlateNode đầy đủ các trường: fullPlate[16], provinceCode[4], wardCode[4], serialNum[8], registeredDate[12], ownerName[50], con trỏ next.\n- Khởi tạo mảng buckets[10007] bằng nullptr.\n- Giải thuật băm DJB2 ((hash << 5) + hash) + c phân bố đều và hạn chế va chạm.",
+      "status": "in_progress",
+      "priority": "urgent",
+      "assignee": {
+        "login": "hnamhocit",
+        "name": "Nguyễn Hoàng Nam"
+      },
+      "reporter": {
+        "login": "hnamhocit",
+        "name": "Nguyễn Hoàng Nam"
+      },
+      "sprintId": "sprint-1",
+      "storyPoints": 5,
+      "createdAt": "2026-11-02T14:30:00.000Z",
+      "updatedAt": "2026-11-06T16:55:42.959Z",
       "pullNumber": 2,
       "pullUrl": "https://github.com/hnamhocit/ctdl-gt-11/pull/2",
       "branch": "feature/PROJ-3-fileio"
