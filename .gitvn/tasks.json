@@ -4,25 +4,6 @@
   "taskSeq": 18,
   "tasks": [
     {
-      "id": "PROJ-2",
-      "title": "Cài đặt module Validator kiểm tra định dạng biển số ab-cd-ghxyz",
-      "description": "### Mục tiêu\nXây dựng bộ kiểm tra tính hợp lệ cú pháp nghiêm ngặt của biển số, mã tỉnh, mã xã và các hàm chuẩn hóa chuỗi.\n\n### Acceptance Criteria\n- Hàm isValidLicensePlateFormat kiểm tra chuẩn ab-cd-ghxyz (độ dài 11 ký tự).\n- Bắt lỗi mã tỉnh không phải số (00-99), mã xã sai ký tự, số serial không đủ 5 số.\n- Hàm normalizePlateString loại bỏ khoảng trắng thừa và viết hoa mã xã.",
-      "status": "todo",
-      "priority": "urgent",
-      "assignee": {
-        "login": "trinhquocthai",
-        "name": "Trịnh Quốc Thái"
-      },
-      "reporter": {
-        "login": "hnamhocit",
-        "name": "Nguyễn Hoàng Nam"
-      },
-      "sprintId": "sprint-1",
-      "storyPoints": 5,
-      "createdAt": "2026-11-02T14:30:00.000Z",
-      "updatedAt": "2026-11-07T04:17:01.953Z"
-    },
-    {
       "id": "PROJ-5",
       "title": "Thiết kế ma trận 20 Test Cases biên và kịch bản Benchmark",
       "description": "### Mục tiêu\nXây dựng bộ đặc tả 20 trường hợp kiểm thử biên (đúng, sai định dạng, tràn bộ nhớ, trùng lặp) và phương pháp đo chrono.\n\n### Acceptance Criteria\n- Bảng mô tả 20 test case chi tiết đầu vào và kết quả mong đợi trong docs/06_testing_and_benchmarks.md.\n- Thiết kế kiến trúc module Benchmark.h đo lường microsecond.",
@@ -353,6 +334,25 @@
       "pullNumber": 2,
       "pullUrl": "https://github.com/hnamhocit/ctdl-gt-11/pull/2",
       "branch": "feature/PROJ-3-fileio"
+    },
+    {
+      "id": "PROJ-2",
+      "title": "Cài đặt module Validator kiểm tra định dạng biển số ab-cd-ghxyz",
+      "description": "### Mục tiêu\nXây dựng bộ kiểm tra tính hợp lệ cú pháp nghiêm ngặt của biển số, mã tỉnh, mã xã và các hàm chuẩn hóa chuỗi.\n\n### Acceptance Criteria\n- Hàm isValidLicensePlateFormat kiểm tra chuẩn ab-cd-ghxyz (độ dài 11 ký tự).\n- Bắt lỗi mã tỉnh không phải số (00-99), mã xã sai ký tự, số serial không đủ 5 số.\n- Hàm normalizePlateString loại bỏ khoảng trắng thừa và viết hoa mã xã.",
+      "status": "in_progress",
+      "priority": "urgent",
+      "assignee": {
+        "login": "trinhquocthai",
+        "name": "Trịnh Quốc Thái"
+      },
+      "reporter": {
+        "login": "hnamhocit",
+        "name": "Nguyễn Hoàng Nam"
+      },
+      "sprintId": "sprint-1",
+      "storyPoints": 5,
+      "createdAt": "2026-11-02T14:30:00.000Z",
+      "updatedAt": "2026-11-07T04:17:17.614Z"
     }
   ],
   "sprints": [
