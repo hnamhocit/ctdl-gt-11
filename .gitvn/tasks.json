@@ -23,6 +23,28 @@
       "updatedAt": "2026-11-07T04:17:04.324Z"
     },
     {
+      "id": "PROJ-1",
+      "title": "Thiết kế PlateNode và LicensePlateHashTable (Separate Chaining)",
+      "description": "### Mục tiêu\nHiện thực cấu trúc PlateNode với mảng ký tự tĩnh char[] thuần và bảng băm LicensePlateHashTable (TABLE_SIZE = 10007).\n\n### Acceptance Criteria\n- Struct PlateNode đầy đủ các trường: fullPlate[16], provinceCode[4], wardCode[4], serialNum[8], registeredDate[12], ownerName[50], con trỏ next.\n- Khởi tạo mảng buckets[10007] bằng nullptr.\n- Giải thuật băm DJB2 ((hash << 5) + hash) + c phân bố đều và hạn chế va chạm.",
+      "status": "todo",
+      "priority": "urgent",
+      "assignee": {
+        "login": "hnamhocit",
+        "name": "Nguyễn Hoàng Nam"
+      },
+      "reporter": {
+        "login": "hnamhocit",
+        "name": "Nguyễn Hoàng Nam"
+      },
+      "sprintId": "sprint-1",
+      "storyPoints": 5,
+      "createdAt": "2026-11-02T14:30:00.000Z",
+      "updatedAt": "2026-11-07T07:48:06.745Z",
+      "pullNumber": 2,
+      "pullUrl": "https://github.com/hnamhocit/ctdl-gt-11/pull/2",
+      "branch": "feature/PROJ-3-fileio"
+    },
+    {
       "id": "PROJ-7",
       "title": "Hiện thực chức năng Đăng ký biển số mới và Tra cứu O(1)",
       "description": "### Mục tiêu\nCài đặt phương thức insertPlate và searchPlate trên Bảng Băm sử dụng con trỏ thuần và cơ chế Separate Chaining.\n\n### Acceptance Criteria\n- Chèn biển số mới vào đầu danh sách liên kết tại bucket tương ứng trong O(1) trung bình.\n- Tra cứu biển số trả về PlateNode* hoặc nullptr trong O(1).\n- Bắt lỗi trùng lặp: không cho phép chèn nếu biển số đã tồn tại.",
@@ -309,28 +331,6 @@
       "storyPoints": 3,
       "createdAt": "2026-11-02T14:30:00.000Z",
       "updatedAt": "2026-11-05T16:43:23.120Z",
-      "pullNumber": 2,
-      "pullUrl": "https://github.com/hnamhocit/ctdl-gt-11/pull/2",
-      "branch": "feature/PROJ-3-fileio"
-    },
-    {
-      "id": "PROJ-1",
-      "title": "Thiết kế PlateNode và LicensePlateHashTable (Separate Chaining)",
-      "description": "### Mục tiêu\nHiện thực cấu trúc PlateNode với mảng ký tự tĩnh char[] thuần và bảng băm LicensePlateHashTable (TABLE_SIZE = 10007).\n\n### Acceptance Criteria\n- Struct PlateNode đầy đủ các trường: fullPlate[16], provinceCode[4], wardCode[4], serialNum[8], registeredDate[12], ownerName[50], con trỏ next.\n- Khởi tạo mảng buckets[10007] bằng nullptr.\n- Giải thuật băm DJB2 ((hash << 5) + hash) + c phân bố đều và hạn chế va chạm.",
-      "status": "review",
-      "priority": "urgent",
-      "assignee": {
-        "login": "hnamhocit",
-        "name": "Nguyễn Hoàng Nam"
-      },
-      "reporter": {
-        "login": "hnamhocit",
-        "name": "Nguyễn Hoàng Nam"
-      },
-      "sprintId": "sprint-1",
-      "storyPoints": 5,
-      "createdAt": "2026-11-02T14:30:00.000Z",
-      "updatedAt": "2026-11-06T23:41:44.760Z",
       "pullNumber": 2,
       "pullUrl": "https://github.com/hnamhocit/ctdl-gt-11/pull/2",
       "branch": "feature/PROJ-3-fileio"

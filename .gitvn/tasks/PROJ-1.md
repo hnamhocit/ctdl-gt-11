@@ -1,14 +1,14 @@
 ---
 id: PROJ-1
 title: "Thiết kế PlateNode và LicensePlateHashTable (Separate Chaining)"
-status: review
+status: todo
 priority: urgent
 assignee: hnamhocit
 reporter: hnamhocit
 sprintId: sprint-1
 storyPoints: 5
 createdAt: 2026-11-02T14:30:00.000Z
-updatedAt: 2026-11-06T23:41:44.760Z
+updatedAt: 2026-11-07T07:48:06.745Z
 ---
 
 ### Mục tiêu
