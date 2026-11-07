@@ -1,0 +1,6 @@
+#ifndef LICENSE_PLATE_HASH_TABLE_H
+#define LICENSE_PLATE_HASH_TABLE_H
+
+#include "HashTable.h"
+
+#endif // LICENSE_PLATE_HASH_TABLE_H
