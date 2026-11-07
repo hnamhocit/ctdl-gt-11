@@ -251,6 +251,25 @@
       "updatedAt": "2026-11-02T14:30:00.000Z"
     },
     {
+      "id": "PROJ-6",
+      "title": "Khởi tạo khung Báo cáo 8 chương & Hệ thống Prompt Log AI",
+      "description": "### Mục tiêu\nThiết lập dàn ý chuẩn 8 chương theo đề cương học phần và tạo form quản lý nhật ký khai thác AI cho toàn nhóm.\n\n### Acceptance Criteria\n- Khung báo cáo hoàn chỉnh từ Mục 1 đến Mục 8 theo quy định môn học.\n- Bảng ghi chép Prompt Log Mục 6 (Công cụ, Prompt, Code sinh ra, Quy trình kiểm chứng) phân bổ cho 6 thành viên.",
+      "status": "review",
+      "priority": "high",
+      "assignee": {
+        "login": "huynhthikhanhly",
+        "name": "Huỳnh Thị Khánh Ly"
+      },
+      "reporter": {
+        "login": "hnamhocit",
+        "name": "Nguyễn Hoàng Nam"
+      },
+      "sprintId": "sprint-1",
+      "storyPoints": 3,
+      "createdAt": "2026-11-02T14:30:00.000Z",
+      "updatedAt": "2026-11-07T07:20:55.221Z"
+    },
+    {
       "id": "PROJ-4",
       "title": "Thiết kế kiến trúc bộ lọc hành chính AdministrativeFilter.h",
       "description": "### Mục tiêu\nThiết kế cấu trúc dữ liệu và giải thuật truy vấn lọc theo mã tỉnh và mã xã trên cấu trúc Bảng Băm.\n\n### Acceptance Criteria\n- Khai báo các hàm displayWardsOfProvince, displayPlatesOfWard, countPlatesInProvince.\n- Phân tích và thiết kế thuật toán mảng tạm để khử trùng lặp (distinct) mã xã.",
@@ -337,25 +356,6 @@
       "pullNumber": 3,
       "pullUrl": "https://github.com/hnamhocit/ctdl-gt-11/pull/3",
       "branch": "feature/PROJ-2-validator"
-    },
-    {
-      "id": "PROJ-6",
-      "title": "Khởi tạo khung Báo cáo 8 chương & Hệ thống Prompt Log AI",
-      "description": "### Mục tiêu\nThiết lập dàn ý chuẩn 8 chương theo đề cương học phần và tạo form quản lý nhật ký khai thác AI cho toàn nhóm.\n\n### Acceptance Criteria\n- Khung báo cáo hoàn chỉnh từ Mục 1 đến Mục 8 theo quy định môn học.\n- Bảng ghi chép Prompt Log Mục 6 (Công cụ, Prompt, Code sinh ra, Quy trình kiểm chứng) phân bổ cho 6 thành viên.",
-      "status": "in_progress",
-      "priority": "high",
-      "assignee": {
-        "login": "huynhthikhanhly",
-        "name": "Huỳnh Thị Khánh Ly"
-      },
-      "reporter": {
-        "login": "hnamhocit",
-        "name": "Nguyễn Hoàng Nam"
-      },
-      "sprintId": "sprint-1",
-      "storyPoints": 3,
-      "createdAt": "2026-11-02T14:30:00.000Z",
-      "updatedAt": "2026-11-07T06:24:01.672Z"
     }
   ],
   "sprints": [

@@ -1,14 +1,14 @@
 ---
 id: PROJ-6
 title: "Khởi tạo khung Báo cáo 8 chương & Hệ thống Prompt Log AI"
-status: in_progress
+status: review
 priority: high
 assignee: huynhthikhanhly
 reporter: hnamhocit
 sprintId: sprint-1
 storyPoints: 3
 createdAt: 2026-11-02T14:30:00.000Z
-updatedAt: 2026-11-07T06:24:01.672Z
+updatedAt: 2026-11-07T07:20:55.221Z
 ---
 
 ### Mục tiêu
