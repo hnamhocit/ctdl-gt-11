@@ -1,14 +1,14 @@
 ---
 id: PROJ-2
 title: "Cài đặt module Validator kiểm tra định dạng biển số ab-cd-ghxyz"
-status: review
+status: done
 priority: urgent
 assignee: trinhquocthai
 reporter: hnamhocit
 sprintId: sprint-1
 storyPoints: 5
 createdAt: 2026-11-02T14:30:00.000Z
-updatedAt: 2026-11-07T05:18:41.103Z
+updatedAt: 2026-11-07T07:55:00.000Z
 ---
 
 ### Mục tiêu

@@ -26,7 +26,7 @@
       "id": "PROJ-1",
       "title": "Thiết kế PlateNode và LicensePlateHashTable (Separate Chaining)",
       "description": "### Mục tiêu\nHiện thực cấu trúc PlateNode với mảng ký tự tĩnh char[] thuần và bảng băm LicensePlateHashTable (TABLE_SIZE = 10007).\n\n### Acceptance Criteria\n- Struct PlateNode đầy đủ các trường: fullPlate[16], provinceCode[4], wardCode[4], serialNum[8], registeredDate[12], ownerName[50], con trỏ next.\n- Khởi tạo mảng buckets[10007] bằng nullptr.\n- Giải thuật băm DJB2 ((hash << 5) + hash) + c phân bố đều và hạn chế va chạm.",
-      "status": "todo",
+      "status": "done",
       "priority": "urgent",
       "assignee": {
         "login": "hnamhocit",
@@ -39,10 +39,7 @@
       "sprintId": "sprint-1",
       "storyPoints": 5,
       "createdAt": "2026-11-02T14:30:00.000Z",
-      "updatedAt": "2026-11-07T07:48:06.745Z",
-      "pullNumber": 2,
-      "pullUrl": "https://github.com/hnamhocit/ctdl-gt-11/pull/2",
-      "branch": "feature/PROJ-3-fileio"
+      "updatedAt": "2026-11-07T07:55:00.000Z"
     },
     {
       "id": "PROJ-7",
@@ -276,7 +273,7 @@
       "id": "PROJ-6",
       "title": "Khởi tạo khung Báo cáo 8 chương & Hệ thống Prompt Log AI",
       "description": "### Mục tiêu\nThiết lập dàn ý chuẩn 8 chương theo đề cương học phần và tạo form quản lý nhật ký khai thác AI cho toàn nhóm.\n\n### Acceptance Criteria\n- Khung báo cáo hoàn chỉnh từ Mục 1 đến Mục 8 theo quy định môn học.\n- Bảng ghi chép Prompt Log Mục 6 (Công cụ, Prompt, Code sinh ra, Quy trình kiểm chứng) phân bổ cho 6 thành viên.",
-      "status": "review",
+      "status": "done",
       "priority": "high",
       "assignee": {
         "login": "huynhthikhanhly",
@@ -289,13 +286,13 @@
       "sprintId": "sprint-1",
       "storyPoints": 3,
       "createdAt": "2026-11-02T14:30:00.000Z",
-      "updatedAt": "2026-11-07T07:20:55.221Z"
+      "updatedAt": "2026-11-07T07:55:00.000Z"
     },
     {
       "id": "PROJ-4",
       "title": "Thiết kế kiến trúc bộ lọc hành chính AdministrativeFilter.h",
       "description": "### Mục tiêu\nThiết kế cấu trúc dữ liệu và giải thuật truy vấn lọc theo mã tỉnh và mã xã trên cấu trúc Bảng Băm.\n\n### Acceptance Criteria\n- Khai báo các hàm displayWardsOfProvince, displayPlatesOfWard, countPlatesInProvince.\n- Phân tích và thiết kế thuật toán mảng tạm để khử trùng lặp (distinct) mã xã.",
-      "status": "review",
+      "status": "done",
       "priority": "high",
       "assignee": {
         "login": "nguyenngochung",
@@ -308,7 +305,7 @@
       "sprintId": "sprint-1",
       "storyPoints": 3,
       "createdAt": "2026-11-02T14:30:00.000Z",
-      "updatedAt": "2026-11-03T13:19:09.965Z",
+      "updatedAt": "2026-11-07T07:55:00.000Z",
       "pullNumber": 1,
       "pullUrl": "https://github.com/hnamhocit/ctdl-gt-11/pull/1",
       "branch": "feature/PROJ-4-administrative-filter"
@@ -317,7 +314,7 @@
       "id": "PROJ-3",
       "title": "Thiết kế giao thức tệp TXT và module FileIO.h",
       "description": "### Mục tiêu\nThiết lập kiến trúc lưu trữ tệp dữ liệu phân cách bằng ký tự gạch đứng `|` và khai báo API nạp/lưu dữ liệu.\n\n### Acceptance Criteria\n- Định dạng bản ghi: fullPlate|provinceCode|wardCode|serialNum|date|ownerName.\n- Hỗ trợ mã hóa tiếng Việt UTF-8 không lỗi font chữ.\n- Khai báo giao diện các hàm: loadFromFile, saveToFile, generateSampleDataset.",
-      "status": "review",
+      "status": "done",
       "priority": "high",
       "assignee": {
         "login": "duquochung",
@@ -330,7 +327,7 @@
       "sprintId": "sprint-1",
       "storyPoints": 3,
       "createdAt": "2026-11-02T14:30:00.000Z",
-      "updatedAt": "2026-11-05T16:43:23.120Z",
+      "updatedAt": "2026-11-07T07:55:00.000Z",
       "pullNumber": 2,
       "pullUrl": "https://github.com/hnamhocit/ctdl-gt-11/pull/2",
       "branch": "feature/PROJ-3-fileio"
@@ -339,7 +336,7 @@
       "id": "PROJ-2",
       "title": "Cài đặt module Validator kiểm tra định dạng biển số ab-cd-ghxyz",
       "description": "### Mục tiêu\nXây dựng bộ kiểm tra tính hợp lệ cú pháp nghiêm ngặt của biển số, mã tỉnh, mã xã và các hàm chuẩn hóa chuỗi.\n\n### Acceptance Criteria\n- Hàm isValidLicensePlateFormat kiểm tra chuẩn ab-cd-ghxyz (độ dài 11 ký tự).\n- Bắt lỗi mã tỉnh không phải số (00-99), mã xã sai ký tự, số serial không đủ 5 số.\n- Hàm normalizePlateString loại bỏ khoảng trắng thừa và viết hoa mã xã.",
-      "status": "review",
+      "status": "done",
       "priority": "urgent",
       "assignee": {
         "login": "trinhquocthai",
@@ -352,7 +349,7 @@
       "sprintId": "sprint-1",
       "storyPoints": 5,
       "createdAt": "2026-11-02T14:30:00.000Z",
-      "updatedAt": "2026-11-07T05:18:41.103Z",
+      "updatedAt": "2026-11-07T07:55:00.000Z",
       "pullNumber": 3,
       "pullUrl": "https://github.com/hnamhocit/ctdl-gt-11/pull/3",
       "branch": "feature/PROJ-2-validator"
