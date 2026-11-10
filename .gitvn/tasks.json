@@ -22,7 +22,10 @@
       "sprintId": "sprint-1",
       "storyPoints": 3,
       "createdAt": "2026-11-02T14:30:00.000Z",
-      "updatedAt": "2026-11-10T10:24:56.502Z"
+      "updatedAt": "2026-11-10T10:24:56.502Z",
+      "pullNumber": 5,
+      "pullUrl": "https://github.com/hnamhocit/ctdl-gt-11/pull/5",
+      "branch": "PROJ-5"
     },
     {
       "id": "PROJ-1",
@@ -41,7 +44,10 @@
       "sprintId": "sprint-1",
       "storyPoints": 5,
       "createdAt": "2026-11-02T14:30:00.000Z",
-      "updatedAt": "2026-11-07T07:55:00.000Z"
+      "updatedAt": "2026-11-07T07:55:00.000Z",
+      "pullNumber": 2,
+      "pullUrl": "https://github.com/hnamhocit/ctdl-gt-11/pull/2",
+      "branch": "feature/PROJ-3-fileio"
     },
     {
       "id": "PROJ-7",
@@ -269,7 +275,10 @@
       "sprintId": "sprint-1",
       "storyPoints": 3,
       "createdAt": "2026-11-02T14:30:00.000Z",
-      "updatedAt": "2026-11-07T07:55:00.000Z"
+      "updatedAt": "2026-11-07T07:55:00.000Z",
+      "pullNumber": 4,
+      "pullUrl": "https://github.com/hnamhocit/ctdl-gt-11/pull/4",
+      "branch": "PROJ-6-khung-Bao-cao-He-thong-Prompt-Log-AI"
     },
     {
       "id": "PROJ-4",
@@ -341,7 +350,7 @@
       "id": "PROJ-9",
       "title": "Hiện thực Chức năng 3: Lọc danh sách mã Xã của Tỉnh (Khử trùng lặp)",
       "description": "### Mục tiêu\nHiện thực giải thuật duyệt bảng băm để trích xuất các mã xã cd thuộc tỉnh ab chỉ định và loại bỏ hoàn toàn trùng lặp.\n\n### Acceptance Criteria\n- Duyệt qua toàn bộ buckets và danh sách liên kết để lọc node có provinceCode == ab.\n- Khử trùng lặp bằng thuật toán mảng danh sách distinct, chỉ in mỗi mã xã một lần.\n- Thông báo rõ ràng nếu tỉnh chưa có phương tiện nào đăng ký.",
-      "status": "in_progress",
+      "status": "review",
       "priority": "urgent",
       "assignee": {
         "login": "nguyenngochung",
@@ -354,7 +363,10 @@
       "sprintId": "sprint-2",
       "storyPoints": 5,
       "createdAt": "2026-11-02T14:30:00.000Z",
-      "updatedAt": "2026-11-10T13:13:24.027Z"
+      "updatedAt": "2026-11-10T14:32:05.922Z",
+      "pullNumber": 6,
+      "pullUrl": "https://github.com/hnamhocit/ctdl-gt-11/pull/6",
+      "branch": "feature/PROJ-9-filter-wards"
     }
   ],
   "sprints": [
