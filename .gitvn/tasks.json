@@ -364,7 +364,7 @@
       "goal": "Thiết lập nền tảng hệ thống: PlateNode, băm DJB2, Validator ab-cd-ghxyz, giao thức FileIO, kiến trúc bộ lọc hành chính, ma trận test và dàn ý báo cáo.",
       "startDate": "2026-11-02",
       "endDate": "2026-11-07",
-      "status": "active",
+      "status": "completed",
       "createdAt": "2026-11-02T14:05:14.183Z"
     },
     {
@@ -373,7 +373,7 @@
       "goal": "Hiện thực 4 chức năng cốt lõi (Đăng ký, Tra cứu O(1), Lọc xã của tỉnh), đọc/ghi file TXT, Console Menu, Unit Tests và soạn thảo Mục 1-4 Báo cáo.",
       "startDate": "2026-11-08",
       "endDate": "2026-11-13",
-      "status": "planned",
+      "status": "active",
       "createdAt": "2026-11-02T14:30:00.000Z"
     },
     {
