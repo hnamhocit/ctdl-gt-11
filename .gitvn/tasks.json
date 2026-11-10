@@ -101,25 +101,6 @@
       "updatedAt": "2026-11-02T14:30:00.000Z"
     },
     {
-      "id": "PROJ-9",
-      "title": "Hiện thực Chức năng 3: Lọc danh sách mã Xã của Tỉnh (Khử trùng lặp)",
-      "description": "### Mục tiêu\nHiện thực giải thuật duyệt bảng băm để trích xuất các mã xã cd thuộc tỉnh ab chỉ định và loại bỏ hoàn toàn trùng lặp.\n\n### Acceptance Criteria\n- Duyệt qua toàn bộ buckets và danh sách liên kết để lọc node có provinceCode == ab.\n- Khử trùng lặp bằng thuật toán mảng danh sách distinct, chỉ in mỗi mã xã một lần.\n- Thông báo rõ ràng nếu tỉnh chưa có phương tiện nào đăng ký.",
-      "status": "todo",
-      "priority": "urgent",
-      "assignee": {
-        "login": "nguyenngochung",
-        "name": "Nguyễn Ngọc Hưng"
-      },
-      "reporter": {
-        "login": "hnamhocit",
-        "name": "Nguyễn Hoàng Nam"
-      },
-      "sprintId": "sprint-2",
-      "storyPoints": 5,
-      "createdAt": "2026-11-02T14:30:00.000Z",
-      "updatedAt": "2026-11-10T12:40:49.432Z"
-    },
-    {
       "id": "PROJ-11",
       "title": "Xây dựng bộ kiểm thử tự động 20 ca kiểm thử biên (Unit Tests)",
       "description": "### Mục tiêu\nHiện thực code kiểm thử tự động cho 20 test cases, kiểm tra tính đúng đắn của Bảng băm và Validator.\n\n### Acceptance Criteria\n- Mã nguồn kiểm thử thực thi độc lập, tự động in kết quả PASS/FAIL cho từng ca.\n- Kiểm tra đầy đủ: biển số hợp lệ, sai độ dài, thiếu gạch nối, ký tự lạ, trùng lặp, chuỗi rỗng.\n- Tỷ lệ vượt qua kiểm thử đạt 100%.",
@@ -355,6 +336,25 @@
       "pullNumber": 3,
       "pullUrl": "https://github.com/hnamhocit/ctdl-gt-11/pull/3",
       "branch": "feature/PROJ-2-validator"
+    },
+    {
+      "id": "PROJ-9",
+      "title": "Hiện thực Chức năng 3: Lọc danh sách mã Xã của Tỉnh (Khử trùng lặp)",
+      "description": "### Mục tiêu\nHiện thực giải thuật duyệt bảng băm để trích xuất các mã xã cd thuộc tỉnh ab chỉ định và loại bỏ hoàn toàn trùng lặp.\n\n### Acceptance Criteria\n- Duyệt qua toàn bộ buckets và danh sách liên kết để lọc node có provinceCode == ab.\n- Khử trùng lặp bằng thuật toán mảng danh sách distinct, chỉ in mỗi mã xã một lần.\n- Thông báo rõ ràng nếu tỉnh chưa có phương tiện nào đăng ký.",
+      "status": "in_progress",
+      "priority": "urgent",
+      "assignee": {
+        "login": "nguyenngochung",
+        "name": "Nguyễn Ngọc Hưng"
+      },
+      "reporter": {
+        "login": "hnamhocit",
+        "name": "Nguyễn Hoàng Nam"
+      },
+      "sprintId": "sprint-2",
+      "storyPoints": 5,
+      "createdAt": "2026-11-02T14:30:00.000Z",
+      "updatedAt": "2026-11-10T13:13:24.027Z"
     }
   ],
   "sprints": [
