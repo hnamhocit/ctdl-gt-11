@@ -14,10 +14,10 @@ public:
      * @param label Description for output
      * @return Execution time in microseconds
      */
-    static long measureTime(std::function<void()> func, const std::string& label = "") {
-        auto start = std::chrono::high_resolution_clock::now();
+    static long measureTime(std::function<void()> func, const std::string& label = "") noexcept {
+        auto start = std::chrono::steady_clock::now();
         func();
-        auto end = std::chrono::high_resolution_clock::now();
+        auto end = std::chrono::steady_clock::now();
         
         auto duration = std::chrono::duration_cast<std::chrono::microseconds>(end - start).count();
         
@@ -36,9 +36,16 @@ public:
      * @param label Description for output
      * @return Average execution time in microseconds
      */
-    static long measureAverageTime(std::function<void()> func, 
-                                 int iterations = 100, 
-                                 const std::string& label = "") {
+    static long measureAverageTime(std::function<void()> func,
+                                 int iterations = 100,
+                                 const std::string& label = "") noexcept {
+        if (iterations <= 0) {
+            if (!label.empty()) {
+                std::cerr << "[BENCHMARK ERROR] Invalid iteration count: " << iterations << "\n";
+            }
+            return 0;
+        }
+        
         long totalTime = 0;
         
         for (int i = 0; i < iterations; ++i) {
