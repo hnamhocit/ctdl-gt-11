@@ -10,17 +10,19 @@
       "status": "todo",
       "priority": "high",
       "assignee": {
-        "login": "huynhquocviet",
-        "name": "Huỳnh Quốc Việt"
+        "login": "hnamhocit",
+        "name": "Nguyễn Hoàng Nam",
+        "avatar_url": "https://github.com/hnamhocit.png"
       },
       "reporter": {
         "login": "hnamhocit",
-        "name": "Nguyễn Hoàng Nam"
+        "name": "Nguyễn Hoàng Nam",
+        "avatar_url": "https://github.com/hnamhocit.png"
       },
       "sprintId": "sprint-1",
       "storyPoints": 3,
       "createdAt": "2026-11-02T14:30:00.000Z",
-      "updatedAt": "2026-11-07T04:17:04.324Z"
+      "updatedAt": "2026-11-10T10:24:53.982Z"
     },
     {
       "id": "PROJ-1",
