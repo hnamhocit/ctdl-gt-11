@@ -14,12 +14,21 @@ public:
      * @param label Description for output
      * @return Execution time in microseconds
      */
-    static long measureTime(std::function<void()> func, const std::string& label = "") noexcept {
+    static uint64_t measureTime(std::function<void()> func, const std::string& label = "") noexcept {
+        if (!func) {
+            if (!label.empty()) {
+                std::cerr << "[BENCHMARK ERROR] Null function provided\n";
+            }
+            return 0;
+        }
+
         auto start = std::chrono::steady_clock::now();
         func();
         auto end = std::chrono::steady_clock::now();
         
-        auto duration = std::chrono::duration_cast<std::chrono::microseconds>(end - start).count();
+        auto duration = static_cast<uint64_t>(
+            std::chrono::duration_cast<std::chrono::microseconds>(end - start).count()
+        );
         
         if (!label.empty()) {
             std::cout << "[BENCHMARK] " << label << ": " 
@@ -36,9 +45,10 @@ public:
      * @param label Description for output
      * @return Average execution time in microseconds
      */
-    static long measureAverageTime(std::function<void()> func,
-                                 int iterations = 100,
-                                 const std::string& label = "") noexcept {
+    static uint64_t measureAverageTime(std::function<void()> func,
+                                     int iterations = 100,
+                                     int warmup = 10,
+                                     const std::string& label = "") noexcept {
         if (iterations <= 0) {
             if (!label.empty()) {
                 std::cerr << "[BENCHMARK ERROR] Invalid iteration count: " << iterations << "\n";
@@ -46,7 +56,12 @@ public:
             return 0;
         }
         
-        long totalTime = 0;
+        // Warmup runs to account for cache effects
+        for (int i = 0; i < warmup; ++i) {
+            func();
+        }
+
+        uint64_t totalTime = 0;
         
         for (int i = 0; i < iterations; ++i) {
             totalTime += measureTime(func);
