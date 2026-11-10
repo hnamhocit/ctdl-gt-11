@@ -34,7 +34,22 @@
 
 ## 2. Phương Pháp Đo Lường Hiệu Năng (Benchmark Methodology)
 
-Để phục vụ số liệu cho Báo cáo Mục 5 và Mục 7, nhóm thực hiện đo đạc bằng thư viện `<chrono>` tiêu chuẩn của C++:
+Module `Benchmark.h` cung cấp 2 phương thức chính:
+
+```cpp
+// Đo thời gian chạy 1 lần
+long measureTime(std::function<void()>, const std::string& label = "");
+
+// Đo thời gian chạy trung bình qua nhiều lần 
+long measureAverageTime(std::function<void()>, int iterations = 100, const std::string& label = "");
+```
+
+Ví dụ đo thời gian chèn bản ghi:
+```cpp
+Benchmark::measureTime([&]() {
+    table.insertPlate(PlateNode("59-X1-12345", "59", "X1", "12345", "2026-10-30", "Nguyen Van A"));
+}, "Thời gian chèn bản ghi");
+```
 
 ```cpp
 #include <chrono>
