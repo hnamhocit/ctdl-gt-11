@@ -55,6 +55,13 @@ public:
             }
             return 0;
         }
+
+        if (warmup < 0) {
+            if (!label.empty()) {
+                std::cerr << "[BENCHMARK WARNING] Negative warmup count, using 0\n";
+            }
+            warmup = 0;
+        }
         
         // Warmup runs to account for cache effects
         for (int i = 0; i < warmup; ++i) {
@@ -67,7 +74,7 @@ public:
             totalTime += measureTime(func);
         }
         
-        long averageTime = totalTime / iterations;
+        uint64_t averageTime = totalTime / iterations;
         
         if (!label.empty()) {
             std::cout << "[BENCHMARK] " << label << " (avg " 
