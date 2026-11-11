@@ -1,27 +1,45 @@
-# BÁO CÁO KIỂM THỬ HỆ THỐNG & BENCHMARK HIỆU NĂNG
-**Người thực hiện:** Huỳnh Quốc Việt
-**Phân công:** Kiểm thử hệ thống (Testing) & Đo đạc hiệu năng
+# BÁO CÁO KIỂM THỬ & BENCHMARK — HUỲNH QUỐC VIỆT
 
-## 1. Bảng 20 Ca kiểm thử (Test Cases)
-| STT | Mã Test | Chức năng | Dữ liệu đầu vào | Kết quả mong đợi | Trạng thái |
-|---|---|---|---|---|---|
-| 1 | TEST_REG_01 | Đăng ký hợp lệ | 59-X1-12345 | Thêm thành công vào Bảng băm | Pass |
-| 2 | TEST_REG_02 | Đăng ký trùng | 59-X1-12345 | Báo lỗi biển số đã tồn tại | Pass |
-| 3 | TEST_REG_03 | Sai định dạng | 59-X1-1234 | Báo lỗi thiếu chữ số | Pass |
-| 4 | TEST_REG_04 | Sai định dạng | 59_X1_12345 | Báo lỗi sai dấu phân cách | Pass |
-| 5 | TEST_REG_05 | Sai định dạng | ABC-X1-12345 | Báo lỗi mã tỉnh phải là số | Pass |
-| 6 | TEST_SEARCH_01 | Tra cứu có dữ liệu | 59-X1-12345 | Trả về thông tin trong O(1) | Pass |
-| 7 | TEST_SEARCH_02 | Tra cứu không có | 99-Z9-99999 | Thông báo không tìm thấy | Pass |
-| 8 | TEST_SEARCH_03 | Tra cứu chuỗi rỗng | "" | Báo lỗi chưa nhập dữ liệu | Pass |
-| 9 | TEST_PROV_01 | Lọc Xã theo Tỉnh | Mã tỉnh 59 | Liệt kê danh sách các mã Xã | Pass |
-| 10 | TEST_PROV_02 | Tỉnh chưa có dữ liệu| Mã tỉnh 99 | Thông báo chưa có dữ liệu | Pass |
-| 11 | TEST_PROV_03 | Nhập sai Mã Tỉnh | Mã tỉnh 599 | Báo lỗi độ dài mã tỉnh | Pass |
-| 12 | TEST_WARD_01 | Lọc biển theo Xã | Tỉnh 59, Xã X1 | Xuất toàn bộ biển số của Xã | Pass |
-| 13 | TEST_WARD_02 | Xã chưa có biển | Tỉnh 59, Xã Z9 | Thông báo chưa có biển số | Pass |
-| 14 | TEST_WARD_03 | Nhập sai Mã Xã | Tỉnh 59, Xã X12 | Báo lỗi độ dài mã xã | Pass |
-| 15 | TEST_FILE_01 | Tự đọc File | Khởi chạy ứng dụng | Nạp thành công data.txt | Pass |
-| 16 | TEST_FILE_02 | Tự ghi File | Thoát ứng dụng | Lưu Bảng băm vào data.txt | Pass |
-| 17 | TEST_FILE_03 | Thiếu File data | Xóa file data.txt | Tự khởi tạo file rỗng mới | Pass |
-| 18 | TEST_PERF_01 | Benchmark 100 dòng | Tra cứu 1 biển | Thời gian < 0.01 ms | Pass |
-| 19 | TEST_PERF_02 | Benchmark 1.000 dòng| Tra cứu 1 biển | Thời gian < 0.01 ms | Pass |
-| 20 | TEST_PERF_03 | Benchmark 10.000 dòng| Tra cứu 1 biển | Thời gian < 0.02 ms (O(1)) | Pass |
+## Phạm vi công việc
+- PROJ-11: 20 Unit Test cho Validator và Hash Table.
+- PROJ-17: Benchmark 100, 1.000, 10.000 bản ghi và kiểm tra Valgrind.
+
+## Mã nguồn bàn giao
+- `tests/test_proj11.cpp`
+- `tests/benchmark_hash_table.cpp`
+- `include/Benchmark.h`
+- `src/Benchmark.cpp`
+- `docs/06_testing_and_benchmarks.md`
+
+## Cách thực thi
+```bash
+make test
+make benchmark
+make valgrind
+```
+
+## Kết quả
+Các trạng thái và số liệu bên dưới được ghi từ lần chạy thực tế trong môi trường kiểm thử nêu tại báo cáo.
+
+| Hạng mục | Trạng thái | Bằng chứng |
+|---|---|---|
+| 20 Unit Test | **20/20 PASS** | `make test` |
+| Benchmark 100 / 1.000 / 10.000 | **Đã chạy** | `make benchmark` |
+| CMake + CTest | **1/1 test PASS** | `cmake --build build -j2` và `ctest --test-dir build --output-on-failure` |
+| Valgrind | **Chưa thực hiện** | Môi trường hiện tại chưa cài Valgrind (`command -v valgrind` không tìm thấy) |
+
+## Môi trường đo
+- Hệ điều hành: Linux x86_64.
+- Compiler: g++ 14.2.0.
+- Chuẩn: C++17; cờ `-Wall -Wextra -Wpedantic -O2`.
+- Tra cứu: 100.000 lần cho mỗi kích thước dữ liệu.
+- Đây là một lần chạy tham khảo; thời gian có thể thay đổi theo máy và tải hệ thống.
+
+## Số liệu benchmark thực tế của lần chạy
+| N | Alpha | Tổng thời gian chèn (us) | Chèn TB (ns/bản ghi) | Tra cứu TB (ns) |
+|---:|---:|---:|---:|---:|
+| 100 | 0,009993 | 25,788 | 257,880 | 9,457620 |
+| 1.000 | 0,099930 | 134,462 | 134,462 | 10,424170 |
+| 10.000 | 0,999300 | 1.432,144 | 143,214 | 9,336240 |
+
+**Lưu ý:** thời gian chèn trung bình giảm khi N tăng trong lần chạy này do chi phí khởi động/đo và nhiễu hệ thống chi phối tập nhỏ; không nên suy luận tuyến tính từ một lần chạy. Cần chạy lặp nhiều lần trên máy báo cáo để có số liệu ổn định hơn.

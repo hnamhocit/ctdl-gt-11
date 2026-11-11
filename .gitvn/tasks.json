@@ -22,7 +22,10 @@
       "sprintId": "sprint-1",
       "storyPoints": 3,
       "createdAt": "2026-11-02T14:30:00.000Z",
-      "updatedAt": "2026-11-10T10:24:56.502Z"
+      "updatedAt": "2026-11-10T10:24:56.502Z",
+      "pullNumber": 5,
+      "pullUrl": "https://github.com/hnamhocit/ctdl-gt-11/pull/5",
+      "branch": "PROJ-5"
     },
     {
       "id": "PROJ-1",
@@ -41,7 +44,10 @@
       "sprintId": "sprint-1",
       "storyPoints": 5,
       "createdAt": "2026-11-02T14:30:00.000Z",
-      "updatedAt": "2026-11-07T07:55:00.000Z"
+      "updatedAt": "2026-11-07T07:55:00.000Z",
+      "pullNumber": 2,
+      "pullUrl": "https://github.com/hnamhocit/ctdl-gt-11/pull/2",
+      "branch": "feature/PROJ-3-fileio"
     },
     {
       "id": "PROJ-7",
@@ -63,25 +69,6 @@
       "updatedAt": "2026-11-02T14:30:00.000Z"
     },
     {
-      "id": "PROJ-8",
-      "title": "Hiện thực chức năng Đọc/Ghi dữ liệu file TXT (loadFromFile, saveToFile)",
-      "description": "### Mục tiêu\nHiện thực module đọc và ghi tệp TXT bền vững, tự động nạp khi khởi chạy và tự động lưu khi thoát ứng dụng.\n\n### Acceptance Criteria\n- Nạp chính xác từng dòng dữ liệu vào Bảng Băm thông qua insertPlate.\n- Tự động bỏ qua các dòng dữ liệu bẩn/lỗi mà không crash chương trình.\n- Lưu toàn bộ dữ liệu hiện hành trong bảng băm ra file TXT khi thoát.",
-      "status": "todo",
-      "priority": "urgent",
-      "assignee": {
-        "login": "duquochung",
-        "name": "Dư Quốc Hưng"
-      },
-      "reporter": {
-        "login": "hnamhocit",
-        "name": "Nguyễn Hoàng Nam"
-      },
-      "sprintId": "sprint-2",
-      "storyPoints": 5,
-      "createdAt": "2026-11-02T14:30:00.000Z",
-      "updatedAt": "2026-11-10T12:41:45.191Z"
-    },
-    {
       "id": "PROJ-10",
       "title": "Xây dựng Console Menu tương tác & Xử lý bẫy lỗi nhập liệu",
       "description": "### Mục tiêu\nHiện thực giao diện Console điều hướng bằng phím số, kết hợp với module Validator để kiểm soát dữ liệu đầu vào người dùng.\n\n### Acceptance Criteria\n- Menu hiển thị 6 chức năng rõ ràng, phân luồng điều hướng thân thiện.\n- Bẫy lỗi nhập ký tự chữ khi chọn menu số, ngăn ngừa vòng lặp vô tận cin.fail().\n- Xuất thông báo lỗi chi tiết khi người dùng nhập sai định dạng biển số.",
@@ -99,25 +86,6 @@
       "storyPoints": 3,
       "createdAt": "2026-11-02T14:30:00.000Z",
       "updatedAt": "2026-11-02T14:30:00.000Z"
-    },
-    {
-      "id": "PROJ-9",
-      "title": "Hiện thực Chức năng 3: Lọc danh sách mã Xã của Tỉnh (Khử trùng lặp)",
-      "description": "### Mục tiêu\nHiện thực giải thuật duyệt bảng băm để trích xuất các mã xã cd thuộc tỉnh ab chỉ định và loại bỏ hoàn toàn trùng lặp.\n\n### Acceptance Criteria\n- Duyệt qua toàn bộ buckets và danh sách liên kết để lọc node có provinceCode == ab.\n- Khử trùng lặp bằng thuật toán mảng danh sách distinct, chỉ in mỗi mã xã một lần.\n- Thông báo rõ ràng nếu tỉnh chưa có phương tiện nào đăng ký.",
-      "status": "todo",
-      "priority": "urgent",
-      "assignee": {
-        "login": "nguyenngochung",
-        "name": "Nguyễn Ngọc Hưng"
-      },
-      "reporter": {
-        "login": "hnamhocit",
-        "name": "Nguyễn Hoàng Nam"
-      },
-      "sprintId": "sprint-2",
-      "storyPoints": 5,
-      "createdAt": "2026-11-02T14:30:00.000Z",
-      "updatedAt": "2026-11-10T12:40:49.432Z"
     },
     {
       "id": "PROJ-11",
@@ -288,7 +256,10 @@
       "sprintId": "sprint-1",
       "storyPoints": 3,
       "createdAt": "2026-11-02T14:30:00.000Z",
-      "updatedAt": "2026-11-07T07:55:00.000Z"
+      "updatedAt": "2026-11-07T07:55:00.000Z",
+      "pullNumber": 4,
+      "pullUrl": "https://github.com/hnamhocit/ctdl-gt-11/pull/4",
+      "branch": "PROJ-6-khung-Bao-cao-He-thong-Prompt-Log-AI"
     },
     {
       "id": "PROJ-4",
@@ -355,6 +326,47 @@
       "pullNumber": 3,
       "pullUrl": "https://github.com/hnamhocit/ctdl-gt-11/pull/3",
       "branch": "feature/PROJ-2-validator"
+    },
+    {
+      "id": "PROJ-9",
+      "title": "Hiện thực Chức năng 3: Lọc danh sách mã Xã của Tỉnh (Khử trùng lặp)",
+      "description": "### Mục tiêu\nHiện thực giải thuật duyệt bảng băm để trích xuất các mã xã cd thuộc tỉnh ab chỉ định và loại bỏ hoàn toàn trùng lặp.\n\n### Acceptance Criteria\n- Duyệt qua toàn bộ buckets và danh sách liên kết để lọc node có provinceCode == ab.\n- Khử trùng lặp bằng thuật toán mảng danh sách distinct, chỉ in mỗi mã xã một lần.\n- Thông báo rõ ràng nếu tỉnh chưa có phương tiện nào đăng ký.",
+      "status": "review",
+      "priority": "urgent",
+      "assignee": {
+        "login": "nguyenngochung",
+        "name": "Nguyễn Ngọc Hưng"
+      },
+      "reporter": {
+        "login": "hnamhocit",
+        "name": "Nguyễn Hoàng Nam"
+      },
+      "sprintId": "sprint-2",
+      "storyPoints": 5,
+      "createdAt": "2026-11-02T14:30:00.000Z",
+      "updatedAt": "2026-11-10T14:32:05.922Z",
+      "pullNumber": 6,
+      "pullUrl": "https://github.com/hnamhocit/ctdl-gt-11/pull/6",
+      "branch": "feature/PROJ-9-filter-wards"
+    },
+    {
+      "id": "PROJ-8",
+      "title": "Hiện thực chức năng Đọc/Ghi dữ liệu file TXT (loadFromFile, saveToFile)",
+      "description": "### Mục tiêu\nHiện thực module đọc và ghi tệp TXT bền vững, tự động nạp khi khởi chạy và tự động lưu khi thoát ứng dụng.\n\n### Acceptance Criteria\n- Nạp chính xác từng dòng dữ liệu vào Bảng Băm thông qua insertPlate.\n- Tự động bỏ qua các dòng dữ liệu bẩn/lỗi mà không crash chương trình.\n- Lưu toàn bộ dữ liệu hiện hành trong bảng băm ra file TXT khi thoát.",
+      "status": "in_progress",
+      "priority": "urgent",
+      "assignee": {
+        "login": "duquochung",
+        "name": "Dư Quốc Hưng"
+      },
+      "reporter": {
+        "login": "hnamhocit",
+        "name": "Nguyễn Hoàng Nam"
+      },
+      "sprintId": "sprint-2",
+      "storyPoints": 5,
+      "createdAt": "2026-11-02T14:30:00.000Z",
+      "updatedAt": "2026-11-10T15:51:46.926Z"
     }
   ],
   "sprints": [
