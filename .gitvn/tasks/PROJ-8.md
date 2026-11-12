@@ -1,14 +1,14 @@
 ---
 id: PROJ-8
 title: "Hiện thực chức năng Đọc/Ghi dữ liệu file TXT (loadFromFile, saveToFile)"
-status: in_progress
+status: review
 priority: urgent
 assignee: duquochung
 reporter: hnamhocit
 sprintId: sprint-2
 storyPoints: 5
 createdAt: 2026-11-02T14:30:00.000Z
-updatedAt: 2026-11-10T15:51:46.926Z
+updatedAt: 2026-11-12T04:02:55.515Z
 ---
 
 ### Mục tiêu

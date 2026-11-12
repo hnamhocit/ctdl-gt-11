@@ -334,6 +334,25 @@
       "branch": "feature/PROJ-2-validator"
     },
     {
+      "id": "PROJ-8",
+      "title": "Hiện thực chức năng Đọc/Ghi dữ liệu file TXT (loadFromFile, saveToFile)",
+      "description": "### Mục tiêu\nHiện thực module đọc và ghi tệp TXT bền vững, tự động nạp khi khởi chạy và tự động lưu khi thoát ứng dụng.\n\n### Acceptance Criteria\n- Nạp chính xác từng dòng dữ liệu vào Bảng Băm thông qua insertPlate.\n- Tự động bỏ qua các dòng dữ liệu bẩn/lỗi mà không crash chương trình.\n- Lưu toàn bộ dữ liệu hiện hành trong bảng băm ra file TXT khi thoát.",
+      "status": "review",
+      "priority": "urgent",
+      "assignee": {
+        "login": "duquochung",
+        "name": "Dư Quốc Hưng"
+      },
+      "reporter": {
+        "login": "hnamhocit",
+        "name": "Nguyễn Hoàng Nam"
+      },
+      "sprintId": "sprint-2",
+      "storyPoints": 5,
+      "createdAt": "2026-11-02T14:30:00.000Z",
+      "updatedAt": "2026-11-12T04:02:55.515Z"
+    },
+    {
       "id": "PROJ-9",
       "title": "Hiện thực Chức năng 3: Lọc danh sách mã Xã của Tỉnh (Khử trùng lặp)",
       "description": "### Mục tiêu\nHiện thực giải thuật duyệt bảng băm để trích xuất các mã xã cd thuộc tỉnh ab chỉ định và loại bỏ hoàn toàn trùng lặp.\n\n### Acceptance Criteria\n- Duyệt qua toàn bộ buckets và danh sách liên kết để lọc node có provinceCode == ab.\n- Khử trùng lặp bằng thuật toán mảng danh sách distinct, chỉ in mỗi mã xã một lần.\n- Thông báo rõ ràng nếu tỉnh chưa có phương tiện nào đăng ký.",
@@ -354,25 +373,6 @@
       "pullNumber": 6,
       "pullUrl": "https://github.com/hnamhocit/ctdl-gt-11/pull/6",
       "branch": "feature/PROJ-9-filter-wards"
-    },
-    {
-      "id": "PROJ-8",
-      "title": "Hiện thực chức năng Đọc/Ghi dữ liệu file TXT (loadFromFile, saveToFile)",
-      "description": "### Mục tiêu\nHiện thực module đọc và ghi tệp TXT bền vững, tự động nạp khi khởi chạy và tự động lưu khi thoát ứng dụng.\n\n### Acceptance Criteria\n- Nạp chính xác từng dòng dữ liệu vào Bảng Băm thông qua insertPlate.\n- Tự động bỏ qua các dòng dữ liệu bẩn/lỗi mà không crash chương trình.\n- Lưu toàn bộ dữ liệu hiện hành trong bảng băm ra file TXT khi thoát.",
-      "status": "in_progress",
-      "priority": "urgent",
-      "assignee": {
-        "login": "duquochung",
-        "name": "Dư Quốc Hưng"
-      },
-      "reporter": {
-        "login": "hnamhocit",
-        "name": "Nguyễn Hoàng Nam"
-      },
-      "sprintId": "sprint-2",
-      "storyPoints": 5,
-      "createdAt": "2026-11-02T14:30:00.000Z",
-      "updatedAt": "2026-11-10T15:51:46.926Z"
     }
   ],
   "sprints": [
