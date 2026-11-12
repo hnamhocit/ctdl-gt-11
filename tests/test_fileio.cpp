@@ -1,8 +1,10 @@
 #include "FileIO.h"
 
+#include <cstdio>
 #include <cstring>
 #include <fstream>
 #include <iostream>
+#include <string>
 
 static int failures = 0;
 #define CHECK(cond)                                                   \
@@ -73,6 +75,47 @@ int main(int argc, char **argv)
     std::strcpy(bad.ownerName, "A|B");
     CHECK(t6.insertPlate(bad));
     CHECK(!saveToFile(t6, "t6.txt"));
+
+    // 7. File rỗng và file chỉ có tiêu đề: không crash, nạp 0 bản ghi
+    {
+        std::ofstream f("t7a.txt", std::ios::binary);
+    }
+    {
+        std::ofstream f("t7b.txt", std::ios::binary);
+        f << "fullPlate|provinceCode|wardCode|serialNum|registeredDate|ownerName\n";
+    }
+    LicensePlateHashTable t7;
+    LoadStats s7a, s7b;
+    CHECK(loadFromFile(t7, "t7a.txt", &s7a) && s7a.loaded == 0);
+    CHECK(loadFromFile(t7, "t7b.txt", &s7b) && s7b.loaded == 0);
+
+    // 8. Dòng cực dài (10.000 ký tự) và dòng thừa trường: bị bỏ qua, không crash
+    {
+        std::ofstream f("t8.txt", std::ios::binary);
+        f << std::string(10000, 'A') << "\n"
+          << "59-X1-00001|59|X1|00001|2026-10-30|A|thua\n"
+          << "59-X1-00002|59|X1|00002|2026-10-30|Nguyễn Văn An\n";
+    }
+    LicensePlateHashTable t8;
+    LoadStats s8;
+    CHECK(loadFromFile(t8, "t8.txt", &s8));
+    CHECK(s8.loaded == 1 && s8.invalid == 2);
+
+    // 9. Lưu hai lần liên tiếp vẫn ổn, nạp lại đủ bản ghi, không để lại file .tmp
+    CHECK(saveToFile(t3, "t9.txt"));
+    CHECK(saveToFile(t3, "t9.txt"));
+    LicensePlateHashTable t9;
+    CHECK(loadFromFile(t9, "t9.txt") && t9.getTotalCount() == t3.getTotalCount());
+    {
+        std::ifstream leftover("t9.txt.tmp");
+        CHECK(!leftover);
+    }
+
+    // Dọn các file tạm do test sinh ra
+    const char *temps[] = {"t1.txt", "t2.txt", "t3.txt", "t6.txt", "t7a.txt",
+                           "t7b.txt", "t8.txt", "t9.txt", "t9.txt.tmp"};
+    for (const char *name : temps)
+        std::remove(name);
 
     std::cout << (failures == 0 ? "All FileIO tests passed\n" : "Có test thất bại\n");
     return failures == 0 ? 0 : 1;
