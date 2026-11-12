@@ -1,14 +1,14 @@
 ---
 id: PROJ-11
 title: "Xây dựng bộ kiểm thử tự động 20 ca kiểm thử biên (Unit Tests)"
-status: todo
+status: review
 priority: urgent
 assignee: huynhquocviet
 reporter: hnamhocit
 sprintId: sprint-2
 storyPoints: 5
 createdAt: 2026-11-02T14:30:00.000Z
-updatedAt: 2026-11-02T14:30:00.000Z
+updatedAt: 2026-11-12T03:54:59.897Z
 ---
 
 ### Mục tiêu
