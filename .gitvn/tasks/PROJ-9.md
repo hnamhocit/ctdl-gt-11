@@ -1,14 +1,14 @@
 ---
 id: PROJ-9
 title: "Hiện thực Chức năng 3: Lọc danh sách mã Xã của Tỉnh (Khử trùng lặp)"
-status: todo
+status: review
 priority: urgent
 assignee: nguyenngochung
 reporter: hnamhocit
 sprintId: sprint-2
 storyPoints: 5
 createdAt: 2026-11-02T14:30:00.000Z
-updatedAt: 2026-11-10T12:40:49.432Z
+updatedAt: 2026-11-14T04:37:06.308Z
 ---
 
 ### Mục tiêu
