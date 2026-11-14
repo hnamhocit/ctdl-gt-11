@@ -1,5 +1,5 @@
 #include "FileIO.h"
-
+#include <cstdio>
 #include <cstring>
 #include <fstream>
 #include <iostream>
@@ -261,22 +261,35 @@ bool saveToFile(const LicensePlateHashTable &table, const char *filepath)
         }
     }
 
-    std::ofstream out(filepath, std::ios::binary | std::ios::trunc);
-    if (!out)
-        return false;
-
-    out << HEADER_LINE << '\n';
-    // Lượt 2: duyệt từng bucket, từng node trong danh sách liên kết.
-    for (int i = 0; i < bucketCount; ++i)
+    // Ghi ra file tạm trước; chỉ khi ghi trọn vẹn mới thay file thật.
+    const std::string tmpPath = std::string(filepath) + ".tmp";
     {
-        for (const PlateNode *n = table.getBucket(i); n != nullptr; n = n->next)
+        std::ofstream out(tmpPath.c_str(), std::ios::binary | std::ios::trunc);
+        if (!out)
+            return false;
+
+        out << HEADER_LINE << '\n';
+        for (int i = 0; i < bucketCount; ++i)
         {
-            out << n->fullPlate << FILE_DELIMITER << n->provinceCode << FILE_DELIMITER
-                << n->wardCode << FILE_DELIMITER << n->serialNum << FILE_DELIMITER
-                << n->registeredDate << FILE_DELIMITER << n->ownerName << '\n';
+            for (const PlateNode *n = table.getBucket(i); n != nullptr; n = n->next)
+            {
+                out << n->fullPlate << FILE_DELIMITER << n->provinceCode << FILE_DELIMITER
+                    << n->wardCode << FILE_DELIMITER << n->serialNum << FILE_DELIMITER
+                    << n->registeredDate << FILE_DELIMITER << n->ownerName << '\n';
+            }
         }
-    }
-    return static_cast<bool>(out);
+        out.flush();
+        if (!out)
+        {
+            out.close();
+            std::remove(tmpPath.c_str());
+            return false;
+        }
+    } // file tạm được đóng ở đây
+
+    // Windows không cho rename đè lên file đã có, nên xóa file cũ trước.
+    std::remove(filepath);
+    return std::rename(tmpPath.c_str(), filepath) == 0;
 }
 
 /*
