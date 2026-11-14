@@ -8,7 +8,7 @@ reporter: hnamhocit
 sprintId: sprint-2
 storyPoints: 5
 createdAt: 2026-11-02T14:30:00.000Z
-updatedAt: 2026-11-14T04:37:06.308Z
+updatedAt: 2026-11-10T14:32:05.922Z
 ---
 
 ### Mục tiêu
