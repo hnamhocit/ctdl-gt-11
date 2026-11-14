@@ -1,14 +1,14 @@
 ---
 id: PROJ-10
 title: "Xây dựng Console Menu tương tác & Xử lý bẫy lỗi nhập liệu"
-status: in_progress
+status: review
 priority: high
 assignee: trinhquocthai
 reporter: hnamhocit
 sprintId: sprint-2
 storyPoints: 3
 createdAt: 2026-11-02T14:30:00.000Z
-updatedAt: 2026-11-14T03:51:50.004Z
+updatedAt: 2026-11-14T04:42:30.710Z
 ---
 
 ### Mục tiêu

@@ -359,7 +359,7 @@
       "id": "PROJ-10",
       "title": "Xây dựng Console Menu tương tác & Xử lý bẫy lỗi nhập liệu",
       "description": "### Mục tiêu\nHiện thực giao diện Console điều hướng bằng phím số, kết hợp với module Validator để kiểm soát dữ liệu đầu vào người dùng.\n\n### Acceptance Criteria\n- Menu hiển thị 6 chức năng rõ ràng, phân luồng điều hướng thân thiện.\n- Bẫy lỗi nhập ký tự chữ khi chọn menu số, ngăn ngừa vòng lặp vô tận cin.fail().\n- Xuất thông báo lỗi chi tiết khi người dùng nhập sai định dạng biển số.",
-      "status": "in_progress",
+      "status": "review",
       "priority": "high",
       "assignee": {
         "login": "trinhquocthai",
@@ -372,7 +372,10 @@
       "sprintId": "sprint-2",
       "storyPoints": 3,
       "createdAt": "2026-11-02T14:30:00.000Z",
-      "updatedAt": "2026-11-14T03:51:50.004Z"
+      "updatedAt": "2026-11-14T04:42:30.710Z",
+      "pullNumber": 8,
+      "pullUrl": "https://github.com/hnamhocit/ctdl-gt-11/pull/8",
+      "branch": "feature/PROJ-10-console-menu"
     }
   ],
   "sprints": [
