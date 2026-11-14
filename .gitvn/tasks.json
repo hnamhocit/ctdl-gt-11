@@ -69,25 +69,6 @@
       "updatedAt": "2026-11-02T14:30:00.000Z"
     },
     {
-      "id": "PROJ-10",
-      "title": "Xây dựng Console Menu tương tác & Xử lý bẫy lỗi nhập liệu",
-      "description": "### Mục tiêu\nHiện thực giao diện Console điều hướng bằng phím số, kết hợp với module Validator để kiểm soát dữ liệu đầu vào người dùng.\n\n### Acceptance Criteria\n- Menu hiển thị 6 chức năng rõ ràng, phân luồng điều hướng thân thiện.\n- Bẫy lỗi nhập ký tự chữ khi chọn menu số, ngăn ngừa vòng lặp vô tận cin.fail().\n- Xuất thông báo lỗi chi tiết khi người dùng nhập sai định dạng biển số.",
-      "status": "todo",
-      "priority": "high",
-      "assignee": {
-        "login": "trinhquocthai",
-        "name": "Trịnh Quốc Thái"
-      },
-      "reporter": {
-        "login": "hnamhocit",
-        "name": "Nguyễn Hoàng Nam"
-      },
-      "sprintId": "sprint-2",
-      "storyPoints": 3,
-      "createdAt": "2026-11-02T14:30:00.000Z",
-      "updatedAt": "2026-11-02T14:30:00.000Z"
-    },
-    {
       "id": "PROJ-11",
       "title": "Xây dựng bộ kiểm thử tự động 20 ca kiểm thử biên (Unit Tests)",
       "description": "### Mục tiêu\nHiện thực code kiểm thử tự động cho 20 test cases, kiểm tra tính đúng đắn của Bảng băm và Validator.\n\n### Acceptance Criteria\n- Mã nguồn kiểm thử thực thi độc lập, tự động in kết quả PASS/FAIL cho từng ca.\n- Kiểm tra đầy đủ: biển số hợp lệ, sai độ dài, thiếu gạch nối, ký tự lạ, trùng lặp, chuỗi rỗng.\n- Tỷ lệ vượt qua kiểm thử đạt 100%.",
@@ -127,6 +108,25 @@
       "storyPoints": 3,
       "createdAt": "2026-11-02T14:30:00.000Z",
       "updatedAt": "2026-11-02T14:30:00.000Z"
+    },
+    {
+      "id": "PROJ-10",
+      "title": "Xây dựng Console Menu tương tác & Xử lý bẫy lỗi nhập liệu",
+      "description": "### Mục tiêu\nHiện thực giao diện Console điều hướng bằng phím số, kết hợp với module Validator để kiểm soát dữ liệu đầu vào người dùng.\n\n### Acceptance Criteria\n- Menu hiển thị 6 chức năng rõ ràng, phân luồng điều hướng thân thiện.\n- Bẫy lỗi nhập ký tự chữ khi chọn menu số, ngăn ngừa vòng lặp vô tận cin.fail().\n- Xuất thông báo lỗi chi tiết khi người dùng nhập sai định dạng biển số.",
+      "status": "todo",
+      "priority": "high",
+      "assignee": {
+        "login": "trinhquocthai",
+        "name": "Trịnh Quốc Thái"
+      },
+      "reporter": {
+        "login": "hnamhocit",
+        "name": "Nguyễn Hoàng Nam"
+      },
+      "sprintId": "sprint-2",
+      "storyPoints": 3,
+      "createdAt": "2026-11-02T14:30:00.000Z",
+      "updatedAt": "2026-11-14T03:50:17.145Z"
     },
     {
       "id": "PROJ-13",
