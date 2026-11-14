@@ -110,25 +110,6 @@
       "updatedAt": "2026-11-02T14:30:00.000Z"
     },
     {
-      "id": "PROJ-10",
-      "title": "Xây dựng Console Menu tương tác & Xử lý bẫy lỗi nhập liệu",
-      "description": "### Mục tiêu\nHiện thực giao diện Console điều hướng bằng phím số, kết hợp với module Validator để kiểm soát dữ liệu đầu vào người dùng.\n\n### Acceptance Criteria\n- Menu hiển thị 6 chức năng rõ ràng, phân luồng điều hướng thân thiện.\n- Bẫy lỗi nhập ký tự chữ khi chọn menu số, ngăn ngừa vòng lặp vô tận cin.fail().\n- Xuất thông báo lỗi chi tiết khi người dùng nhập sai định dạng biển số.",
-      "status": "todo",
-      "priority": "high",
-      "assignee": {
-        "login": "trinhquocthai",
-        "name": "Trịnh Quốc Thái"
-      },
-      "reporter": {
-        "login": "hnamhocit",
-        "name": "Nguyễn Hoàng Nam"
-      },
-      "sprintId": "sprint-2",
-      "storyPoints": 3,
-      "createdAt": "2026-11-02T14:30:00.000Z",
-      "updatedAt": "2026-11-14T03:50:17.145Z"
-    },
-    {
       "id": "PROJ-13",
       "title": "Quản lý thu hồi bộ nhớ Heap (clear, Destructor) & Code Review lõi",
       "description": "### Mục tiêu\nHoàn thiện cơ chế thu hồi 100% vùng nhớ Heap trong hàm clear() và destructor, tối ưu hiệu năng con trỏ toàn hệ thống.\n\n### Acceptance Criteria\n- Duyệt qua 10.007 buckets và delete mọi PlateNode mà không sót byte nào.\n- Kiểm tra bằng Valgrind: 0 bytes leaked in 0 blocks.\n- Review chuẩn hóa mã nguồn toàn bộ các file .h và .cpp của nhóm.",
@@ -373,6 +354,25 @@
       "pullNumber": 6,
       "pullUrl": "https://github.com/hnamhocit/ctdl-gt-11/pull/6",
       "branch": "feature/PROJ-9-filter-wards"
+    },
+    {
+      "id": "PROJ-10",
+      "title": "Xây dựng Console Menu tương tác & Xử lý bẫy lỗi nhập liệu",
+      "description": "### Mục tiêu\nHiện thực giao diện Console điều hướng bằng phím số, kết hợp với module Validator để kiểm soát dữ liệu đầu vào người dùng.\n\n### Acceptance Criteria\n- Menu hiển thị 6 chức năng rõ ràng, phân luồng điều hướng thân thiện.\n- Bẫy lỗi nhập ký tự chữ khi chọn menu số, ngăn ngừa vòng lặp vô tận cin.fail().\n- Xuất thông báo lỗi chi tiết khi người dùng nhập sai định dạng biển số.",
+      "status": "in_progress",
+      "priority": "high",
+      "assignee": {
+        "login": "trinhquocthai",
+        "name": "Trịnh Quốc Thái"
+      },
+      "reporter": {
+        "login": "hnamhocit",
+        "name": "Nguyễn Hoàng Nam"
+      },
+      "sprintId": "sprint-2",
+      "storyPoints": 3,
+      "createdAt": "2026-11-02T14:30:00.000Z",
+      "updatedAt": "2026-11-14T03:51:50.004Z"
     }
   ],
   "sprints": [
