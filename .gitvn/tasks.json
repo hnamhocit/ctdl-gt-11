@@ -91,25 +91,6 @@
       "branch": "feat/PROJ-11-PROJ-17-testing-benchmark"
     },
     {
-      "id": "PROJ-12",
-      "title": "Soạn thảo chi tiết Mục 1 đến Mục 4 của Báo cáo đồ án",
-      "description": "### Mục tiêu\nViết nội dung kỹ thuật chuyên sâu cho 4 chương đầu: Giới thiệu đề tài, Phân tích bài toán, Thiết kế giải pháp và Hiện thực mã nguồn.\n\n### Acceptance Criteria\n- Vẽ lưu đồ thuật toán (Flowchart) cho các hàm cốt lõi.\n- Trình bày bảng phân tích độ phức tạp thời gian/không gian Big-O chuẩn xác.\n- Mô tả chi tiết cấu trúc dữ liệu PlateNode và cơ chế băm DJB2.",
-      "status": "todo",
-      "priority": "high",
-      "assignee": {
-        "login": "huynhthikhanhly",
-        "name": "Huỳnh Thị Khánh Ly"
-      },
-      "reporter": {
-        "login": "hnamhocit",
-        "name": "Nguyễn Hoàng Nam"
-      },
-      "sprintId": "sprint-2",
-      "storyPoints": 3,
-      "createdAt": "2026-11-02T14:30:00.000Z",
-      "updatedAt": "2026-11-02T14:30:00.000Z"
-    },
-    {
       "id": "PROJ-13",
       "title": "Quản lý thu hồi bộ nhớ Heap (clear, Destructor) & Code Review lõi",
       "description": "### Mục tiêu\nHoàn thiện cơ chế thu hồi 100% vùng nhớ Heap trong hàm clear() và destructor, tối ưu hiệu năng con trỏ toàn hệ thống.\n\n### Acceptance Criteria\n- Duyệt qua 10.007 buckets và delete mọi PlateNode mà không sót byte nào.\n- Kiểm tra bằng Valgrind: 0 bytes leaked in 0 blocks.\n- Review chuẩn hóa mã nguồn toàn bộ các file .h và .cpp của nhóm.",
@@ -376,6 +357,25 @@
       "pullNumber": 8,
       "pullUrl": "https://github.com/hnamhocit/ctdl-gt-11/pull/8",
       "branch": "feature/PROJ-10-console-menu"
+    },
+    {
+      "id": "PROJ-12",
+      "title": "Soạn thảo chi tiết Mục 1 đến Mục 4 của Báo cáo đồ án",
+      "description": "### Mục tiêu\nViết nội dung kỹ thuật chuyên sâu cho 4 chương đầu: Giới thiệu đề tài, Phân tích bài toán, Thiết kế giải pháp và Hiện thực mã nguồn.\n\n### Acceptance Criteria\n- Vẽ lưu đồ thuật toán (Flowchart) cho các hàm cốt lõi.\n- Trình bày bảng phân tích độ phức tạp thời gian/không gian Big-O chuẩn xác.\n- Mô tả chi tiết cấu trúc dữ liệu PlateNode và cơ chế băm DJB2.",
+      "status": "in_progress",
+      "priority": "high",
+      "assignee": {
+        "login": "huynhthikhanhly",
+        "name": "Huỳnh Thị Khánh Ly"
+      },
+      "reporter": {
+        "login": "hnamhocit",
+        "name": "Nguyễn Hoàng Nam"
+      },
+      "sprintId": "sprint-2",
+      "storyPoints": 3,
+      "createdAt": "2026-11-02T14:30:00.000Z",
+      "updatedAt": "2026-11-14T14:36:24.620Z"
     }
   ],
   "sprints": [
