@@ -39,6 +39,10 @@ test: setup
 	@echo "==> Biên dịch và chạy bộ kiểm thử Unit Tests..."
 	$(CXX) $(CXXFLAGS) $(SRC_DIR)/Plate.cpp $(SRC_DIR)/HashTable.cpp tests/test_hashtable.cpp -o $(BIN_DIR)/test_hashtable
 	./$(BIN_DIR)/test_hashtable
+	$(CXX) $(CXXFLAGS) $(SRC_DIR)/Plate.cpp $(SRC_DIR)/HashTable.cpp tests/test_proj7.cpp -o $(BIN_DIR)/test_proj7
+	./$(BIN_DIR)/test_proj7
+	$(CXX) $(CXXFLAGS) $(SRC_DIR)/Plate.cpp $(SRC_DIR)/HashTable.cpp $(SRC_DIR)/Validator.cpp tests/test_proj11.cpp -o $(BIN_DIR)/test_proj11
+	./$(BIN_DIR)/test_proj11
 	$(CXX) $(CXXFLAGS) $(SRC_DIR)/Plate.cpp $(SRC_DIR)/HashTable.cpp $(SRC_DIR)/FileIO.cpp tests/test_fileio.cpp -o $(BIN_DIR)/test_fileio
 	./$(BIN_DIR)/test_fileio
 	@rm -f t1.txt t2.txt t3.txt t6.txt
