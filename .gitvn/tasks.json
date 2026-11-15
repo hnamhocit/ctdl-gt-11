@@ -403,7 +403,7 @@
       "goal": "Hiện thực 4 chức năng cốt lõi (Đăng ký, Tra cứu O(1), Lọc xã của tỉnh), đọc/ghi file TXT, Console Menu, Unit Tests và soạn thảo Mục 1-4 Báo cáo.",
       "startDate": "2026-11-08",
       "endDate": "2026-11-13",
-      "status": "active",
+      "status": "completed",
       "createdAt": "2026-11-02T14:30:00.000Z"
     },
     {
@@ -412,7 +412,7 @@
       "goal": "4 ngày cuối: Thu hồi bộ nhớ Heap (Valgrind 0 leak), dataset 1.000 mẫu, lọc biển số theo xã, Benchmark hiệu năng, hoàn thiện Mục 6 AI và luyện tập Live Coding bảo vệ.",
       "startDate": "2026-11-14",
       "endDate": "2026-11-17",
-      "status": "planned",
+      "status": "active",
       "createdAt": "2026-11-02T14:30:00.000Z"
     }
   ],
