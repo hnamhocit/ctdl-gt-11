@@ -1,14 +1,14 @@
 ---
 id: PROJ-12
 title: "Soạn thảo chi tiết Mục 1 đến Mục 4 của Báo cáo đồ án"
-status: in_progress
+status: done
 priority: high
 assignee: huynhthikhanhly
 reporter: hnamhocit
 sprintId: sprint-2
 storyPoints: 3
 createdAt: 2026-11-02T14:30:00.000Z
-updatedAt: 2026-11-14T14:36:24.620Z
+updatedAt: 2026-11-15T02:19:28.113Z
 ---
 
 ### Mục tiêu

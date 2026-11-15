@@ -346,7 +346,7 @@
       "id": "PROJ-12",
       "title": "Soạn thảo chi tiết Mục 1 đến Mục 4 của Báo cáo đồ án",
       "description": "### Mục tiêu\nViết nội dung kỹ thuật chuyên sâu cho 4 chương đầu: Giới thiệu đề tài, Phân tích bài toán, Thiết kế giải pháp và Hiện thực mã nguồn.\n\n### Acceptance Criteria\n- Vẽ lưu đồ thuật toán (Flowchart) cho các hàm cốt lõi.\n- Trình bày bảng phân tích độ phức tạp thời gian/không gian Big-O chuẩn xác.\n- Mô tả chi tiết cấu trúc dữ liệu PlateNode và cơ chế băm DJB2.",
-      "status": "in_progress",
+      "status": "done",
       "priority": "high",
       "assignee": {
         "login": "huynhthikhanhly",
@@ -359,7 +359,10 @@
       "sprintId": "sprint-2",
       "storyPoints": 3,
       "createdAt": "2026-11-02T14:30:00.000Z",
-      "updatedAt": "2026-11-14T14:36:24.620Z"
+      "updatedAt": "2026-11-15T02:19:28.113Z",
+      "pullNumber": 11,
+      "pullUrl": "https://github.com/hnamhocit/ctdl-gt-11/pull/11",
+      "branch": "PROJ-12-Soan-thao-chi-tiet-Muc-1-den-Muc-4"
     },
     {
       "id": "PROJ-7",
