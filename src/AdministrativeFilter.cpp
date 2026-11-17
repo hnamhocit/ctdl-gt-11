@@ -94,7 +94,7 @@ void AdministrativeFilter::displayWardsOfProvince(const LicensePlateHashTable& t
                 }
 
                 if (!exists && distinctCount < MAX_CAPACITY) {
-                    std::strncpy(tempDistinctWards[distinctCount], current->wardCode, 2);
+                    std::memcpy(tempDistinctWards[distinctCount], current->wardCode, 2);
                     tempDistinctWards[distinctCount][2] = '\0';
                     distinctCount++;
                 }
@@ -147,7 +147,7 @@ void AdministrativeFilter::displayProvinceStatistics(const LicensePlateHashTable
             if (foundIndex != -1) {
                 provinceCounts[foundIndex]++;
             } else if (distinctProvinces < MAX_PROVINCES) {
-                std::strncpy(provinceCodes[distinctProvinces], current->provinceCode, 2);
+                std::memcpy(provinceCodes[distinctProvinces], current->provinceCode, 2);
                 provinceCodes[distinctProvinces][2] = '\0';
                 provinceCounts[distinctProvinces] = 1;
                 distinctProvinces++;
