@@ -114,3 +114,69 @@ void AdministrativeFilter::displayWardsOfProvince(const LicensePlateHashTable& t
 
     delete[] tempDistinctWards;
 }
+// 4. Thống kê tổng hợp số lượng phương tiện theo từng Tỉnh thành trên toàn hệ thống
+void AdministrativeFilter::displayProvinceStatistics(const LicensePlateHashTable& table) {
+    std::cout << "\n==================================================================\n";
+    std::cout << "         THONG KE TONG SO LUONG PHUONG TIEN THEO TINH THANH\n";
+    std::cout << "==================================================================\n";
+
+    int totalVehicles = table.getTotalCount();
+    if (totalVehicles == 0) {
+        std::cout << "  [Thong bao] He thong chua co du lieu phuong tien de thong ke.\n";
+        std::cout << "==================================================================\n\n";
+        return;
+    }
+
+    const int MAX_PROVINCES = 100;
+    char (*provinceCodes)[4] = new char[MAX_PROVINCES][4];
+    int* provinceCounts = new int[MAX_PROVINCES];
+    int distinctProvinces = 0;
+
+    int bucketSize = table.getBucketSize();
+    for (int i = 0; i < bucketSize; ++i) {
+        PlateNode* current = table.getBucket(i);
+        while (current != nullptr) {
+            int foundIndex = -1;
+            for (int k = 0; k < distinctProvinces; ++k) {
+                if (std::strncmp(provinceCodes[k], current->provinceCode, 2) == 0) {
+                    foundIndex = k;
+                    break;
+                }
+            }
+
+            if (foundIndex != -1) {
+                provinceCounts[foundIndex]++;
+            } else if (distinctProvinces < MAX_PROVINCES) {
+                std::strncpy(provinceCodes[distinctProvinces], current->provinceCode, 2);
+                provinceCodes[distinctProvinces][2] = '\0';
+                provinceCounts[distinctProvinces] = 1;
+                distinctProvinces++;
+            }
+            current = current->next;
+        }
+    }
+
+    std::cout << std::left
+              << std::setw(8)  << "STT"
+              << std::setw(18) << "Ma Tinh/Thanh"
+              << std::setw(20) << "So Luong Xe"
+              << std::setw(15) << "Ty Le (%)" << "\n";
+    std::cout << "------------------------------------------------------------------\n";
+
+    for (int i = 0; i < distinctProvinces; ++i) {
+        double percentage = (static_cast<double>(provinceCounts[i]) / totalVehicles) * 100.0;
+        std::cout << std::left
+                  << std::setw(8)  << (i + 1)
+                  << std::setw(18) << provinceCodes[i]
+                  << std::setw(20) << provinceCounts[i]
+                  << std::fixed << std::setprecision(2) << percentage << "%\n";
+    }
+
+    std::cout << "------------------------------------------------------------------\n";
+    std::cout << "  Tong so tinh thanh ghi nhan: " << distinctProvinces 
+              << " | Tong phuong tien: " << totalVehicles << "\n";
+    std::cout << "==================================================================\n\n";
+
+    delete[] provinceCodes;
+    delete[] provinceCounts;
+}
