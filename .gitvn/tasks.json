@@ -91,25 +91,6 @@
       "updatedAt": "2026-11-02T14:30:00.000Z"
     },
     {
-      "id": "PROJ-14",
-      "title": "Xây dựng bộ sinh 1.000 dữ liệu mẫu chuẩn UTF-8 & Stress Test File",
-      "description": "### Mục tiêu\nViết hàm sinh ngẫu nhiên 1.000 bản ghi biển số xe chuẩn ab-cd-ghxyz thuộc nhiều tỉnh thành để phục vụ kiểm thử và demo.\n\n### Acceptance Criteria\n- Sinh file dữ liệu mẫu ít nhất 1.000 bản ghi không bị trùng lặp biển số.\n- Phân bố đều các tỉnh thành lớn (59, 29, 61, 43, 60...).\n- Thử nghiệm stress test nạp file 10.000 bản ghi thành công trong thời gian < 100ms.",
-      "status": "todo",
-      "priority": "high",
-      "assignee": {
-        "login": "duquochung",
-        "name": "Dư Quốc Hưng"
-      },
-      "reporter": {
-        "login": "hnamhocit",
-        "name": "Nguyễn Hoàng Nam"
-      },
-      "sprintId": "sprint-3",
-      "storyPoints": 3,
-      "createdAt": "2026-11-02T14:30:00.000Z",
-      "updatedAt": "2026-11-02T14:30:00.000Z"
-    },
-    {
       "id": "PROJ-15",
       "title": "Hiện thực Chức năng 4 (Lọc biển số theo Xã) & Thống kê Tỉnh",
       "description": "### Mục tiêu\nHoàn thiện chức năng 4 (displayPlatesOfWard) và hàm thống kê tổng số phương tiện theo tỉnh (countPlatesInProvince).\n\n### Acceptance Criteria\n- In danh sách tất cả biển số đăng ký tại xã chỉ định theo định dạng bảng rõ đẹp.\n- Hàm đếm số xe theo tỉnh phục vụ cho kịch bản vấn đáp Live Coding của giảng viên.\n- Xử lý tốt các ca kiểm thử xã/tỉnh không có dữ liệu.",
@@ -388,6 +369,25 @@
       "pullNumber": 10,
       "pullUrl": "https://github.com/hnamhocit/ctdl-gt-11/pull/10",
       "branch": "feature/PROJ-7-register-search"
+    },
+    {
+      "id": "PROJ-14",
+      "title": "Xây dựng bộ sinh 1.000 dữ liệu mẫu chuẩn UTF-8 & Stress Test File",
+      "description": "### Mục tiêu\nViết hàm sinh ngẫu nhiên 1.000 bản ghi biển số xe chuẩn ab-cd-ghxyz thuộc nhiều tỉnh thành để phục vụ kiểm thử và demo.\n\n### Acceptance Criteria\n- Sinh file dữ liệu mẫu ít nhất 1.000 bản ghi không bị trùng lặp biển số.\n- Phân bố đều các tỉnh thành lớn (59, 29, 61, 43, 60...).\n- Thử nghiệm stress test nạp file 10.000 bản ghi thành công trong thời gian < 100ms.",
+      "status": "in_progress",
+      "priority": "high",
+      "assignee": {
+        "login": "duquochung",
+        "name": "Dư Quốc Hưng"
+      },
+      "reporter": {
+        "login": "hnamhocit",
+        "name": "Nguyễn Hoàng Nam"
+      },
+      "sprintId": "sprint-3",
+      "storyPoints": 3,
+      "createdAt": "2026-11-02T14:30:00.000Z",
+      "updatedAt": "2026-11-17T17:33:23.132Z"
     }
   ],
   "sprints": [
