@@ -1,14 +1,14 @@
 ---
 id: PROJ-18
 title: "Hoàn thiện Mục 6 AI, Slide thuyết trình & Luyện tập Vấn đáp Live Coding"
-status: todo
+status: in_progress
 priority: urgent
 assignee: huynhthikhanhly
 reporter: hnamhocit
 sprintId: sprint-3
 storyPoints: 5
 createdAt: 2026-11-02T14:30:00.000Z
-updatedAt: 2026-11-02T14:30:00.000Z
+updatedAt: 2026-11-19T10:24:42.757Z
 ---
 
 ### Mục tiêu

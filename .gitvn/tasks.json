@@ -173,25 +173,6 @@
       "branch": "feat/PROJ-11-PROJ-17-testing-benchmark"
     },
     {
-      "id": "PROJ-18",
-      "title": "Hoàn thiện Mục 6 AI, Slide thuyết trình & Luyện tập Vấn đáp Live Coding",
-      "description": "### Mục tiêu\nTổng hợp hoàn chỉnh Báo cáo đồ án 8 chương, hoàn thiện Mục 6 về Khai thác AI, slide thuyết trình và tổ chức thi thử vấn đáp.\n\n### Acceptance Criteria\n- Báo cáo hoàn chỉnh nộp bộ môn đúng hạn định dạng PDF/DOCX.\n- Slide thuyết trình 15-20 trang đẹp mắt, bao quát toàn bộ nội dung đồ án.\n- Tổ chức buổi mock test 10 câu hỏi vấn đáp và 5 bài tập live coding cho cả 6 thành viên.",
-      "status": "todo",
-      "priority": "urgent",
-      "assignee": {
-        "login": "huynhthikhanhly",
-        "name": "Huỳnh Thị Khánh Ly"
-      },
-      "reporter": {
-        "login": "hnamhocit",
-        "name": "Nguyễn Hoàng Nam"
-      },
-      "sprintId": "sprint-3",
-      "storyPoints": 5,
-      "createdAt": "2026-11-02T14:30:00.000Z",
-      "updatedAt": "2026-11-02T14:30:00.000Z"
-    },
-    {
       "id": "PROJ-6",
       "title": "Khởi tạo khung Báo cáo 8 chương & Hệ thống Prompt Log AI",
       "description": "### Mục tiêu\nThiết lập dàn ý chuẩn 8 chương theo đề cương học phần và tạo form quản lý nhật ký khai thác AI cho toàn nhóm.\n\n### Acceptance Criteria\n- Khung báo cáo hoàn chỉnh từ Mục 1 đến Mục 8 theo quy định môn học.\n- Bảng ghi chép Prompt Log Mục 6 (Công cụ, Prompt, Code sinh ra, Quy trình kiểm chứng) phân bổ cho 6 thành viên.",
@@ -388,6 +369,25 @@
       "pullNumber": 10,
       "pullUrl": "https://github.com/hnamhocit/ctdl-gt-11/pull/10",
       "branch": "feature/PROJ-7-register-search"
+    },
+    {
+      "id": "PROJ-18",
+      "title": "Hoàn thiện Mục 6 AI, Slide thuyết trình & Luyện tập Vấn đáp Live Coding",
+      "description": "### Mục tiêu\nTổng hợp hoàn chỉnh Báo cáo đồ án 8 chương, hoàn thiện Mục 6 về Khai thác AI, slide thuyết trình và tổ chức thi thử vấn đáp.\n\n### Acceptance Criteria\n- Báo cáo hoàn chỉnh nộp bộ môn đúng hạn định dạng PDF/DOCX.\n- Slide thuyết trình 15-20 trang đẹp mắt, bao quát toàn bộ nội dung đồ án.\n- Tổ chức buổi mock test 10 câu hỏi vấn đáp và 5 bài tập live coding cho cả 6 thành viên.",
+      "status": "in_progress",
+      "priority": "urgent",
+      "assignee": {
+        "login": "huynhthikhanhly",
+        "name": "Huỳnh Thị Khánh Ly"
+      },
+      "reporter": {
+        "login": "hnamhocit",
+        "name": "Nguyễn Hoàng Nam"
+      },
+      "sprintId": "sprint-3",
+      "storyPoints": 5,
+      "createdAt": "2026-11-02T14:30:00.000Z",
+      "updatedAt": "2026-11-19T10:24:42.757Z"
     }
   ],
   "sprints": [
