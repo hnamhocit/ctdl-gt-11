@@ -37,6 +37,6 @@ bool saveToFile(const LicensePlateHashTable &table, const char *filepath);
  * Sinh file dữ liệu mẫu hợp lệ, không trùng biển số, có tên tiếng Việt.
  * @return false nếu count <= 0, quá lớn, hoặc không ghi được file.
  */
-bool generateSampleDataset(const char *filepath, int count);
+bool generateSampleDataset(const char *filepath, int count, unsigned int seed = 2026);
 
 #endif // FILEIO_H
