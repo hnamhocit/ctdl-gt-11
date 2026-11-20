@@ -5,6 +5,8 @@
 #include <iostream>
 #include <string>
 #include <random>
+#include <filesystem>
+#include <system_error>
 namespace
 {
 
@@ -113,6 +115,20 @@ namespace
         while (s.size() < width)
             s.insert(s.begin(), '0');
         return s;
+    }
+
+    /**
+     * Tạo thư mục cha của filepath (kể cả nhiều cấp) nếu chưa có.
+     * @return false nếu không tạo được (ví dụ thư mục cha thực ra là một file).
+     */
+    bool ensureParentDirectory(const char *filepath)
+    {
+        std::filesystem::path parent = std::filesystem::path(filepath).parent_path();
+        if (parent.empty())
+            return true; // lưu ở thư mục hiện tại
+        std::error_code ec;
+        std::filesystem::create_directories(parent, ec);
+        return !ec;
     }
 
     /**
@@ -261,6 +277,8 @@ bool saveToFile(const LicensePlateHashTable &table, const char *filepath)
         }
     }
 
+    if (!ensureParentDirectory(filepath))
+        return false;
     // Ghi ra file tạm trước; chỉ khi ghi trọn vẹn mới thay file thật.
     const std::string tmpPath = std::string(filepath) + ".tmp";
     {
@@ -287,9 +305,31 @@ bool saveToFile(const LicensePlateHashTable &table, const char *filepath)
         }
     } // file tạm được đóng ở đây
 
-    // Windows không cho rename đè lên file đã có, nên xóa file cũ trước.
-    std::remove(filepath);
-    return std::rename(tmpPath.c_str(), filepath) == 0;
+    // Quy trình thay file an toàn: tại mọi thời điểm luôn còn ít nhất một bản đầy đủ.
+    // Windows không cho rename đè lên file đã có, nên chuyển file cũ sang .bak trước.
+    const std::string bakPath = std::string(filepath) + ".bak";
+    std::remove(bakPath.c_str()); // dọn bản sao lưu cũ (nếu còn sót)
+
+    bool hadOriginal = false;
+    {
+        std::ifstream probe(filepath, std::ios::binary);
+        hadOriginal = probe.good();
+    } // đóng trước khi rename (Windows khóa file đang mở)
+
+    if (hadOriginal && std::rename(filepath, bakPath.c_str()) != 0)
+    {
+        std::remove(tmpPath.c_str());
+        return false; // không đổi tên được: file gốc còn nguyên vẹn
+    }
+    if (std::rename(tmpPath.c_str(), filepath) != 0)
+    {
+        if (hadOriginal)
+            std::rename(bakPath.c_str(), filepath); // hoàn tác từ .bak
+        return false;                               // dữ liệu mới vẫn còn trong file .tmp
+    }
+    if (hadOriginal)
+        std::remove(bakPath.c_str()); // thành công mới xóa bản sao lưu
+    return true;
 }
 
 /*
@@ -323,6 +363,8 @@ bool generateSampleDataset(const char *filepath, int count, unsigned int seed)
     std::mt19937 rng(seed);
     const long serialOffset = static_cast<long>(rng() % 100000);
 
+    if (!ensureParentDirectory(filepath))
+        return false;
     std::ofstream out(filepath, std::ios::binary | std::ios::trunc);
     if (!out)
         return false;

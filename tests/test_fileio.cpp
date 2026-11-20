@@ -1,5 +1,5 @@
 #include "FileIO.h"
-
+#include <filesystem>
 #include <cstdio>
 #include <cstring>
 #include <fstream>
@@ -62,7 +62,11 @@ int main(int argc, char **argv)
     // 5. File không tồn tại / đường dẫn không ghi được
     LicensePlateHashTable t5;
     CHECK(!loadFromFile(t5, "khong_ton_tai.txt"));
-    CHECK(!saveToFile(t1, "thu_muc_khong_co/x.txt"));
+    // Thư mục cha thực ra là một FILE nên không thể tạo -> phải trả false
+    {
+        std::ofstream blocker("t5_blocker.txt", std::ios::binary);
+    }
+    CHECK(!saveToFile(t1, "t5_blocker.txt/x.txt"));
 
     // 6. Tên chủ xe chứa '|' phải bị từ chối khi lưu
     LicensePlateHashTable t6;
@@ -111,12 +115,30 @@ int main(int argc, char **argv)
         CHECK(!leftover);
     }
 
+    // 10. Tự tạo thư mục cha chưa tồn tại (nhiều cấp), cả khi lưu lẫn khi sinh mẫu
+    CHECK(saveToFile(t3, "t10_dir/sub/plates.txt"));
+    LicensePlateHashTable t10;
+    CHECK(loadFromFile(t10, "t10_dir/sub/plates.txt") &&
+          t10.getTotalCount() == t3.getTotalCount());
+    CHECK(generateSampleDataset("t10_dir/gen/sample.txt", 100));
+
+    // 11. Lưu đè lên file đã có: không để lại .bak hay .tmp
+    CHECK(saveToFile(t3, "t10_dir/sub/plates.txt"));
+    {
+        std::ifstream bak("t10_dir/sub/plates.txt.bak");
+        CHECK(!bak);
+    }
+    {
+        std::ifstream tmp("t10_dir/sub/plates.txt.tmp");
+        CHECK(!tmp);
+    }
     // Dọn các file tạm do test sinh ra
     const char *temps[] = {"t1.txt", "t2.txt", "t3.txt", "t6.txt", "t7a.txt",
                            "t7b.txt", "t8.txt", "t9.txt", "t9.txt.tmp"};
     for (const char *name : temps)
         std::remove(name);
-
+    std::remove("t5_blocker.txt");
+    std::filesystem::remove_all("t10_dir");
     std::cout << (failures == 0 ? "All FileIO tests passed\n" : "Có test thất bại\n");
     return failures == 0 ? 0 : 1;
 }
