@@ -66,7 +66,10 @@
       "sprintId": "sprint-2",
       "storyPoints": 3,
       "createdAt": "2026-11-02T14:30:00.000Z",
-      "updatedAt": "2026-11-02T14:30:00.000Z"
+      "updatedAt": "2026-11-02T14:30:00.000Z",
+      "pullNumber": 10,
+      "pullUrl": "https://github.com/hnamhocit/ctdl-gt-11/pull/10",
+      "branch": "feature/PROJ-7-register-search"
     },
     {
       "id": "PROJ-10",
@@ -85,7 +88,10 @@
       "sprintId": "sprint-2",
       "storyPoints": 3,
       "createdAt": "2026-11-02T14:30:00.000Z",
-      "updatedAt": "2026-11-02T14:30:00.000Z"
+      "updatedAt": "2026-11-02T14:30:00.000Z",
+      "pullNumber": 8,
+      "pullUrl": "https://github.com/hnamhocit/ctdl-gt-11/pull/8",
+      "branch": "feature/PROJ-10-console-menu"
     },
     {
       "id": "PROJ-11",
@@ -104,7 +110,10 @@
       "sprintId": "sprint-2",
       "storyPoints": 5,
       "createdAt": "2026-11-02T14:30:00.000Z",
-      "updatedAt": "2026-11-02T14:30:00.000Z"
+      "updatedAt": "2026-11-02T14:30:00.000Z",
+      "pullNumber": 13,
+      "pullUrl": "https://github.com/hnamhocit/ctdl-gt-11/pull/13",
+      "branch": "feat/PROJ-11-PROJ-17-testing-benchmark"
     },
     {
       "id": "PROJ-12",
@@ -123,7 +132,10 @@
       "sprintId": "sprint-2",
       "storyPoints": 3,
       "createdAt": "2026-11-02T14:30:00.000Z",
-      "updatedAt": "2026-11-02T14:30:00.000Z"
+      "updatedAt": "2026-11-02T14:30:00.000Z",
+      "pullNumber": 11,
+      "pullUrl": "https://github.com/hnamhocit/ctdl-gt-11/pull/11",
+      "branch": "PROJ-12-Soan-thao-chi-tiet-Muc-1-den-Muc-4"
     },
     {
       "id": "PROJ-13",
@@ -161,7 +173,10 @@
       "sprintId": "sprint-3",
       "storyPoints": 3,
       "createdAt": "2026-11-02T14:30:00.000Z",
-      "updatedAt": "2026-11-02T14:30:00.000Z"
+      "updatedAt": "2026-11-02T14:30:00.000Z",
+      "pullNumber": 14,
+      "pullUrl": "https://github.com/hnamhocit/ctdl-gt-11/pull/14",
+      "branch": "feature/PROJ-14-sample-dataset-stress"
     },
     {
       "id": "PROJ-15",
@@ -180,7 +195,10 @@
       "sprintId": "sprint-3",
       "storyPoints": 3,
       "createdAt": "2026-11-02T14:30:00.000Z",
-      "updatedAt": "2026-11-02T14:30:00.000Z"
+      "updatedAt": "2026-11-02T14:30:00.000Z",
+      "pullNumber": 12,
+      "pullUrl": "https://github.com/hnamhocit/ctdl-gt-11/pull/12",
+      "branch": "feature/PROJ-15-ward-table-and-tests"
     },
     {
       "id": "PROJ-16",
@@ -218,7 +236,10 @@
       "sprintId": "sprint-3",
       "storyPoints": 3,
       "createdAt": "2026-11-02T14:30:00.000Z",
-      "updatedAt": "2026-11-02T14:30:00.000Z"
+      "updatedAt": "2026-11-02T14:30:00.000Z",
+      "pullNumber": 13,
+      "pullUrl": "https://github.com/hnamhocit/ctdl-gt-11/pull/13",
+      "branch": "feat/PROJ-11-PROJ-17-testing-benchmark"
     },
     {
       "id": "PROJ-18",
@@ -331,7 +352,7 @@
       "id": "PROJ-9",
       "title": "Hiện thực Chức năng 3: Lọc danh sách mã Xã của Tỉnh (Khử trùng lặp)",
       "description": "### Mục tiêu\nHiện thực giải thuật duyệt bảng băm để trích xuất các mã xã cd thuộc tỉnh ab chỉ định và loại bỏ hoàn toàn trùng lặp.\n\n### Acceptance Criteria\n- Duyệt qua toàn bộ buckets và danh sách liên kết để lọc node có provinceCode == ab.\n- Khử trùng lặp bằng thuật toán mảng danh sách distinct, chỉ in mỗi mã xã một lần.\n- Thông báo rõ ràng nếu tỉnh chưa có phương tiện nào đăng ký.",
-      "status": "review",
+      "status": "done",
       "priority": "urgent",
       "assignee": {
         "login": "nguyenngochung",
@@ -344,7 +365,7 @@
       "sprintId": "sprint-2",
       "storyPoints": 5,
       "createdAt": "2026-11-02T14:30:00.000Z",
-      "updatedAt": "2026-11-10T14:32:05.922Z",
+      "updatedAt": "2026-11-20T13:23:50.841Z",
       "pullNumber": 6,
       "pullUrl": "https://github.com/hnamhocit/ctdl-gt-11/pull/6",
       "branch": "feature/PROJ-9-filter-wards"
@@ -353,7 +374,7 @@
       "id": "PROJ-8",
       "title": "Hiện thực chức năng Đọc/Ghi dữ liệu file TXT (loadFromFile, saveToFile)",
       "description": "### Mục tiêu\nHiện thực module đọc và ghi tệp TXT bền vững, tự động nạp khi khởi chạy và tự động lưu khi thoát ứng dụng.\n\n### Acceptance Criteria\n- Nạp chính xác từng dòng dữ liệu vào Bảng Băm thông qua insertPlate.\n- Tự động bỏ qua các dòng dữ liệu bẩn/lỗi mà không crash chương trình.\n- Lưu toàn bộ dữ liệu hiện hành trong bảng băm ra file TXT khi thoát.",
-      "status": "in_progress",
+      "status": "done",
       "priority": "urgent",
       "assignee": {
         "login": "duquochung",
@@ -366,7 +387,10 @@
       "sprintId": "sprint-2",
       "storyPoints": 5,
       "createdAt": "2026-11-02T14:30:00.000Z",
-      "updatedAt": "2026-11-10T15:51:46.926Z"
+      "updatedAt": "2026-11-20T13:23:50.842Z",
+      "pullNumber": 9,
+      "pullUrl": "https://github.com/hnamhocit/ctdl-gt-11/pull/9",
+      "branch": "feature/PROJ-8-file-load-save"
     }
   ],
   "sprints": [
