@@ -72,6 +72,25 @@
       "branch": "feature/PROJ-3-fileio"
     },
     {
+      "id": "PROJ-13",
+      "title": "Quản lý thu hồi bộ nhớ Heap (clear, Destructor) & Code Review lõi",
+      "description": "### Mục tiêu\nHoàn thiện cơ chế thu hồi 100% vùng nhớ Heap trong hàm clear() và destructor, tối ưu hiệu năng con trỏ toàn hệ thống.\n\n### Acceptance Criteria\n- Duyệt qua 10.007 buckets và delete mọi PlateNode mà không sót byte nào.\n- Kiểm tra bằng Valgrind: 0 bytes leaked in 0 blocks.\n- Review chuẩn hóa mã nguồn toàn bộ các file .h và .cpp của nhóm.",
+      "status": "done",
+      "priority": "high",
+      "assignee": {
+        "login": "hnamhocit",
+        "name": "Nguyễn Hoàng Nam"
+      },
+      "reporter": {
+        "login": "hnamhocit",
+        "name": "Nguyễn Hoàng Nam"
+      },
+      "sprintId": "sprint-3",
+      "storyPoints": 3,
+      "createdAt": "2026-11-02T14:30:00.000Z",
+      "updatedAt": "2026-11-20T12:31:08.322Z"
+    },
+    {
       "id": "PROJ-11",
       "title": "Xây dựng bộ kiểm thử tự động 20 ca kiểm thử biên (Unit Tests)",
       "description": "### Mục tiêu\nHiện thực code kiểm thử tự động cho 20 test cases, kiểm tra tính đúng đắn của Bảng băm và Validator.\n\n### Acceptance Criteria\n- Mã nguồn kiểm thử thực thi độc lập, tự động in kết quả PASS/FAIL cho từng ca.\n- Kiểm tra đầy đủ: biển số hợp lệ, sai độ dài, thiếu gạch nối, ký tự lạ, trùng lặp, chuỗi rỗng.\n- Tỷ lệ vượt qua kiểm thử đạt 100%.",
@@ -374,25 +393,6 @@
       "storyPoints": 3,
       "createdAt": "2026-11-02T14:30:00.000Z",
       "updatedAt": "2026-11-20T11:40:09.252Z"
-    },
-    {
-      "id": "PROJ-13",
-      "title": "Quản lý thu hồi bộ nhớ Heap (clear, Destructor) & Code Review lõi",
-      "description": "### Mục tiêu\nHoàn thiện cơ chế thu hồi 100% vùng nhớ Heap trong hàm clear() và destructor, tối ưu hiệu năng con trỏ toàn hệ thống.\n\n### Acceptance Criteria\n- Duyệt qua 10.007 buckets và delete mọi PlateNode mà không sót byte nào.\n- Kiểm tra bằng Valgrind: 0 bytes leaked in 0 blocks.\n- Review chuẩn hóa mã nguồn toàn bộ các file .h và .cpp của nhóm.",
-      "status": "in_progress",
-      "priority": "high",
-      "assignee": {
-        "login": "hnamhocit",
-        "name": "Nguyễn Hoàng Nam"
-      },
-      "reporter": {
-        "login": "hnamhocit",
-        "name": "Nguyễn Hoàng Nam"
-      },
-      "sprintId": "sprint-3",
-      "storyPoints": 3,
-      "createdAt": "2026-11-02T14:30:00.000Z",
-      "updatedAt": "2026-11-20T12:26:07.801Z"
     }
   ],
   "sprints": [

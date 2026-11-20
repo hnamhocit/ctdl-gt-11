@@ -1,14 +1,14 @@
 ---
 id: PROJ-13
 title: "Quản lý thu hồi bộ nhớ Heap (clear, Destructor) & Code Review lõi"
-status: in_progress
+status: done
 priority: high
 assignee: hnamhocit
 reporter: hnamhocit
 sprintId: sprint-3
 storyPoints: 3
 createdAt: 2026-11-02T14:30:00.000Z
-updatedAt: 2026-11-20T12:26:07.801Z
+updatedAt: 2026-11-20T12:31:08.322Z
 ---
 
 ### Mục tiêu
