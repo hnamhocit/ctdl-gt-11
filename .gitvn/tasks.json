@@ -94,25 +94,6 @@
       "branch": "feat/PROJ-11-PROJ-17-testing-benchmark"
     },
     {
-      "id": "PROJ-13",
-      "title": "Quản lý thu hồi bộ nhớ Heap (clear, Destructor) & Code Review lõi",
-      "description": "### Mục tiêu\nHoàn thiện cơ chế thu hồi 100% vùng nhớ Heap trong hàm clear() và destructor, tối ưu hiệu năng con trỏ toàn hệ thống.\n\n### Acceptance Criteria\n- Duyệt qua 10.007 buckets và delete mọi PlateNode mà không sót byte nào.\n- Kiểm tra bằng Valgrind: 0 bytes leaked in 0 blocks.\n- Review chuẩn hóa mã nguồn toàn bộ các file .h và .cpp của nhóm.",
-      "status": "todo",
-      "priority": "high",
-      "assignee": {
-        "login": "hnamhocit",
-        "name": "Nguyễn Hoàng Nam"
-      },
-      "reporter": {
-        "login": "hnamhocit",
-        "name": "Nguyễn Hoàng Nam"
-      },
-      "sprintId": "sprint-3",
-      "storyPoints": 3,
-      "createdAt": "2026-11-02T14:30:00.000Z",
-      "updatedAt": "2026-11-02T14:30:00.000Z"
-    },
-    {
       "id": "PROJ-15",
       "title": "Hiện thực Chức năng 4 (Lọc biển số theo Xã) & Thống kê Tỉnh",
       "description": "### Mục tiêu\nHoàn thiện chức năng 4 (displayPlatesOfWard) và hàm thống kê tổng số phương tiện theo tỉnh (countPlatesInProvince).\n\n### Acceptance Criteria\n- In danh sách tất cả biển số đăng ký tại xã chỉ định theo định dạng bảng rõ đẹp.\n- Hàm đếm số xe theo tỉnh phục vụ cho kịch bản vấn đáp Live Coding của giảng viên.\n- Xử lý tốt các ca kiểm thử xã/tỉnh không có dữ liệu.",
@@ -390,6 +371,25 @@
       "storyPoints": 3,
       "createdAt": "2026-11-02T14:30:00.000Z",
       "updatedAt": "2026-11-20T11:40:09.252Z"
+    },
+    {
+      "id": "PROJ-13",
+      "title": "Quản lý thu hồi bộ nhớ Heap (clear, Destructor) & Code Review lõi",
+      "description": "### Mục tiêu\nHoàn thiện cơ chế thu hồi 100% vùng nhớ Heap trong hàm clear() và destructor, tối ưu hiệu năng con trỏ toàn hệ thống.\n\n### Acceptance Criteria\n- Duyệt qua 10.007 buckets và delete mọi PlateNode mà không sót byte nào.\n- Kiểm tra bằng Valgrind: 0 bytes leaked in 0 blocks.\n- Review chuẩn hóa mã nguồn toàn bộ các file .h và .cpp của nhóm.",
+      "status": "in_progress",
+      "priority": "high",
+      "assignee": {
+        "login": "hnamhocit",
+        "name": "Nguyễn Hoàng Nam"
+      },
+      "reporter": {
+        "login": "hnamhocit",
+        "name": "Nguyễn Hoàng Nam"
+      },
+      "sprintId": "sprint-3",
+      "storyPoints": 3,
+      "createdAt": "2026-11-02T14:30:00.000Z",
+      "updatedAt": "2026-11-20T12:00:41.228Z"
     }
   ],
   "sprints": [
