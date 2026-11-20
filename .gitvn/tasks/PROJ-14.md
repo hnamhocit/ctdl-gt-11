@@ -1,14 +1,14 @@
 ---
 id: PROJ-14
 title: "Xây dựng bộ sinh 1.000 dữ liệu mẫu chuẩn UTF-8 & Stress Test File"
-status: todo
+status: done
 priority: high
 assignee: duquochung
 reporter: hnamhocit
 sprintId: sprint-3
 storyPoints: 3
 createdAt: 2026-11-02T14:30:00.000Z
-updatedAt: 2026-11-02T14:30:00.000Z
+updatedAt: 2026-11-20T19:24:00.000Z
 ---
 
 ### Mục tiêu
