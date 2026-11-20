@@ -154,25 +154,6 @@
       "updatedAt": "2026-11-18T08:11:30.587Z"
     },
     {
-      "id": "PROJ-16",
-      "title": "Tích hợp toàn diện MenuUI với hệ thống & Kiểm thử giao diện",
-      "description": "### Mục tiêu\nKết nối module giao diện với đầy đủ các tính năng nạp/lưu file, tra cứu, đăng ký, lọc xã và benchmark hiệu năng.\n\n### Acceptance Criteria\n- Kiểm tra luồng chạy từ đầu đến cuối (End-to-End) qua tất cả các phím bấm menu.\n- Đảm bảo giao diện console không bị crash khi nhập ký tự đặc biệt hoặc dữ liệu sai.\n- Biên dịch sạch trên cả Linux (g++) và Windows (MinGW/MSVC).",
-      "status": "todo",
-      "priority": "high",
-      "assignee": {
-        "login": "trinhquocthai",
-        "name": "Trịnh Quốc Thái"
-      },
-      "reporter": {
-        "login": "hnamhocit",
-        "name": "Nguyễn Hoàng Nam"
-      },
-      "sprintId": "sprint-3",
-      "storyPoints": 3,
-      "createdAt": "2026-11-02T14:30:00.000Z",
-      "updatedAt": "2026-11-02T14:30:00.000Z"
-    },
-    {
       "id": "PROJ-6",
       "title": "Khởi tạo khung Báo cáo 8 chương & Hệ thống Prompt Log AI",
       "description": "### Mục tiêu\nThiết lập dàn ý chuẩn 8 chương theo đề cương học phần và tạo form quản lý nhật ký khai thác AI cho toàn nhóm.\n\n### Acceptance Criteria\n- Khung báo cáo hoàn chỉnh từ Mục 1 đến Mục 8 theo quy định môn học.\n- Bảng ghi chép Prompt Log Mục 6 (Công cụ, Prompt, Code sinh ra, Quy trình kiểm chứng) phân bổ cho 6 thành viên.",
@@ -390,6 +371,25 @@
       "storyPoints": 5,
       "createdAt": "2026-11-02T14:30:00.000Z",
       "updatedAt": "2026-11-20T06:55:06.494Z"
+    },
+    {
+      "id": "PROJ-16",
+      "title": "Tích hợp toàn diện MenuUI với hệ thống & Kiểm thử giao diện",
+      "description": "### Mục tiêu\nKết nối module giao diện với đầy đủ các tính năng nạp/lưu file, tra cứu, đăng ký, lọc xã và benchmark hiệu năng.\n\n### Acceptance Criteria\n- Kiểm tra luồng chạy từ đầu đến cuối (End-to-End) qua tất cả các phím bấm menu.\n- Đảm bảo giao diện console không bị crash khi nhập ký tự đặc biệt hoặc dữ liệu sai.\n- Biên dịch sạch trên cả Linux (g++) và Windows (MinGW/MSVC).",
+      "status": "in_progress",
+      "priority": "high",
+      "assignee": {
+        "login": "trinhquocthai",
+        "name": "Trịnh Quốc Thái"
+      },
+      "reporter": {
+        "login": "hnamhocit",
+        "name": "Nguyễn Hoàng Nam"
+      },
+      "sprintId": "sprint-3",
+      "storyPoints": 3,
+      "createdAt": "2026-11-02T14:30:00.000Z",
+      "updatedAt": "2026-11-20T11:40:09.252Z"
     }
   ],
   "sprints": [
