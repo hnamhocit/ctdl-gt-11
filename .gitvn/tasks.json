@@ -358,7 +358,7 @@
       "id": "PROJ-16",
       "title": "Tích hợp toàn diện MenuUI với hệ thống & Kiểm thử giao diện",
       "description": "### Mục tiêu\nKết nối module giao diện với đầy đủ các tính năng nạp/lưu file, tra cứu, đăng ký, lọc xã và benchmark hiệu năng.\n\n### Acceptance Criteria\n- Kiểm tra luồng chạy từ đầu đến cuối (End-to-End) qua tất cả các phím bấm menu.\n- Đảm bảo giao diện console không bị crash khi nhập ký tự đặc biệt hoặc dữ liệu sai.\n- Biên dịch sạch trên cả Linux (g++) và Windows (MinGW/MSVC).",
-      "status": "review",
+      "status": "done",
       "priority": "high",
       "assignee": {
         "login": "trinhquocthai",
@@ -371,7 +371,7 @@
       "sprintId": "sprint-3",
       "storyPoints": 3,
       "createdAt": "2026-11-02T14:30:00.000Z",
-      "updatedAt": "2026-11-20T15:28:09.942Z",
+      "updatedAt": "2026-11-21T11:32:49.806Z",
       "pullNumber": 17,
       "pullUrl": "https://github.com/hnamhocit/ctdl-gt-11/pull/17",
       "branch": "feature/PROJ-16-integrate-MenuUI"
@@ -380,7 +380,7 @@
       "id": "PROJ-18",
       "title": "Hoàn thiện Mục 5–8 Báo cáo, đóng gói nộp bài & Luyện tập Demo + Vấn đáp Live Coding",
       "description": "### Mục tiêu\nTổng hợp hoàn chỉnh Báo cáo đồ án 8 chương, hoàn thiện Mục 6 về Khai thác AI, slide thuyết trình và tổ chức thi thử vấn đáp.\n\n### Acceptance Criteria\n- Báo cáo hoàn chỉnh nộp bộ môn đúng hạn định dạng PDF/DOCX.\n- Slide thuyết trình 15-20 trang đẹp mắt, bao quát toàn bộ nội dung đồ án.\n- Tổ chức buổi mock test 10 câu hỏi vấn đáp và 5 bài tập live coding cho cả 6 thành viên.",
-      "status": "review",
+      "status": "done",
       "priority": "urgent",
       "assignee": {
         "login": "huynhthikhanhly",
@@ -395,7 +395,7 @@
       "sprintId": "sprint-3",
       "storyPoints": 5,
       "createdAt": "2026-11-02T14:30:00.000Z",
-      "updatedAt": "2026-11-20T14:24:25.497Z",
+      "updatedAt": "2026-11-21T11:32:49.807Z",
       "pullNumber": 16,
       "pullUrl": "https://github.com/hnamhocit/ctdl-gt-11/pull/16",
       "branch": "PROJ-18-Hoan-thien-Muc-6-AI-slide-thuyet-trinh-Luyen-tap-van-dap"

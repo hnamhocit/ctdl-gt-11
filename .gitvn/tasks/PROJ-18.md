@@ -1,14 +1,14 @@
 ---
 id: PROJ-18
 title: "Hoàn thiện Mục 5–8 Báo cáo, đóng gói nộp bài & Luyện tập Demo + Vấn đáp Live Coding"
-status: review
+status: done
 priority: urgent
 assignee: huynhthikhanhly
 reporter: hnamhocit
 sprintId: sprint-3
 storyPoints: 5
 createdAt: 2026-11-02T14:30:00.000Z
-updatedAt: 2026-11-20T14:24:25.497Z
+updatedAt: 2026-11-21T11:32:49.807Z
 ---
 
 ### Mục tiêu
