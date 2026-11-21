@@ -132,7 +132,10 @@
       "sprintId": "sprint-3",
       "storyPoints": 3,
       "createdAt": "2026-11-02T14:30:00.000Z",
-      "updatedAt": "2026-11-02T14:30:00.000Z"
+      "updatedAt": "2026-11-02T14:30:00.000Z",
+      "pullNumber": 11,
+      "pullUrl": "https://github.com/hnamhocit/ctdl-gt-11/pull/11",
+      "branch": "PROJ-12-Soan-thao-chi-tiet-Muc-1-den-Muc-4"
     },
     {
       "id": "PROJ-14",
