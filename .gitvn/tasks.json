@@ -53,7 +53,7 @@
       "id": "PROJ-7",
       "title": "Hiện thực chức năng Đăng ký biển số mới và Tra cứu O(1)",
       "description": "### Mục tiêu\nCài đặt phương thức insertPlate và searchPlate trên Bảng Băm sử dụng con trỏ thuần và cơ chế Separate Chaining.\n\n### Acceptance Criteria\n- Chèn biển số mới vào đầu danh sách liên kết tại bucket tương ứng trong O(1) trung bình.\n- Tra cứu biển số trả về PlateNode* hoặc nullptr trong O(1).\n- Bắt lỗi trùng lặp: không cho phép chèn nếu biển số đã tồn tại.",
-      "status": "todo",
+      "status": "done",
       "priority": "high",
       "assignee": {
         "login": "hnamhocit",
@@ -66,7 +66,7 @@
       "sprintId": "sprint-2",
       "storyPoints": 3,
       "createdAt": "2026-11-02T14:30:00.000Z",
-      "updatedAt": "2026-11-02T14:30:00.000Z",
+      "updatedAt": "2026-11-14T15:49:23.946638Z",
       "pullNumber": 10,
       "pullUrl": "https://github.com/hnamhocit/ctdl-gt-11/pull/10",
       "branch": "feature/PROJ-7-register-search"
@@ -75,7 +75,7 @@
       "id": "PROJ-10",
       "title": "Xây dựng Console Menu tương tác & Xử lý bẫy lỗi nhập liệu",
       "description": "### Mục tiêu\nHiện thực giao diện Console điều hướng bằng phím số, kết hợp với module Validator để kiểm soát dữ liệu đầu vào người dùng.\n\n### Acceptance Criteria\n- Menu hiển thị 6 chức năng rõ ràng, phân luồng điều hướng thân thiện.\n- Bẫy lỗi nhập ký tự chữ khi chọn menu số, ngăn ngừa vòng lặp vô tận cin.fail().\n- Xuất thông báo lỗi chi tiết khi người dùng nhập sai định dạng biển số.",
-      "status": "todo",
+      "status": "done",
       "priority": "high",
       "assignee": {
         "login": "trinhquocthai",
@@ -88,7 +88,7 @@
       "sprintId": "sprint-2",
       "storyPoints": 3,
       "createdAt": "2026-11-02T14:30:00.000Z",
-      "updatedAt": "2026-11-02T14:30:00.000Z",
+      "updatedAt": "2026-11-14T15:49:23.946638Z",
       "pullNumber": 8,
       "pullUrl": "https://github.com/hnamhocit/ctdl-gt-11/pull/8",
       "branch": "feature/PROJ-10-console-menu"
@@ -97,7 +97,7 @@
       "id": "PROJ-11",
       "title": "Xây dựng bộ kiểm thử tự động 20 ca kiểm thử biên (Unit Tests)",
       "description": "### Mục tiêu\nHiện thực code kiểm thử tự động cho 20 test cases, kiểm tra tính đúng đắn của Bảng băm và Validator.\n\n### Acceptance Criteria\n- Mã nguồn kiểm thử thực thi độc lập, tự động in kết quả PASS/FAIL cho từng ca.\n- Kiểm tra đầy đủ: biển số hợp lệ, sai độ dài, thiếu gạch nối, ký tự lạ, trùng lặp, chuỗi rỗng.\n- Tỷ lệ vượt qua kiểm thử đạt 100%.",
-      "status": "todo",
+      "status": "done",
       "priority": "urgent",
       "assignee": {
         "login": "huynhquocviet",
@@ -110,32 +110,10 @@
       "sprintId": "sprint-2",
       "storyPoints": 5,
       "createdAt": "2026-11-02T14:30:00.000Z",
-      "updatedAt": "2026-11-02T14:30:00.000Z",
-      "pullNumber": 13,
-      "pullUrl": "https://github.com/hnamhocit/ctdl-gt-11/pull/13",
+      "updatedAt": "2026-11-14T15:49:23.946638Z",
+      "pullNumber": 7,
+      "pullUrl": "https://github.com/hnamhocit/ctdl-gt-11/pull/7",
       "branch": "feat/PROJ-11-PROJ-17-testing-benchmark"
-    },
-    {
-      "id": "PROJ-12",
-      "title": "Soạn thảo chi tiết Mục 1 đến Mục 4 của Báo cáo đồ án",
-      "description": "### Mục tiêu\nViết nội dung kỹ thuật chuyên sâu cho 4 chương đầu: Giới thiệu đề tài, Phân tích bài toán, Thiết kế giải pháp và Hiện thực mã nguồn.\n\n### Acceptance Criteria\n- Vẽ lưu đồ thuật toán (Flowchart) cho các hàm cốt lõi.\n- Trình bày bảng phân tích độ phức tạp thời gian/không gian Big-O chuẩn xác.\n- Mô tả chi tiết cấu trúc dữ liệu PlateNode và cơ chế băm DJB2.",
-      "status": "todo",
-      "priority": "high",
-      "assignee": {
-        "login": "huynhthikhanhly",
-        "name": "Huỳnh Thị Khánh Ly"
-      },
-      "reporter": {
-        "login": "hnamhocit",
-        "name": "Nguyễn Hoàng Nam"
-      },
-      "sprintId": "sprint-2",
-      "storyPoints": 3,
-      "createdAt": "2026-11-02T14:30:00.000Z",
-      "updatedAt": "2026-11-02T14:30:00.000Z",
-      "pullNumber": 11,
-      "pullUrl": "https://github.com/hnamhocit/ctdl-gt-11/pull/11",
-      "branch": "PROJ-12-Soan-thao-chi-tiet-Muc-1-den-Muc-4"
     },
     {
       "id": "PROJ-13",
@@ -154,13 +132,16 @@
       "sprintId": "sprint-3",
       "storyPoints": 3,
       "createdAt": "2026-11-02T14:30:00.000Z",
-      "updatedAt": "2026-11-02T14:30:00.000Z"
+      "updatedAt": "2026-11-02T14:30:00.000Z",
+      "pullNumber": 11,
+      "pullUrl": "https://github.com/hnamhocit/ctdl-gt-11/pull/11",
+      "branch": "PROJ-12-Soan-thao-chi-tiet-Muc-1-den-Muc-4"
     },
     {
       "id": "PROJ-14",
       "title": "Xây dựng bộ sinh 1.000 dữ liệu mẫu chuẩn UTF-8 & Stress Test File",
       "description": "### Mục tiêu\nViết hàm sinh ngẫu nhiên 1.000 bản ghi biển số xe chuẩn ab-cd-ghxyz thuộc nhiều tỉnh thành để phục vụ kiểm thử và demo.\n\n### Acceptance Criteria\n- Sinh file dữ liệu mẫu ít nhất 1.000 bản ghi không bị trùng lặp biển số.\n- Phân bố đều các tỉnh thành lớn (59, 29, 61, 43, 60...).\n- Thử nghiệm stress test nạp file 10.000 bản ghi thành công trong thời gian < 100ms.",
-      "status": "todo",
+      "status": "done",
       "priority": "high",
       "assignee": {
         "login": "duquochung",
@@ -173,10 +154,32 @@
       "sprintId": "sprint-3",
       "storyPoints": 3,
       "createdAt": "2026-11-02T14:30:00.000Z",
-      "updatedAt": "2026-11-02T14:30:00.000Z",
+      "updatedAt": "2026-11-20T19:24:00.000Z",
       "pullNumber": 14,
       "pullUrl": "https://github.com/hnamhocit/ctdl-gt-11/pull/14",
       "branch": "feature/PROJ-14-sample-dataset-stress"
+    },
+    {
+      "id": "PROJ-12",
+      "title": "Soạn thảo chi tiết Mục 1 đến Mục 4 của Báo cáo đồ án",
+      "description": "### Mục tiêu\nViết nội dung kỹ thuật chuyên sâu cho 4 chương đầu: Giới thiệu đề tài, Phân tích bài toán, Thiết kế giải pháp và Hiện thực mã nguồn.\n\n### Acceptance Criteria\n- Vẽ lưu đồ thuật toán (Flowchart) cho các hàm cốt lõi.\n- Trình bày bảng phân tích độ phức tạp thời gian/không gian Big-O chuẩn xác.\n- Mô tả chi tiết cấu trúc dữ liệu PlateNode và cơ chế băm DJB2.",
+      "status": "todo",
+      "priority": "high",
+      "assignee": {
+        "login": "huynhthikhanhly",
+        "name": "Huỳnh Thị Khánh Ly"
+      },
+      "reporter": {
+        "login": "hnamhocit",
+        "name": "Nguyễn Hoàng Nam"
+      },
+      "sprintId": "sprint-2",
+      "storyPoints": 3,
+      "createdAt": "2026-11-02T14:30:00.000Z",
+      "updatedAt": "2026-11-20T15:27:53.472Z",
+      "pullNumber": 11,
+      "pullUrl": "https://github.com/hnamhocit/ctdl-gt-11/pull/11",
+      "branch": "PROJ-12-Soan-thao-chi-tiet-Muc-1-den-Muc-4"
     },
     {
       "id": "PROJ-15",
@@ -204,7 +207,7 @@
       "id": "PROJ-16",
       "title": "Tích hợp toàn diện MenuUI với hệ thống & Kiểm thử giao diện",
       "description": "### Mục tiêu\nKết nối module giao diện với đầy đủ các tính năng nạp/lưu file, tra cứu, đăng ký, lọc xã và benchmark hiệu năng.\n\n### Acceptance Criteria\n- Kiểm tra luồng chạy từ đầu đến cuối (End-to-End) qua tất cả các phím bấm menu.\n- Đảm bảo giao diện console không bị crash khi nhập ký tự đặc biệt hoặc dữ liệu sai.\n- Biên dịch sạch trên cả Linux (g++) và Windows (MinGW/MSVC).",
-      "status": "todo",
+      "status": "review",
       "priority": "high",
       "assignee": {
         "login": "trinhquocthai",
@@ -217,13 +220,16 @@
       "sprintId": "sprint-3",
       "storyPoints": 3,
       "createdAt": "2026-11-02T14:30:00.000Z",
-      "updatedAt": "2026-11-02T14:30:00.000Z"
+      "updatedAt": "2026-11-20T15:27:48.646Z",
+      "pullNumber": 17,
+      "pullUrl": "https://github.com/hnamhocit/ctdl-gt-11/pull/17",
+      "branch": "feature/PROJ-16-integrate-MenuUI"
     },
     {
       "id": "PROJ-17",
       "title": "Đo đạc Benchmark hiệu năng (100 - 10.000 mẫu) & Kiểm tra Valgrind",
       "description": "### Mục tiêu\nThực thi đo lường thời gian chèn/tra cứu với tập dữ liệu 100, 1.000, 10.000 bản ghi bằng std::chrono và chạy Valgrind.\n\n### Acceptance Criteria\n- Thu thập số liệu đo lường microsecond/nanosecond cụ thể cho Báo cáo Mục 5 & Mục 7.\n- Chạy kiểm tra Valgrind trên Linux với kết quả 0 errors from 0 contexts.\n- Lập bảng so sánh hệ số tải alpha và thời gian thực thi trung bình.",
-      "status": "todo",
+      "status": "done",
       "priority": "high",
       "assignee": {
         "login": "huynhquocviet",
@@ -236,16 +242,16 @@
       "sprintId": "sprint-3",
       "storyPoints": 3,
       "createdAt": "2026-11-02T14:30:00.000Z",
-      "updatedAt": "2026-11-02T14:30:00.000Z",
-      "pullNumber": 13,
-      "pullUrl": "https://github.com/hnamhocit/ctdl-gt-11/pull/13",
+      "updatedAt": "2026-11-14T15:49:23.946638Z",
+      "pullNumber": 7,
+      "pullUrl": "https://github.com/hnamhocit/ctdl-gt-11/pull/7",
       "branch": "feat/PROJ-11-PROJ-17-testing-benchmark"
     },
     {
       "id": "PROJ-18",
       "title": "Hoàn thiện Mục 6 AI, Slide thuyết trình & Luyện tập Vấn đáp Live Coding",
       "description": "### Mục tiêu\nTổng hợp hoàn chỉnh Báo cáo đồ án 8 chương, hoàn thiện Mục 6 về Khai thác AI, slide thuyết trình và tổ chức thi thử vấn đáp.\n\n### Acceptance Criteria\n- Báo cáo hoàn chỉnh nộp bộ môn đúng hạn định dạng PDF/DOCX.\n- Slide thuyết trình 15-20 trang đẹp mắt, bao quát toàn bộ nội dung đồ án.\n- Tổ chức buổi mock test 10 câu hỏi vấn đáp và 5 bài tập live coding cho cả 6 thành viên.",
-      "status": "todo",
+      "status": "review",
       "priority": "urgent",
       "assignee": {
         "login": "huynhthikhanhly",
@@ -258,7 +264,10 @@
       "sprintId": "sprint-3",
       "storyPoints": 5,
       "createdAt": "2026-11-02T14:30:00.000Z",
-      "updatedAt": "2026-11-02T14:30:00.000Z"
+      "updatedAt": "2026-11-20T15:27:48.647Z",
+      "pullNumber": 16,
+      "pullUrl": "https://github.com/hnamhocit/ctdl-gt-11/pull/16",
+      "branch": "PROJ-18-Hoan-thien-Muc-6-AI-slide-thuyet-trinh-Luyen-tap-van-dap"
     },
     {
       "id": "PROJ-6",
@@ -365,7 +374,7 @@
       "sprintId": "sprint-2",
       "storyPoints": 5,
       "createdAt": "2026-11-02T14:30:00.000Z",
-      "updatedAt": "2026-11-20T13:23:50.841Z",
+      "updatedAt": "2026-11-14T15:49:23.946638Z",
       "pullNumber": 6,
       "pullUrl": "https://github.com/hnamhocit/ctdl-gt-11/pull/6",
       "branch": "feature/PROJ-9-filter-wards"
@@ -387,7 +396,7 @@
       "sprintId": "sprint-2",
       "storyPoints": 5,
       "createdAt": "2026-11-02T14:30:00.000Z",
-      "updatedAt": "2026-11-20T13:23:50.842Z",
+      "updatedAt": "2026-11-14T15:49:23.946638Z",
       "pullNumber": 9,
       "pullUrl": "https://github.com/hnamhocit/ctdl-gt-11/pull/9",
       "branch": "feature/PROJ-8-file-load-save"

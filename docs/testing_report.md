@@ -26,7 +26,7 @@ Các trạng thái và số liệu bên dưới được ghi từ lần chạy t
 | 20 Unit Test | **20/20 PASS** | `make test` |
 | Benchmark 100 / 1.000 / 10.000 | **Đã chạy** | `make benchmark` |
 | CMake + CTest | **1/1 test PASS** | `cmake --build build -j2` và `ctest --test-dir build --output-on-failure` |
-| Valgrind | **Chưa thực hiện** | Môi trường hiện tại chưa cài Valgrind (`command -v valgrind` không tìm thấy) |
+| Valgrind | **0 errors from 0 contexts** | `docs/valgrind_report.md` (19 allocs, 19 frees) |
 
 ## Môi trường đo
 - Hệ điều hành: Linux x86_64.

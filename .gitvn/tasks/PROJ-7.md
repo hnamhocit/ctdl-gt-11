@@ -1,14 +1,14 @@
 ---
 id: PROJ-7
 title: "Hiện thực chức năng Đăng ký biển số mới và Tra cứu O(1)"
-status: todo
+status: done
 priority: high
 assignee: hnamhocit
 reporter: hnamhocit
 sprintId: sprint-2
 storyPoints: 3
 createdAt: 2026-11-02T14:30:00.000Z
-updatedAt: 2026-11-02T14:30:00.000Z
+updatedAt: 2026-11-14T15:49:23.946638Z
 ---
 
 ### Mục tiêu

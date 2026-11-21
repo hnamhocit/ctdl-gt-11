@@ -1,14 +1,14 @@
 ---
 id: PROJ-17
 title: "Đo đạc Benchmark hiệu năng (100 - 10.000 mẫu) & Kiểm tra Valgrind"
-status: todo
+status: done
 priority: high
 assignee: huynhquocviet
 reporter: hnamhocit
 sprintId: sprint-3
 storyPoints: 3
 createdAt: 2026-11-02T14:30:00.000Z
-updatedAt: 2026-11-02T14:30:00.000Z
+updatedAt: 2026-11-14T15:49:23.946638Z
 ---
 
 ### Mục tiêu
