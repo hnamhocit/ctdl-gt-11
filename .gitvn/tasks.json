@@ -426,7 +426,7 @@
       "goal": "4 ngày cuối: Thu hồi bộ nhớ Heap (Valgrind 0 leak), dataset 1.000 mẫu, lọc biển số theo xã, Benchmark hiệu năng, hoàn thiện Mục 6 AI và luyện tập Live Coding bảo vệ.",
       "startDate": "2026-11-14",
       "endDate": "2026-11-17",
-      "status": "active",
+      "status": "completed",
       "createdAt": "2026-11-02T14:30:00.000Z"
     }
   ],
