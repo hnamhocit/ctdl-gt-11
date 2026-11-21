@@ -1,0 +1,3 @@
+fullPlate|provinceCode|wardCode|serialNum|registeredDate|ownerName
+59-X1-12345|59|X1|12345|2026-11-20|Nguyen Van A
+59-X1-67890|59|X1|67890|2026-11-21|Tran Thi B

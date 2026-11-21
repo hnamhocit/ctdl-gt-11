@@ -1,14 +1,14 @@
 ---
 id: PROJ-16
 title: "Tích hợp toàn diện MenuUI với hệ thống & Kiểm thử giao diện"
-status: todo
+status: review
 priority: high
 assignee: trinhquocthai
 reporter: hnamhocit
 sprintId: sprint-3
 storyPoints: 3
 createdAt: 2026-11-02T14:30:00.000Z
-updatedAt: 2026-11-02T14:30:00.000Z
+updatedAt: 2026-11-20T15:27:48.646Z
 ---
 
 ### Mục tiêu

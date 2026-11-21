@@ -116,25 +116,6 @@
       "branch": "feat/PROJ-11-PROJ-17-testing-benchmark"
     },
     {
-      "id": "PROJ-12",
-      "title": "Soạn thảo chi tiết Mục 1 đến Mục 4 của Báo cáo đồ án",
-      "description": "### Mục tiêu\nViết nội dung kỹ thuật chuyên sâu cho 4 chương đầu: Giới thiệu đề tài, Phân tích bài toán, Thiết kế giải pháp và Hiện thực mã nguồn.\n\n### Acceptance Criteria\n- Vẽ lưu đồ thuật toán (Flowchart) cho các hàm cốt lõi.\n- Trình bày bảng phân tích độ phức tạp thời gian/không gian Big-O chuẩn xác.\n- Mô tả chi tiết cấu trúc dữ liệu PlateNode và cơ chế băm DJB2.",
-      "status": "todo",
-      "priority": "high",
-      "assignee": {
-        "login": "huynhthikhanhly",
-        "name": "Huỳnh Thị Khánh Ly"
-      },
-      "reporter": {
-        "login": "hnamhocit",
-        "name": "Nguyễn Hoàng Nam"
-      },
-      "sprintId": "sprint-2",
-      "storyPoints": 3,
-      "createdAt": "2026-11-02T14:30:00.000Z",
-      "updatedAt": "2026-11-02T14:30:00.000Z"
-    },
-    {
       "id": "PROJ-13",
       "title": "Quản lý thu hồi bộ nhớ Heap (clear, Destructor) & Code Review lõi",
       "description": "### Mục tiêu\nHoàn thiện cơ chế thu hồi 100% vùng nhớ Heap trong hàm clear() và destructor, tối ưu hiệu năng con trỏ toàn hệ thống.\n\n### Acceptance Criteria\n- Duyệt qua 10.007 buckets và delete mọi PlateNode mà không sót byte nào.\n- Kiểm tra bằng Valgrind: 0 bytes leaked in 0 blocks.\n- Review chuẩn hóa mã nguồn toàn bộ các file .h và .cpp của nhóm.",
@@ -176,6 +157,28 @@
       "branch": "feature/PROJ-14-sample-dataset-stress"
     },
     {
+      "id": "PROJ-12",
+      "title": "Soạn thảo chi tiết Mục 1 đến Mục 4 của Báo cáo đồ án",
+      "description": "### Mục tiêu\nViết nội dung kỹ thuật chuyên sâu cho 4 chương đầu: Giới thiệu đề tài, Phân tích bài toán, Thiết kế giải pháp và Hiện thực mã nguồn.\n\n### Acceptance Criteria\n- Vẽ lưu đồ thuật toán (Flowchart) cho các hàm cốt lõi.\n- Trình bày bảng phân tích độ phức tạp thời gian/không gian Big-O chuẩn xác.\n- Mô tả chi tiết cấu trúc dữ liệu PlateNode và cơ chế băm DJB2.",
+      "status": "todo",
+      "priority": "high",
+      "assignee": {
+        "login": "huynhthikhanhly",
+        "name": "Huỳnh Thị Khánh Ly"
+      },
+      "reporter": {
+        "login": "hnamhocit",
+        "name": "Nguyễn Hoàng Nam"
+      },
+      "sprintId": "sprint-2",
+      "storyPoints": 3,
+      "createdAt": "2026-11-02T14:30:00.000Z",
+      "updatedAt": "2026-11-20T15:27:53.472Z",
+      "pullNumber": 11,
+      "pullUrl": "https://github.com/hnamhocit/ctdl-gt-11/pull/11",
+      "branch": "PROJ-12-Soan-thao-chi-tiet-Muc-1-den-Muc-4"
+    },
+    {
       "id": "PROJ-15",
       "title": "Hiện thực Chức năng 4 (Lọc biển số theo Xã) & Thống kê Tỉnh",
       "description": "### Mục tiêu\nHoàn thiện chức năng 4 (displayPlatesOfWard) và hàm thống kê tổng số phương tiện theo tỉnh (countPlatesInProvince).\n\n### Acceptance Criteria\n- In danh sách tất cả biển số đăng ký tại xã chỉ định theo định dạng bảng rõ đẹp.\n- Hàm đếm số xe theo tỉnh phục vụ cho kịch bản vấn đáp Live Coding của giảng viên.\n- Xử lý tốt các ca kiểm thử xã/tỉnh không có dữ liệu.",
@@ -192,13 +195,16 @@
       "sprintId": "sprint-3",
       "storyPoints": 3,
       "createdAt": "2026-11-02T14:30:00.000Z",
-      "updatedAt": "2026-11-02T14:30:00.000Z"
+      "updatedAt": "2026-11-02T14:30:00.000Z",
+      "pullNumber": 12,
+      "pullUrl": "https://github.com/hnamhocit/ctdl-gt-11/pull/12",
+      "branch": "feature/PROJ-15-ward-table-and-tests"
     },
     {
       "id": "PROJ-16",
       "title": "Tích hợp toàn diện MenuUI với hệ thống & Kiểm thử giao diện",
       "description": "### Mục tiêu\nKết nối module giao diện với đầy đủ các tính năng nạp/lưu file, tra cứu, đăng ký, lọc xã và benchmark hiệu năng.\n\n### Acceptance Criteria\n- Kiểm tra luồng chạy từ đầu đến cuối (End-to-End) qua tất cả các phím bấm menu.\n- Đảm bảo giao diện console không bị crash khi nhập ký tự đặc biệt hoặc dữ liệu sai.\n- Biên dịch sạch trên cả Linux (g++) và Windows (MinGW/MSVC).",
-      "status": "todo",
+      "status": "review",
       "priority": "high",
       "assignee": {
         "login": "trinhquocthai",
@@ -211,7 +217,10 @@
       "sprintId": "sprint-3",
       "storyPoints": 3,
       "createdAt": "2026-11-02T14:30:00.000Z",
-      "updatedAt": "2026-11-02T14:30:00.000Z"
+      "updatedAt": "2026-11-20T15:27:48.646Z",
+      "pullNumber": 17,
+      "pullUrl": "https://github.com/hnamhocit/ctdl-gt-11/pull/17",
+      "branch": "feature/PROJ-16-integrate-MenuUI"
     },
     {
       "id": "PROJ-17",
@@ -239,7 +248,7 @@
       "id": "PROJ-18",
       "title": "Hoàn thiện Mục 6 AI, Slide thuyết trình & Luyện tập Vấn đáp Live Coding",
       "description": "### Mục tiêu\nTổng hợp hoàn chỉnh Báo cáo đồ án 8 chương, hoàn thiện Mục 6 về Khai thác AI, slide thuyết trình và tổ chức thi thử vấn đáp.\n\n### Acceptance Criteria\n- Báo cáo hoàn chỉnh nộp bộ môn đúng hạn định dạng PDF/DOCX.\n- Slide thuyết trình 15-20 trang đẹp mắt, bao quát toàn bộ nội dung đồ án.\n- Tổ chức buổi mock test 10 câu hỏi vấn đáp và 5 bài tập live coding cho cả 6 thành viên.",
-      "status": "todo",
+      "status": "review",
       "priority": "urgent",
       "assignee": {
         "login": "huynhthikhanhly",
@@ -252,7 +261,10 @@
       "sprintId": "sprint-3",
       "storyPoints": 5,
       "createdAt": "2026-11-02T14:30:00.000Z",
-      "updatedAt": "2026-11-02T14:30:00.000Z"
+      "updatedAt": "2026-11-20T15:27:48.647Z",
+      "pullNumber": 16,
+      "pullUrl": "https://github.com/hnamhocit/ctdl-gt-11/pull/16",
+      "branch": "PROJ-18-Hoan-thien-Muc-6-AI-slide-thuyet-trinh-Luyen-tap-van-dap"
     },
     {
       "id": "PROJ-6",
