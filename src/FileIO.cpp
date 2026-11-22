@@ -36,21 +36,6 @@ namespace
         return true;
     }
 
-    /** Kiểm tra dạng yyyy-mm-dd, tháng 01-12, ngày 01-31. O(1). */
-    bool isWellFormedDate(const std::string &d)
-    {
-        if (d.size() != 10 || d[4] != '-' || d[7] != '-')
-            return false;
-        for (int i = 0; i < 10; ++i)
-        {
-            if (i != 4 && i != 7 && !isDigit(d[i]))
-                return false;
-        }
-        int month = (d[5] - '0') * 10 + (d[6] - '0');
-        int day = (d[8] - '0') * 10 + (d[9] - '0');
-        return month >= 1 && month <= 12 && day >= 1 && day <= 31;
-    }
-
     /** Cắt khoảng trắng/tab ở hai đầu chuỗi. O(L). */
     std::string trim(const std::string &s)
     {
@@ -145,7 +130,7 @@ namespace
             reason = "fullPlate không khớp provinceCode/wardCode/serialNum";
             return false;
         }
-        if (!isWellFormedDate(f[4]))
+        if (!isValidRegistrationDate(f[4]))
         {
             reason = "ngày sai định dạng yyyy-mm-dd";
             return false;
@@ -172,6 +157,26 @@ namespace
     }
 
 } // namespace
+
+/**
+ * @brief Kiểm tra định dạng ngày dùng trong tệp dữ liệu.
+ * @param d Chuỗi ngày đăng ký.
+ * @return true nếu đúng yyyy-mm-dd với tháng 01-12 và ngày 01-31.
+ * @note Thời gian và không gian O(1).
+ */
+bool isValidRegistrationDate(const std::string &d)
+{
+    if (d.size() != 10 || d[4] != '-' || d[7] != '-')
+        return false;
+    for (int i = 0; i < 10; ++i)
+    {
+        if (i != 4 && i != 7 && !isDigit(d[i]))
+            return false;
+    }
+    int month = (d[5] - '0') * 10 + (d[6] - '0');
+    int day = (d[8] - '0') * 10 + (d[9] - '0');
+    return month >= 1 && month <= 12 && day >= 1 && day <= 31;
+}
 
 /*
  * loadFromFile

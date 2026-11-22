@@ -1,275 +1,287 @@
 #include "MenuUI.h"
-#include "Validator.h"
-#include "HashTable.h"
-#include "FileIO.h"
-#include "AdministrativeFilter.h"
-#include "Plate.h"
 
-#include <iostream>
-#include <fstream>
-#include <limits>
-#include <string>
+#include "AdministrativeFilter.h"
+#include "FileIO.h"
+#include "HashTable.h"
+#include "Plate.h"
+#include "Validator.h"
+
 #include <cstring>
+#include <iostream>
+#include <sstream>
+#include <string>
 
 namespace LicensePlateManager {
+namespace {
 
-void MenuUI::displayMenu() {
-    std::cout << "\n========================================================\n";
-    std::cout << " HỆ THỐNG QUẢN LÝ BIỂN SỐ XE - NHÓM 11 (C++17)\n";
-    std::cout << "========================================================\n";
-    std::cout << " 1. Đăng ký biển số xe mới\n";
-    std::cout << " 2. Tra cứu thông tin biển số xe\n";
-    std::cout << " 3. Hiển thị danh sách mã Xã theo mã Tỉnh\n";
-    std::cout << " 4. Hiển thị danh sách biển số xe theo Xã\n";
-    std::cout << " 5. Nạp / Lưu dữ liệu từ tệp TXT\n";
-    std::cout << " 0. Thoát chương trình\n";
-    std::cout << "========================================================\n";
+/**
+ * @brief In lời nhắc và đọc một dòng, giữ khoảng trắng bên trong.
+ * @param prompt Lời nhắc nhập liệu.
+ * @param value Chuỗi nhận kết quả đã bỏ khoảng trắng ở hai đầu.
+ * @return true khi đọc được một dòng, false khi luồng kết thúc hoặc lỗi.
+ * @note Thời gian và không gian O(L) với L là chiều dài dòng.
+ */
+bool readInput(const char* prompt, std::string& value) {
+    std::cout << prompt;
+    if (!std::getline(std::cin, value)) {
+        return false;
+    }
+
+    const auto first = value.find_first_not_of(" \t\r");
+    if (first == std::string::npos) {
+        value.clear();
+    } else {
+        value = value.substr(first, value.find_last_not_of(" \t\r") - first + 1);
+    }
+    return true;
 }
 
-int MenuUI::getValidChoice(int minVal, int maxVal) {
-    int choice;
+/**
+ * @brief Nhập và lưu một biển số mới vào bảng băm.
+ * @param table Bảng băm nhận bản ghi hợp lệ.
+ * @note Không trả về giá trị. Thời gian O(L + C), không gian O(L),
+ * với L là tổng độ dài đầu vào và C là độ dài chuỗi bucket cần tra cứu.
+ */
+void registerPlate(LicensePlateHashTable& table) {
+    const std::string plate = MenuUI::inputAndValidateLicensePlate();
+    if (plate.empty()) {
+        return;
+    }
+    if (table.searchPlate(plate.c_str())) {
+        std::cout << "Biển số " << plate << " đã tồn tại.\n";
+        return;
+    }
 
-    while (true) {
-        std::cout << "Nhap lua chon cua ban (" << minVal << " - " << maxVal << "): ";
+    PlateNode node{};
+    parseLicensePlate(plate.c_str(), node);
 
-        if (std::cin >> choice) {
-            if (choice >= minVal && choice <= maxVal) {
-                return choice;
-            }
+    std::string owner;
+    if (!readInput("Nhập họ tên chủ xe: ", owner)) {
+        return;
+    }
+    if (owner.empty() || owner.size() >= sizeof(node.ownerName) ||
+        owner.find_first_of("|\r") != std::string::npos ||
+        owner.find('\0') != std::string::npos) {
+        std::cout << "Tên chủ xe phải có từ 1 đến 49 byte và không chứa ký tự phân cách.\n";
+        return;
+    }
 
-            std::cout << "Lua chon khong nam trong pham vi menu. Vui long nhap lai!\n";
-        } else {
-            std::cout << "Loi: Ban vua nhap ky tu khong phai so! Vui long thu lai.\n";
-            std::cin.clear();
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-        }
+    std::string date;
+    if (!readInput("Nhập ngày đăng ký (YYYY-MM-DD): ", date)) {
+        return;
+    }
+    if (!isValidRegistrationDate(date)) {
+        std::cout << "Ngày đăng ký không đúng định dạng YYYY-MM-DD.\n";
+        return;
+    }
+
+    std::memcpy(node.ownerName, owner.c_str(), owner.size() + 1);
+    std::memcpy(node.registeredDate, date.c_str(), date.size() + 1);
+    if (table.insertPlate(node)) {
+        std::cout << "Đã đăng ký biển số " << plate << ".\n";
     }
 }
 
+/**
+ * @brief Hiển thị thông tin đăng ký của một biển số.
+ * @param table Bảng băm được tra cứu.
+ * @note Không trả về giá trị. Thời gian O(L + C), không gian O(L),
+ * với L là tổng độ dài đầu vào và C là độ dài chuỗi bucket cần tra cứu.
+ */
+void searchPlate(LicensePlateHashTable& table) {
+    const std::string plate = MenuUI::inputAndValidateLicensePlate();
+    if (plate.empty()) {
+        return;
+    }
+    const PlateNode* node = table.searchPlate(plate.c_str());
+    if (node) {
+        std::cout << "Biển số: " << node->fullPlate
+                  << "\nChủ xe: " << node->ownerName
+                  << "\nNgày đăng ký: " << node->registeredDate << '\n';
+    } else {
+        std::cout << "Không tìm thấy biển số " << plate << ".\n";
+    }
+}
+
+/**
+ * @brief Hiển thị danh sách mã xã của tỉnh hoặc biển số của một xã.
+ * @param table Bảng băm được lọc.
+ * @param byWard true để lọc biển số theo tỉnh và xã.
+ * @note Không trả về giá trị. Thời gian O(L + M + N * K) khi liệt kê xã,
+ * O(L + M + N) khi liệt kê biển số. Không gian O(L + W), với L là độ dài
+ * đầu vào, M là số bucket, N là số bản ghi, K là số xã tìm được và W là
+ * dung lượng bộ đệm cố định của bộ lọc.
+ */
+void showAdministrativeList(const LicensePlateHashTable& table, bool byWard) {
+    std::string province;
+    if (!readInput("Nhập mã tỉnh (VD: 59): ", province)) {
+        return;
+    }
+    if (!Validator::isValidProvinceCode(province)) {
+        std::cout << "Mã tỉnh phải gồm đúng hai chữ số.\n";
+        return;
+    }
+
+    AdministrativeFilter filter;
+    if (!byWard) {
+        filter.displayWardsOfProvince(table, province.c_str());
+        return;
+    }
+
+    std::string ward;
+    if (!readInput("Nhập mã xã (VD: X1): ", ward)) {
+        return;
+    }
+    ward = Validator::normalizePlateString(ward);
+    if (!Validator::isValidWardCode(ward)) {
+        std::cout << "Mã xã phải gồm đúng hai ký tự chữ hoặc số.\n";
+        return;
+    }
+    filter.displayPlatesOfWard(table, province.c_str(), ward.c_str());
+}
+
+/**
+ * @brief Nạp bổ sung hoặc lưu dữ liệu theo đường dẫn người dùng chọn.
+ * @param table Bảng băm dùng để nạp và lưu.
+ * @note Không trả về giá trị. Khi nạp R dòng dài tối đa L, thời gian O(R * (L + C))
+ * với C là độ dài chuỗi bucket lớn nhất. Khi lưu, thời gian O(M + N)
+ * với M bucket và N bản ghi. Không gian phụ O(P + L) khi nạp và O(P)
+ * khi lưu, với P là độ dài đường dẫn.
+ */
+void showFileMenu(LicensePlateHashTable& table) {
+    std::cout << "\n1. Nạp bổ sung dữ liệu từ tệp TXT\n"
+              << "2. Lưu dữ liệu ra tệp TXT\n"
+              << "0. Quay lại menu chính\n";
+    const int choice = MenuUI::getValidChoice(0, 2);
+    if (choice <= 0) {
+        return;
+    }
+
+    std::string path;
+    if (!readInput("Nhập đường dẫn tệp TXT (0 để hủy): ", path) || path == "0") {
+        return;
+    }
+    if (path.empty()) {
+        std::cout << "Đường dẫn tệp không được để trống.\n";
+        return;
+    }
+
+    if (choice == 1) {
+        LoadStats stats;
+        if (loadFromFile(table, path.c_str(), &stats)) {
+            std::cout << "Đã nạp " << stats.loaded << " biển số, bỏ qua "
+                      << stats.invalid << " dòng lỗi và " << stats.duplicates << " dòng trùng.\n";
+        } else {
+            std::cout << "Không thể mở tệp [" << path << "].\n";
+        }
+    } else if (saveToFile(table, path.c_str())) {
+        std::cout << "Đã lưu dữ liệu vào [" << path << "].\n";
+    } else {
+        std::cout << "Không thể lưu dữ liệu vào [" << path << "].\n";
+    }
+}
+
+} // namespace
+
+/** Hiển thị menu chính. Không có tham số hay giá trị trả về. Thời gian và không gian O(1). */
+void MenuUI::displayMenu() {
+    std::cout << "\n========================================================\n"
+              << " HỆ THỐNG QUẢN LÝ BIỂN SỐ XE - NHÓM 11\n"
+              << "========================================================\n"
+              << " 1. Đăng ký biển số xe mới\n"
+              << " 2. Tra cứu thông tin biển số xe\n"
+              << " 3. Hiển thị danh sách mã xã theo mã tỉnh\n"
+              << " 4. Hiển thị danh sách biển số xe theo xã\n"
+              << " 5. Nạp hoặc lưu dữ liệu từ tệp TXT\n"
+              << " 0. Thoát chương trình\n";
+}
+
+/**
+ * @brief Đọc lựa chọn nguyên trong khoảng [minVal, maxVal].
+ * @param minVal Cận dưới của lựa chọn.
+ * @param maxVal Cận trên của lựa chọn.
+ * @return Lựa chọn hợp lệ hoặc -1 nếu luồng nhập kết thúc hoặc lỗi.
+ * @note Thời gian O(L) với L là tổng độ dài các dòng đã đọc.
+ * Không gian O(K) với K là chiều dài dòng dài nhất.
+ */
+int MenuUI::getValidChoice(int minVal, int maxVal) {
+    std::string line;
+    const std::string prompt = "Nhập lựa chọn (" + std::to_string(minVal) +
+                               " - " + std::to_string(maxVal) + "): ";
+    while (readInput(prompt.c_str(), line)) {
+        std::istringstream input(line);
+        int choice;
+        if (input >> choice && input.eof() && choice >= minVal && choice <= maxVal) {
+            return choice;
+        }
+        std::cout << "Lựa chọn không hợp lệ. Vui lòng nhập lại.\n";
+    }
+    return -1;
+}
+
+/**
+ * @brief Đọc và chuẩn hóa biển số đến khi hợp lệ.
+ * @return Biển số đã chuẩn hóa hoặc chuỗi rỗng nếu luồng nhập kết thúc hoặc lỗi.
+ * @note Không có tham số. Thời gian O(L) với L là tổng độ dài các dòng đã đọc.
+ * Không gian O(K) với K là chiều dài dòng dài nhất.
+ */
 std::string MenuUI::inputAndValidateLicensePlate() {
     std::string rawInput;
-
-    while (true) {
-        std::cout << "Nhap bien so xe (VD: 59-X1-12345): ";
-        std::cin >> rawInput;
-
-        std::string cleanPlate = Validator::normalizePlateString(rawInput);
-        ValidationResult result = Validator::validateDetailed(cleanPlate);
-
+    while (readInput("Nhập biển số xe (VD: 59-X1-12345): ", rawInput)) {
+        const std::string plate = Validator::normalizePlateString(rawInput);
+        const ValidationResult result = Validator::validateDetailed(plate);
         if (result.isValid) {
-            std::cout << result.errorMessage << "\n";
-            return cleanPlate;
+            return plate;
         }
-
-        std::cout << result.errorMessage << " Vui long nhap lai!\n\n";
+        std::cout << result.errorMessage << " Vui lòng nhập lại.\n";
     }
+    return {};
 }
 
+/**
+ * @brief Chạy menu độc lập với bảng băm rỗng.
+ * @note Không có tham số hay giá trị trả về. Thời gian O(M) để tạo và
+ * hủy bảng rỗng cộng với thao tác trong phiên. Không gian O(M + N)
+ * cho M bucket và N bản ghi, cộng bộ đệm nhập và FileIO.
+ */
 void MenuUI::run() {
-    LicensePlateHashTable hashTable;
-    bool isRunning = true;
+    LicensePlateHashTable table;
+    run(table);
+}
 
-    while (isRunning) {
+/**
+ * @brief Chạy menu trên bảng băm đã được ứng dụng khởi tạo.
+ * @param table Bảng băm dùng chung trong suốt phiên làm việc.
+ * @note Không trả về giá trị. Thời gian O(T + S), với T là số lượt chọn và
+ * S là tổng thời gian thực hiện chúng. Không gian bằng mức sử dụng lớn nhất
+ * của một thao tác, cộng các bản ghi mới được giữ trong bảng.
+ */
+void MenuUI::run(LicensePlateHashTable& table) {
+    while (std::cin) {
         displayMenu();
-
-        int choice = getValidChoice(0, 5);
-
-        switch (choice) {
-            case 1: {
-                std::cout << "\n--- [CHUC NANG 1] DANG KY BIEN SO MOI ---\n";
-
-                std::string validPlate = inputAndValidateLicensePlate();
-
-                std::string ownerName, regDate;
-
-                std::cout << "Nhap ho ten chu xe: ";
-                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-                std::getline(std::cin, ownerName);
-
-                std::cout << "Nhap ngay dang ky (VD: 2026-11-20): ";
-                std::cin >> regDate;
-
-                PlateNode newNode{};
-
-                parseLicensePlate(validPlate.c_str(), newNode);
-
-                std::strncpy(
-                    newNode.ownerName,
-                    ownerName.c_str(),
-                    sizeof(newNode.ownerName) - 1
-                );
-
-                std::strncpy(
-                    newNode.registeredDate,
-                    regDate.c_str(),
-                    sizeof(newNode.registeredDate) - 1
-                );
-
-                bool inserted = hashTable.insertPlate(newNode);
-
-                if (inserted) {
-                    std::cout << "Da dang ky va chen bien so "
-                              << validPlate
-                              << " vao Bang bam thanh cong!\n";
-                } else {
-                    std::cout << "Bien so "
-                              << validPlate
-                              << " da ton tai trong he thong!\n";
-                }
-
-                break;
-            }
-
-            case 2: {
-                std::cout << "\n--- [CHUC NANG 2] TRA CUU BIEN SO XE ---\n";
-
-                std::string searchPlate = inputAndValidateLicensePlate();
-
-                PlateNode* node = hashTable.searchPlate(searchPlate.c_str());
-
-                if (node != nullptr) {
-                    std::cout << "TIM THAY THONG TIN BIEN SO XE:\n";
-                    std::cout << "   - Bien so: " << node->fullPlate << "\n";
-                    std::cout << "   - Chu xe: " << node->ownerName << "\n";
-                    std::cout << "   - Ngay dang ky: " << node->registeredDate << "\n";
-                } else {
-                    std::cout << "Khong tim thay thong tin cho bien so xe '"
-                              << searchPlate
-                              << "' trong he thong!\n";
-                }
-
-                break;
-            }
-
-            case 3: {
-                std::cout << "\n--- [CHUC NANG 3] DANH SACH MA XA THEO TINH ---\n";
-
-                std::string provCode;
-
-                std::cout << "Nhap ma Tinh (2 chu so, VD: 59): ";
-                std::cin >> provCode;
-
-                if (Validator::isValidProvinceCode(provCode.c_str())) {
-                    AdministrativeFilter filter;
-                    filter.displayWardsOfProvince(hashTable, provCode.c_str());
-                } else {
-                    std::cout << "Ma tinh khong hop le! Vui long nhap dung 2 chu so (00 - 99).\n";
-                }
-
-                break;
-            }
-
-            case 4: {
-                std::cout << "\n--- [CHUC NANG 4] DANH SACH BIEN SO THEO XA ---\n";
-
-                std::string provCode, wardCode;
-
-                std::cout << "Nhap ma Tinh (VD: 59): ";
-                std::cin >> provCode;
-
-                std::cout << "Nhap ma Xa (VD: X1): ";
-                std::cin >> wardCode;
-
-                if (Validator::isValidProvinceCode(provCode.c_str()) &&
-                    Validator::isValidWardCode(wardCode.c_str())) {
-
-                    AdministrativeFilter filter;
-                    filter.displayPlatesOfWard(
-                        hashTable,
-                        provCode.c_str(),
-                        wardCode.c_str()
-                    );
-                } else {
-                    std::cout << "Ma Tinh hoac ma Xa nhap vao khong dung dinh dang!\n";
-                }
-
-                break;
-            }
-
-            case 5: {
-                std::cout << "\n========================================================\n";
-                std::cout << "       [CHUC NANG 5] NAP / LUU DU LIEU TU TEP TXT        \n";
-                std::cout << "========================================================\n";
-                std::cout << " 1. Nap du lieu tu tep TXT (Load from file)\n";
-                std::cout << " 2. Luu du lieu ra tep TXT (Save to file)\n";
-                std::cout << " 0. Quay lai Menu chinh\n";
-                std::cout << "--------------------------------------------------------\n";
-
-                int subChoice = getValidChoice(0, 2);
-
-                if (subChoice == 1) {
-                    std::cout << "\n--- NAP DU LIEU TU FILE ---\n";
-
-                    std::string filePath;
-                    bool loadSuccess = false;
-
-                    while (!loadSuccess) {
-                        std::cout << "Nhap duong dan tep TXT (VD: data/input.txt) hoac go '0' de huy: ";
-                        std::cin >> filePath;
-
-                        if (filePath == "0") {
-                            std::cout << "Da huy thao tac nap file.\n";
-                            break;
-                        }
-
-                        std::ifstream checkFile(filePath);
-
-                        if (!checkFile.is_open()) {
-                            std::cout << "Loi (File Not Found): Khong tim thay tep '"
-                                      << filePath
-                                      << "' hoac khong the mo tep! Vui long kiem tra lai duong dan.\n\n";
-                        } else {
-                            checkFile.close();
-
-                            bool loaded = loadFromFile(
-                                hashTable,
-                                filePath.c_str()
-                            );
-
-                            if (loaded) {
-                                std::cout << "Nap du lieu tu tep '"
-                                          << filePath
-                                          << "' vao Bang bam thanh cong!\n";
-                            } else {
-                                std::cout << "Co loi xay ra trong qua trinh doc du lieu tu tep!\n";
-                            }
-
-                            loadSuccess = true;
-                        }
-                    }
-                } else if (subChoice == 2) {
-                    std::cout << "\n--- LUU DU LIEU RA FILE ---\n";
-
-                    std::string filePath;
-
-                    std::cout << "Nhap duong dan tep TXT de luu (VD: data/output.txt): ";
-                    std::cin >> filePath;
-
-                    bool saved = saveToFile(
-                        hashTable,
-                        filePath.c_str()
-                    );
-
-                    if (saved) {
-                        std::cout << "Luu du lieu tu Bang bam ra tep '"
-                                  << filePath
-                                  << "' thanh cong!\n";
-                    } else {
-                        std::cout << "Co loi xay ra trong qua trinh ghi du lieu ra tep '"
-                                  << filePath
-                                  << "'!\n";
-                    }
-                }
-
-                break;
-            }
-
-            case 0:
-                std::cout << "\nCam on ban da su dung he thong. Tam biet!\n";
-                isRunning = false;
-                break;
+        switch (getValidChoice(0, 5)) {
+        case 1:
+            registerPlate(table);
+            break;
+        case 2:
+            searchPlate(table);
+            break;
+        case 3:
+            showAdministrativeList(table, false);
+            break;
+        case 4:
+            showAdministrativeList(table, true);
+            break;
+        case 5:
+            showFileMenu(table);
+            break;
+        case 0:
+            std::cout << "\nCảm ơn bạn đã sử dụng hệ thống. Tạm biệt!\n";
+            return;
+        default:
+            return;
         }
     }
 }
 
-}
+} // namespace LicensePlateManager

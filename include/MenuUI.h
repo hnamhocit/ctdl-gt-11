@@ -3,6 +3,8 @@
 
 #include <string>
 
+class LicensePlateHashTable;
+
 namespace LicensePlateManager {
 
 // Lớp quản lý giao diện menu của chương trình
@@ -10,6 +12,7 @@ class MenuUI {
 public:
     // Khởi chạy menu chính của hệ thống
     static void run();
+    static void run(LicensePlateHashTable& table);
 
     // Hiển thị danh sách 6 chức năng
     static void displayMenu();
