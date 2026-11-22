@@ -1,10 +1,10 @@
 #include "FileIO.h"
-
+#include <cstdio>
 #include <cstring>
 #include <fstream>
 #include <iostream>
 #include <string>
-
+#include <random>
 namespace
 {
 
@@ -261,41 +261,56 @@ bool saveToFile(const LicensePlateHashTable &table, const char *filepath)
         }
     }
 
-    std::ofstream out(filepath, std::ios::binary | std::ios::trunc);
-    if (!out)
-        return false;
-
-    out << HEADER_LINE << '\n';
-    // Lượt 2: duyệt từng bucket, từng node trong danh sách liên kết.
-    for (int i = 0; i < bucketCount; ++i)
+    // Ghi ra file tạm trước; chỉ khi ghi trọn vẹn mới thay file thật.
+    const std::string tmpPath = std::string(filepath) + ".tmp";
     {
-        for (const PlateNode *n = table.getBucket(i); n != nullptr; n = n->next)
+        std::ofstream out(tmpPath.c_str(), std::ios::binary | std::ios::trunc);
+        if (!out)
+            return false;
+
+        out << HEADER_LINE << '\n';
+        for (int i = 0; i < bucketCount; ++i)
         {
-            out << n->fullPlate << FILE_DELIMITER << n->provinceCode << FILE_DELIMITER
-                << n->wardCode << FILE_DELIMITER << n->serialNum << FILE_DELIMITER
-                << n->registeredDate << FILE_DELIMITER << n->ownerName << '\n';
+            for (const PlateNode *n = table.getBucket(i); n != nullptr; n = n->next)
+            {
+                out << n->fullPlate << FILE_DELIMITER << n->provinceCode << FILE_DELIMITER
+                    << n->wardCode << FILE_DELIMITER << n->serialNum << FILE_DELIMITER
+                    << n->registeredDate << FILE_DELIMITER << n->ownerName << '\n';
+            }
         }
-    }
-    return static_cast<bool>(out);
+        out.flush();
+        if (!out)
+        {
+            out.close();
+            std::remove(tmpPath.c_str());
+            return false;
+        }
+    } // file tạm được đóng ở đây
+
+    // Windows không cho rename đè lên file đã có, nên xóa file cũ trước.
+    std::remove(filepath);
+    return std::rename(tmpPath.c_str(), filepath) == 0;
 }
 
 /*
  * generateSampleDataset
- * Mục đích : sinh file mẫu hợp lệ, không trùng, xác định (cùng count -> cùng file).
- * Tham số  : filepath (vào), count (vào).
+ * Mục đích : sinh file mẫu hợp lệ, không trùng biển số, chia đều các tỉnh lớn.
+ * Tham số  : filepath (vào), count (vào), seed (vào, quyết định phần ngẫu nhiên).
  * Trả về   : false nếu count không hợp lệ hoặc không ghi được file.
  * Thời gian: O(count). Không gian: O(1).
- * Ghi chú  : bản ghi thứ i có (tỉnh, xã) = (i % 8, (i / 8) % 8) và số thứ tự
- *            (i / 64 + 1) * 7919 mod 100000. Vì gcd(7919, 100000) = 1 nên phép này
- *            là song ánh, đảm bảo ba thành phần không bao giờ trùng nhau.
+ * Ghi chú  : bản ghi thứ i có (tỉnh, xã) = (i % 8, (i / 8) % 8) nên mỗi tỉnh nhận
+ *            số bản ghi gần như bằng nhau. Số thứ tự = ((i / 64) + 1) * 7919 + offset
+ *            (mod 100000). Vì gcd(7919, 100000) = 1 nên với mỗi cặp (tỉnh, xã) các số
+ *            thứ tự khác nhau, nghĩa là biển số không bao giờ trùng, dù offset (lấy từ
+ *            seed) có là bao nhiêu.
  */
-bool generateSampleDataset(const char *filepath, int count)
+bool generateSampleDataset(const char *filepath, int count, unsigned int seed)
 {
     if (!filepath || count <= 0 || count > MAX_SAMPLE_COUNT)
         return false;
 
     static const char *const provinces[PROVINCE_COUNT] =
-        {"59", "29", "61", "43", "51", "30", "79", "92"};
+        {"59", "29", "61", "43", "60", "51", "30", "79"};
     static const char *const wards[WARD_COUNT] =
         {"X1", "A1", "B2", "C1", "T2", "AB", "C3", "D4"};
     static const char *const lastNames[8] =
@@ -304,6 +319,9 @@ bool generateSampleDataset(const char *filepath, int count)
         {"Văn", "Thị", "Quốc", "Minh", "Hữu", "Ngọc", "Khánh", "Thanh"};
     static const char *const firstNames[10] =
         {"An", "Bình", "Cường", "Dũng", "Hà", "Hưng", "Lan", "Phúc", "Thái", "Việt"};
+
+    std::mt19937 rng(seed);
+    const long serialOffset = static_cast<long>(rng() % 100000);
 
     std::ofstream out(filepath, std::ios::binary | std::ios::trunc);
     if (!out)
@@ -314,13 +332,16 @@ bool generateSampleDataset(const char *filepath, int count)
     {
         const char *prov = provinces[i % PROVINCE_COUNT];
         const char *ward = wards[(i / PROVINCE_COUNT) % WARD_COUNT];
-        long serial = (static_cast<long>(i / (PROVINCE_COUNT * WARD_COUNT)) + 1) * 7919 % 100000;
+        long serial = ((static_cast<long>(i / (PROVINCE_COUNT * WARD_COUNT)) + 1) * 7919 +
+                       serialOffset) %
+                      100000;
         std::string serialStr = zeroPad(serial, 5);
 
-        std::string date = zeroPad(2020 + i % 7, 4) + "-" + zeroPad(1 + (i * 5) % 12, 2) +
-                           "-" + zeroPad(1 + (i * 11) % 28, 2);
-        std::string owner = std::string(lastNames[(i * 3) % 8]) + " " +
-                            middleNames[(i * 5 + 1) % 8] + " " + firstNames[(i * 7 + 2) % 10];
+        std::string date = zeroPad(2020 + static_cast<long>(rng() % 7), 4) + "-" +
+                           zeroPad(1 + static_cast<long>(rng() % 12), 2) + "-" +
+                           zeroPad(1 + static_cast<long>(rng() % 28), 2);
+        std::string owner = std::string(lastNames[rng() % 8]) + " " +
+                            middleNames[rng() % 8] + " " + firstNames[rng() % 10];
 
         out << prov << "-" << ward << "-" << serialStr << FILE_DELIMITER
             << prov << FILE_DELIMITER << ward << FILE_DELIMITER << serialStr

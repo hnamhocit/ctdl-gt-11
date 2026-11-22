@@ -14,7 +14,7 @@ TARGET   := $(BIN_DIR)/main
 SRCS     := $(wildcard $(SRC_DIR)/*.cpp)
 OBJS     := $(patsubst $(SRC_DIR)/%.cpp, $(BIN_DIR)/%.o, $(SRCS))
 
-.PHONY: all clean run setup test help
+.PHONY: all clean run setup test benchmark stress valgrind help
 
 all: setup $(TARGET)
 
@@ -39,6 +39,10 @@ test: setup
 	@echo "==> Biên dịch và chạy bộ kiểm thử Unit Tests..."
 	$(CXX) $(CXXFLAGS) $(SRC_DIR)/Plate.cpp $(SRC_DIR)/HashTable.cpp tests/test_hashtable.cpp -o $(BIN_DIR)/test_hashtable
 	./$(BIN_DIR)/test_hashtable
+	$(CXX) $(CXXFLAGS) $(SRC_DIR)/Plate.cpp $(SRC_DIR)/HashTable.cpp tests/test_proj7.cpp -o $(BIN_DIR)/test_proj7
+	./$(BIN_DIR)/test_proj7
+	$(CXX) $(CXXFLAGS) $(SRC_DIR)/Plate.cpp $(SRC_DIR)/HashTable.cpp $(SRC_DIR)/Validator.cpp tests/test_proj11.cpp -o $(BIN_DIR)/test_proj11
+	./$(BIN_DIR)/test_proj11
 	$(CXX) $(CXXFLAGS) $(SRC_DIR)/Plate.cpp $(SRC_DIR)/HashTable.cpp $(SRC_DIR)/FileIO.cpp tests/test_fileio.cpp -o $(BIN_DIR)/test_fileio
 	./$(BIN_DIR)/test_fileio
 	@rm -f t1.txt t2.txt t3.txt t6.txt
@@ -51,9 +55,26 @@ clean:
 	rm -rf $(BIN_DIR)
 	@rm -f t1.txt t2.txt t3.txt t6.txt
 
+benchmark: setup
+	@echo "==> Biên dịch và chạy Benchmark hiệu năng (PROJ-17)..."
+	$(CXX) $(CXXFLAGS) $(SRC_DIR)/Plate.cpp $(SRC_DIR)/HashTable.cpp $(SRC_DIR)/Benchmark.cpp tests/benchmark_hash_table.cpp -o $(BIN_DIR)/benchmark_hash_table
+	./$(BIN_DIR)/benchmark_hash_table
+
+stress: setup
+	@echo "==> Biên dịch và chạy Stress Test FileIO (PROJ-14)..."
+	$(CXX) $(CXXFLAGS) $(SRC_DIR)/Plate.cpp $(SRC_DIR)/HashTable.cpp $(SRC_DIR)/FileIO.cpp tests/test_fileio_stress.cpp -o $(BIN_DIR)/test_fileio_stress
+	./$(BIN_DIR)/test_fileio_stress
+
+valgrind: setup
+	@echo "==> Kiểm tra an toàn bộ nhớ Valgrind cho Unit Tests (PROJ-17)..."
+	$(CXX) -std=c++17 -g -O0 -Iinclude $(SRC_DIR)/Plate.cpp $(SRC_DIR)/HashTable.cpp $(SRC_DIR)/Validator.cpp tests/test_proj11.cpp -o $(BIN_DIR)/test_proj11
+	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./$(BIN_DIR)/test_proj11
+
 help:
 	@echo "CÁC LỆNH MAKE:"
 	@echo "  make        : Biên dịch chương trình vào bin/main"
 	@echo "  make run    : Biên dịch và chạy ngay"
 	@echo "  make test   : Biên dịch và thực thi toàn bộ test cases"
+	@echo "  make benchmark : Biên dịch và đo đạc hiệu năng bảng băm (100 - 10.000 mẫu)"
+	@echo "  make stress : Chạy kiểm thử tải trọng lớn cho FileIO (10.000 mẫu)"
 	@echo "  make clean  : Xóa thư mục bin/ và tệp tin tạm"

@@ -81,9 +81,11 @@ void AdministrativeFilter::displayWardsOfProvince(const LicensePlateHashTable& t
     int distinctCount = 0;
     int bucketSize = table.getBucketSize();
 
+    // Duyệt qua toàn bộ các buckets và danh sách liên kết
     for (int i = 0; i < bucketSize; ++i) {
         PlateNode* current = table.getBucket(i);
         while (current != nullptr) {
+            // Lọc node có provinceCode bằng với provinceCode truyền vào
             if (std::strncmp(current->provinceCode, provinceCode, 2) == 0) {
                 bool exists = false;
                 for (int k = 0; k < distinctCount; ++k) {
@@ -93,6 +95,7 @@ void AdministrativeFilter::displayWardsOfProvince(const LicensePlateHashTable& t
                     }
                 }
 
+                // Nếu chưa tồn tại thì lưu vào mảng distinct
                 if (!exists && distinctCount < MAX_CAPACITY) {
                     std::memcpy(tempDistinctWards[distinctCount], current->wardCode, 2);
                     tempDistinctWards[distinctCount][2] = '\0';
