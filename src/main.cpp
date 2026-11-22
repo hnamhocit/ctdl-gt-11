@@ -4,6 +4,7 @@
 
 #include "FileIO.h"
 #include "HashTable.h"
+#include "MenuUI.h"
 
 #ifdef _WIN32
 #include <windows.h>
@@ -58,10 +59,17 @@ static std::string resolveDataFilePath(const std::string &filename = "sample_pla
     return "data/" + filename;
 }
 
+/**
+ * @brief Nạp dữ liệu, chạy menu và lưu các bản ghi được thêm trong phiên.
+ * @return 0 khi hoàn tất, 1 nếu tự động lưu thất bại.
+ * @note Thời gian phụ thuộc vào các thao tác trong phiên. Không gian O(M + N)
+ * với M là số bucket và N là số bản ghi, chưa tính bộ đệm nhập liệu.
+ */
 int main()
 {
 #ifdef _WIN32
-    SetConsoleOutputCP(CP_UTF8); // để console Windows hiển thị đúng tiếng Việt
+    SetConsoleOutputCP(CP_UTF8);
+    SetConsoleCP(CP_UTF8);
 #endif
     std::cout << "CTDL&GT - De tai 11: Quan ly bien so xe\n";
 
@@ -82,14 +90,16 @@ int main()
         std::cout << "Chua co file du lieu tai [" << dataFilePath << "], bat dau voi bang rong.\n";
     }
 
-    // TODO: menu/UI của nhóm (MenuUI) sẽ được gắn vào đây.
+    const auto initialCount = table.getTotalCount();
+    LicensePlateManager::MenuUI::run(table);
 
-    // Tự động lưu dữ liệu khi thoát (chỉ thực hiện khi nạp thành công hoặc bảng băm có dữ liệu)
-    if (isLoaded || table.getTotalCount() > 0)
+    // Menu chỉ thêm bản ghi, nên số lượng thay đổi khi có dữ liệu mới cần lưu.
+    if (table.getTotalCount() != initialCount)
     {
         if (!saveToFile(table, dataFilePath.c_str()))
         {
             std::cerr << "Canh bao: khong the luu du lieu ra " << dataFilePath << "\n";
+            return 1;
         }
     }
     return 0;

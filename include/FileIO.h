@@ -1,6 +1,8 @@
 #ifndef FILEIO_H
 #define FILEIO_H
 
+#include <string>
+
 #include "Plate.h"
 #include "HashTable.h"
 
@@ -18,6 +20,9 @@ struct LoadStats
     int duplicates = 0; // số biển số trùng (bị bỏ qua)
     int invalid = 0;    // số dòng sai định dạng (bị bỏ qua)
 };
+
+// Kiểm tra định dạng ngày đăng ký theo quy ước của tệp TXT.
+bool isValidRegistrationDate(const std::string& date);
 
 /**
  * Nạp dữ liệu từ file TXT (UTF-8) vào bảng băm. Không xóa dữ liệu đang có.
