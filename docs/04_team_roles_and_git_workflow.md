@@ -4,9 +4,7 @@
 > **Nguyên tắc**: "1 Jira task = 1 branch = 1 Pull Request"  
 > **Mục tiêu**: Đảm bảo 100% thành viên có đóng góp code rõ ràng trên Git log để đạt điểm tối đa tiêu chí phối hợp nhóm và vấn đáp cá nhân.
 
----
-
-## 1. Bảng Ma Trận Phân Công Trách Nhiệm (6 Thành Viên)
+## Phân công sáu thành viên
 
 | STT | Họ và Tên | Vai Trò Chính | Trách Nhiệm Kỹ Thuật Cụ Thể | Module Quản Lý |
 | :---: | :--- | :--- | :--- | :--- |
@@ -17,57 +15,6 @@
 | 5 | **Huỳnh Quốc Việt** | Kỹ sư Kiểm thử (QA) & Hiệu năng | Xây dựng bộ 20 Test Cases biên, kiểm thử stress với 100 - 10.000 bản ghi, viết module `Benchmark` đo thời gian thực thi (microsecond). | `Benchmark.h`, `Benchmark.cpp`, `tests/` |
 | 6 | **Huỳnh Thị Khánh Ly** | Quản lý Tài liệu & Báo cáo Dự án | Soạn thảo Báo cáo dự án 8 chương, hoàn thiện Mục 6 về Khai thác AI, chuẩn bị slide thuyết trình demo và kịch bản vấn đáp nhóm. | `docs/`, `Bao_Cao_De_Tai_11.docx`, Slides |
 
----
+## Quy trình Git
 
-## 2. Quy Trình Git & Jira Chuẩn Của Nhóm
-
-Tuân thủ nghiêm ngặt theo tài liệu nội bộ [MEMBER_WORKFLOW.md](file:///home/hnamhocit/Workspace/cpp/ctdl-gt-11/MEMBER_WORKFLOW.md).
-
-```mermaid
-flowchart TD
-    A["1. Nhận Jira Task (PROJ-xxx)"] --> B["Chuyển Jira: To Do → In Progress"]
-    B --> C["2. Checkout từ develop & tạo branch mới"]
-    C --> D["3. Code đúng phạm vi & Biên dịch sạch"]
-    D --> E["4. Commit theo chuẩn Conventional"]
-    E --> F["5. Push lên Remote & Tạo Pull Request"]
-    F --> G["6. Chuyển Jira: In Progress → Review"]
-    G --> H["7. Lead review code & Merge vào develop"]
-```
-
-### 2.1. Quy tắc đặt tên Branch:
-Luôn tạo branch xuất phát từ nhánh `develop`:
-```bash
-git checkout develop
-git pull origin develop
-git checkout -b feature/PROJ-<id>-<short-name>
-```
-
-*Ví dụ:*
-- `feature/PROJ-101-hashtable-core` (Nguyễn Hoàng Nam)
-- `feature/PROJ-102-file-txt-io` (Dư Quốc Hưng)
-- `feature/PROJ-103-filter-wards` (Nguyễn Ngọc Hưng)
-- `feature/PROJ-104-console-menu-validation` (Trịnh Quốc Thái)
-- `feature/PROJ-105-benchmark-test-matrix` (Huỳnh Quốc Việt)
-- `feature/PROJ-106-report-docs-sync` (Huỳnh Thị Khánh Ly)
-
-### 2.2. Quy tắc Commit Message:
-Áp dụng định dạng chuẩn `feat:`, `fix:`, `docs:`, `test:`, `refactor:`:
-```bash
-git commit -m "feat(hashtable): implement DJB2 hash and separate chaining insert"
-git commit -m "feat(validator): validate plate format ab-cd-ghxyz"
-git commit -m "test(qa): add 20 edge test cases for invalid plates"
-```
-
-### 2.3. Quy trình Pull Request:
-- Tiêu đề PR: `[PROJ-xxx] Tên chức năng`
-- Nội dung PR bắt buộc có 2 phần:
-  ```markdown
-  ## Changes
-  - Liệt kê các thay đổi mã nguồn đã thực hiện
-  - Bổ sung hàm hoặc xử lý ngoại lệ nào
-
-  ## Testing
-  - Đã biên dịch sạch với g++ -Wall -Wextra
-  - Đã chạy thử nghiệm và kiểm tra kết quả
-  ```
-- **Xử lý conflict**: Thành viên không tự ý giải quyết conflict phức tạp; thông báo Lead để phối hợp rebase/merge an toàn.
+Các bước nhận task, đặt tên nhánh, commit và gửi pull request được ghi trong [hướng dẫn thành viên](../MEMBER_WORKFLOW.md). Theo dõi người nhận và trạng thái ở [bảng GitVN](../.gitvn/tasks.json).

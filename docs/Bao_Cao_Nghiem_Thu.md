@@ -28,7 +28,7 @@
 * **Đồng hồ đo lường:** `std::chrono::steady_clock` đảm bảo tính đơn điệu (monotonic clock), không bị ảnh hưởng bởi đồng bộ thời gian hệ thống (NTP).
 * **Cơ chế loại bỏ nhiễu thời gian:**
   * **Pha chèn (Insert):** Đo toàn bộ thời gian chèn $N$ bản ghi sinh ngẫu nhiên theo đúng chuẩn biển số Việt Nam (`AB-CD-GHXYZ`). Thời gian trung bình được tính bằng $\text{Total}(\mu s) \times 1000 / N$ ($\text{ns/bản ghi}$).
-  * **Pha tra cứu (Search):** Thực hiện **100.000 lần tra cứu** trên khóa đã tồn tại trong bảng để lấy giá trị trung bình chính xác đến từng nano-giây, loại bỏ hoàn toàn nhiễu ngắt của hệ điều hành.
+  * **Pha tra cứu (Search):** Thực hiện **100.000 lần tra cứu** trên khóa đã tồn tại trong bảng để lấy giá trị trung bình chính xác đến từng nano-giây, giảm ảnh hưởng của nhiễu đến số đo trung bình.
 
 ### 2.2. Môi trường thực thi thực tế
 * **Hệ điều hành kiểm thử:** Windows 11 x86_64 / Linux Kernel 6.x
@@ -142,10 +142,10 @@ valgrind --leak-check=full \
 ## 6. TỔNG KẾT & CHỮ KÝ XÁC NHẬN BÀN GIAO
 
 * **Tài liệu sinh ra:** 
-  * [`tests/benchmark_hash_table.cpp`](file:///d:/Project/ctdl-gt-11/tests/benchmark_hash_table.cpp)
-  * [`tests/test_proj11.cpp`](file:///d:/Project/ctdl-gt-11/tests/test_proj11.cpp)
-  * [`include/Benchmark.h`](file:///d:/Project/ctdl-gt-11/include/Benchmark.h)
-  * [`src/Benchmark.cpp`](file:///d:/Project/ctdl-gt-11/src/Benchmark.cpp)
-  * [`docs/06_testing_and_benchmarks.md`](file:///d:/Project/ctdl-gt-11/docs/06_testing_and_benchmarks.md)
+  * [`tests/benchmark_hash_table.cpp`](../tests/benchmark_hash_table.cpp)
+  * [`tests/test_proj11.cpp`](../tests/test_proj11.cpp)
+  * [`include/Benchmark.h`](../include/Benchmark.h)
+  * [`src/Benchmark.cpp`](../src/Benchmark.cpp)
+  * [`docs/06_testing_and_benchmarks.md`](06_testing_and_benchmarks.md)
 * **Trạng thái Pull Request:** Đã được kiểm duyệt và sáp nhập vào nhánh `develop` qua PR #7.
 * **Đánh giá hoàn thành:** 100% các tiêu chí chấp nhận được đáp ứng đầy đủ.

@@ -31,13 +31,12 @@ make clean
 ### Cách 2: Sử dụng lệnh `g++` trực tiếp
 ```bash
 # Biên dịch sạch với chuẩn C++17 và các cờ cảnh báo tối ưu
-g++ -std=c++17 -Wall -Wextra -Wpedantic -O2 -Iinclude src/main.cpp -o bin/main
+mkdir -p bin
+g++ -std=c++17 -Wall -Wextra -Wpedantic -O2 -Iinclude src/*.cpp -o bin/main
 
 # Chạy file thực thi
 ./bin/main
 
-# (Khi đã có nhiều file .cpp trong src/, biên dịch tất cả bằng):
-g++ -std=c++17 -Wall -Wextra -Wpedantic -O2 -Iinclude src/*.cpp -o bin/main
 ```
 
 ### Cách 3: Sử dụng CMake (Chuẩn công nghiệp đa nền tảng)
@@ -95,6 +94,8 @@ $$\mathbf{ab - cd - ghxyz}$$
 
 ## 5. Cấu Trúc Thư Mục Dự Án
 
+Xem [mục lục tài liệu](docs/README.md).
+
 ```text
 ctdl-gt-11/
 ├── include/                     # File tiêu đề (.h)
@@ -106,17 +107,9 @@ ctdl-gt-11/
 │   ├── MenuUI.h                 # Giao diện dòng lệnh console
 │   └── Benchmark.h              # Đo thời gian thực thi (microsecond)
 ├── src/                         # Hiện thực mã nguồn (.cpp)
-│   └── main.cpp                 # Starter empty template cho nhóm
-├── docs/                        # Tài liệu kỹ thuật AI-First & Team
-│   ├── README.md                # Danh mục tài liệu
-│   ├── 01_project_overview.md   # Yêu cầu đề tài & rubric điểm
-│   ├── 02_architecture_and_data_structures.md # Bảng băm & Big-O
-│   ├── 03_module_specifications.md            # Đặc tả module C++
-│   ├── 04_team_roles_and_git_workflow.md      # Phân công & Git Jira
-│   ├── 05_ai_guidelines_and_report_sec6.md    # Dùng AI & Báo cáo Mục 6
-│   ├── 06_testing_and_benchmarks.md           # 20 Test Cases & Đo lường
-│   └── 07_oral_defense_and_live_coding.md     # Cẩm nang vấn đáp & sửa code
-├── data/                        # Tệp dữ liệu (thành viên tự tạo khi làm task)
+│   └── main.cpp                 # Điểm khởi chạy chương trình
+├── docs/                        # Báo cáo, kiến trúc, kiểm thử và vấn đáp
+├── data/                        # Dữ liệu mẫu và dữ liệu kiểm thử
 ├── bin/                         # Chứa tệp thực thi sau khi build (bin/main)
 ├── .gitvn/                      # Bảng Kanban & Quản trị tiến độ GitVN
 │   └── tasks.json               # 18 tasks phân công chi tiết 6 thành viên & 3 sprints
@@ -149,4 +142,4 @@ ctdl-gt-11/
 
 Toàn bộ tiến độ, phân công nhiệm vụ và lộ trình Sprints của nhóm được quản lý tập trung trên **GitVN**:
 
-👉 **Truy cập Bảng Kanban & Quản lý Task**: [https://gitvn.vercel.app](https://gitvn.vercel.app) (hoặc xem tại [.gitvn/tasks.json](file:///home/hnamhocit/Workspace/cpp/ctdl-gt-11/.gitvn/tasks.json))
+👉 **Truy cập Bảng Kanban & Quản lý Task**: [https://gitvn.vercel.app](https://gitvn.vercel.app) (hoặc xem tại [.gitvn/tasks.json](.gitvn/tasks.json))

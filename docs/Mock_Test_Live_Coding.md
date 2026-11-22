@@ -194,3 +194,9 @@ if (prev == nullptr) {
 Hãy thận trọng khi sử dụng mã.
 
 Sao chép văn bản mã vào bảng nhớ tạm.
+
+## Bài tập bổ sung từ cẩm nang vấn đáp
+
+- **Lọc theo đuôi biển số.** Duyệt mọi bucket và từng node, lấy hai chữ số cuối của `fullPlate` rồi in bản ghi có đuôi `68` hoặc `86`. Giải thích chi phí quét $O(M + N)$.
+- **Thay hàm băm bằng SDBM.** Cập nhật giá trị băm với công thức `c + (hash << 6) + (hash << 16) - hash` trên kiểu số nguyên không dấu. Nếu bảng đã có dữ liệu, phải băm lại các node trước khi tra cứu bằng hàm mới.
+- **Xóa một biển số.** Giải thích cách `removePlate()` xử lý node đầu bucket và node ở giữa hoặc cuối danh sách. Sau khi nối lại danh sách, giải phóng node và giảm số bản ghi. [Mã nguồn HashTable.cpp](../src/HashTable.cpp)

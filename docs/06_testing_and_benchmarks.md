@@ -41,6 +41,7 @@ make test
 Riêng bộ 20 test:
 
 ```bash
+mkdir -p bin
 g++ -std=c++17 -Wall -Wextra -Wpedantic -O2 -Iinclude \
   src/Plate.cpp src/HashTable.cpp src/Validator.cpp \
   tests/test_proj11.cpp -o bin/test_proj11
@@ -73,42 +74,20 @@ Chương trình in trực tiếp bảng số liệu của lần chạy. Kết qu
 | 1.000 | 0,099930 | 134,462 | 134,462 | 10,424170 |
 | 10.000 | 0,999300 | 1.432,144 | 143,214 | 9,336240 |
 
-Đây là một lần đo trong môi trường thực thi hiện tại, không phải cam kết hiệu năng trên mọi máy. Nên chạy lặp lại trên máy của nhóm trước khi chốt số liệu báo cáo.
+Bảng ghi lại một lần đo trên Linux x86_64 với g++ 14.2.0. Thời gian thay đổi theo máy và tải hệ thống.
 
-| Số bản ghi | Alpha |
-|---:|---:|
-| 100 | 100 / 10007 ≈ 0,0100 |
-| 1.000 | 1000 / 10007 ≈ 0,0999 |
-| 10.000 | 10000 / 10007 ≈ 0,9993 |
+## 3. Kiểm tra bộ nhớ bằng Valgrind
 
-## 3. Kiểm tra an toàn bộ nhớ bằng Valgrind
-
-Chạy trên Linux (Ubuntu/WSL):
+Chạy từ thư mục gốc trên Linux hoặc WSL có Valgrind.
 
 ```bash
-sudo apt update
-sudo apt install valgrind
 make valgrind
+valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes \
+  --error-exitcode=1 ./bin/test_proj11
 ```
 
-Lệnh Valgrind được cấu hình:
+Lần nghiệm thu ngày 20/11/2026 của Huỳnh Quốc Việt trên Ubuntu WSL2, g++ 15.2.0 và Valgrind 3.26.0 ghi nhận 20/20 ca đạt, 19 lần cấp phát và 19 lần giải phóng, 0 byte còn lại khi thoát và 0 lỗi. [Log Valgrind và bảng benchmark của lần nghiệm thu PROJ-17](Bao_Cao_Nghiem_Thu.md)
 
-```bash
-valgrind --leak-check=full --show-leak-kinds=all \
-  --track-origins=yes --error-exitcode=1 ./bin/test_proj11
-```
+## 4. Kiểm tra chương trình chính
 
-Chỉ kết luận không có lỗi/rò rỉ bộ nhớ khi log thực tế xác nhận `ERROR SUMMARY: 0 errors` và không còn khối `definitely lost`. Môi trường thực thi hiện tại chưa cài Valgrind, vì vậy hạng mục này vẫn cần chạy trên Ubuntu/WSL của nhóm.
-
-## 4. Module Benchmark dùng chung
-
-`include/Benchmark.h` khai báo và `src/Benchmark.cpp` hiện thực:
-
-- `Benchmark::measureTime(...)`: đo một lần, trả microsecond.
-- `Benchmark::measureAverageTime(...)`: chạy warm-up, đo nhiều lần và trả trung bình microsecond.
-
-Benchmark chuyên biệt ở `tests/benchmark_hash_table.cpp` dùng nanosecond dạng số thực để tránh làm tròn mất độ phân giải ở các thao tác rất nhanh.
-
-## 5. Ghi nhận kết quả thực nghiệm
-
-Đã ghi nhận kết quả `make test` và `make benchmark` trong `docs/testing_report.md`. Valgrind chưa được cài trên môi trường hiện tại; cần chạy lệnh ở mục 3 trên Ubuntu/WSL và bổ sung log vào báo cáo trước khi xác nhận tiêu chí Valgrind hoàn tất.
+Chạy `make run` để kiểm tra luồng người dùng. Ở commit `c508041`, chương trình nạp dữ liệu mẫu rồi thoát. Bộ kiểm thử module và bộ PROJ-16 có chương trình chạy riêng. Tiêu chí đầu-cuối cần được kiểm tra lại qua `bin/main` khi menu được nối vào chương trình chính.
