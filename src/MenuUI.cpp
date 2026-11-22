@@ -67,10 +67,6 @@ std::string MenuUI::inputAndValidateLicensePlate() {
 
 void MenuUI::run() {
     LicensePlateHashTable hashTable;
-    run(hashTable);
-}
-
-void MenuUI::run(LicensePlateHashTable& hashTable) {
     bool isRunning = true;
 
     while (isRunning) {
@@ -146,4 +142,134 @@ void MenuUI::run(LicensePlateHashTable& hashTable) {
             }
 
             case 3: {
-                std::cout << "\n--- [CHUC NANG 3
+                std::cout << "\n--- [CHUC NANG 3] DANH SACH MA XA THEO TINH ---\n";
+
+                std::string provCode;
+
+                std::cout << "Nhap ma Tinh (2 chu so, VD: 59): ";
+                std::cin >> provCode;
+
+                if (Validator::isValidProvinceCode(provCode.c_str())) {
+                    AdministrativeFilter filter;
+                    filter.displayWardsOfProvince(hashTable, provCode.c_str());
+                } else {
+                    std::cout << "Ma tinh khong hop le! Vui long nhap dung 2 chu so (00 - 99).\n";
+                }
+
+                break;
+            }
+
+            case 4: {
+                std::cout << "\n--- [CHUC NANG 4] DANH SACH BIEN SO THEO XA ---\n";
+
+                std::string provCode, wardCode;
+
+                std::cout << "Nhap ma Tinh (VD: 59): ";
+                std::cin >> provCode;
+
+                std::cout << "Nhap ma Xa (VD: X1): ";
+                std::cin >> wardCode;
+
+                if (Validator::isValidProvinceCode(provCode.c_str()) &&
+                    Validator::isValidWardCode(wardCode.c_str())) {
+
+                    AdministrativeFilter filter;
+                    filter.displayPlatesOfWard(
+                        hashTable,
+                        provCode.c_str(),
+                        wardCode.c_str()
+                    );
+                } else {
+                    std::cout << "Ma Tinh hoac ma Xa nhap vao khong dung dinh dang!\n";
+                }
+
+                break;
+            }
+
+            case 5: {
+                std::cout << "\n========================================================\n";
+                std::cout << "       [CHUC NANG 5] NAP / LUU DU LIEU TU TEP TXT        \n";
+                std::cout << "========================================================\n";
+                std::cout << " 1. Nap du lieu tu tep TXT (Load from file)\n";
+                std::cout << " 2. Luu du lieu ra tep TXT (Save to file)\n";
+                std::cout << " 0. Quay lai Menu chinh\n";
+                std::cout << "--------------------------------------------------------\n";
+
+                int subChoice = getValidChoice(0, 2);
+
+                if (subChoice == 1) {
+                    std::cout << "\n--- NAP DU LIEU TU FILE ---\n";
+
+                    std::string filePath;
+                    bool loadSuccess = false;
+
+                    while (!loadSuccess) {
+                        std::cout << "Nhap duong dan tep TXT (VD: data/input.txt) hoac go '0' de huy: ";
+                        std::cin >> filePath;
+
+                        if (filePath == "0") {
+                            std::cout << "Da huy thao tac nap file.\n";
+                            break;
+                        }
+
+                        std::ifstream checkFile(filePath);
+
+                        if (!checkFile.is_open()) {
+                            std::cout << "Loi (File Not Found): Khong tim thay tep '"
+                                      << filePath
+                                      << "' hoac khong the mo tep! Vui long kiem tra lai duong dan.\n\n";
+                        } else {
+                            checkFile.close();
+
+                            bool loaded = loadFromFile(
+                                hashTable,
+                                filePath.c_str()
+                            );
+
+                            if (loaded) {
+                                std::cout << "Nap du lieu tu tep '"
+                                          << filePath
+                                          << "' vao Bang bam thanh cong!\n";
+                            } else {
+                                std::cout << "Co loi xay ra trong qua trinh doc du lieu tu tep!\n";
+                            }
+
+                            loadSuccess = true;
+                        }
+                    }
+                } else if (subChoice == 2) {
+                    std::cout << "\n--- LUU DU LIEU RA FILE ---\n";
+
+                    std::string filePath;
+
+                    std::cout << "Nhap duong dan tep TXT de luu (VD: data/output.txt): ";
+                    std::cin >> filePath;
+
+                    bool saved = saveToFile(
+                        hashTable,
+                        filePath.c_str()
+                    );
+
+                    if (saved) {
+                        std::cout << "Luu du lieu tu Bang bam ra tep '"
+                                  << filePath
+                                  << "' thanh cong!\n";
+                    } else {
+                        std::cout << "Co loi xay ra trong qua trinh ghi du lieu ra tep '"
+                                  << filePath
+                                  << "'!\n";
+                    }
+                }
+
+                break;
+            }
+
+            case 0:
+                std::cout << "\nCam on ban da su dung he thong. Tam biet!\n";
+                isRunning = false;
+                break;
+        }
+    }
+}
+
+}
