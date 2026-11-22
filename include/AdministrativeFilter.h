@@ -7,7 +7,7 @@
  * @brief Module AdministrativeFilter: Thực thi các chức năng lọc dữ liệu theo địa giới hành chính.
  * - Chức năng 3: Lọc và thống kê danh sách mã xã duy nhất (distinct) thuộc một tỉnh.
  * - Chức năng 4: Lọc và hiển thị danh sách biển số xe đã đăng ký tại một xã thuộc tỉnh.
- * - Tiện ích bổ trợ: Đếm tổng số lượng biển số xe đã đăng ký tại một tỉnh.
+ * - Tiện ích bổ trợ: Đếm tổng số lượng biển số xe đã đăng ký tại một tỉnh & thống kê theo tỉnh thành.
  */
 class AdministrativeFilter {
 public:
@@ -24,7 +24,7 @@ public:
     int countPlatesInProvince(const LicensePlateHashTable& table, const char* provinceCode);
 
     /**
-     * @brief Hiển thị toàn bộ các biển số xe thuộc về một xã của một tỉnh.
+     * @brief Hiển thị toàn bộ các biển số xe thuộc về một xã của một tỉnh dưới dạng bảng.
      * @param table Tham chiếu tới Bảng Băm
      * @param provinceCode Chuỗi mã tỉnh (ví dụ: "59")
      * @param wardCode Chuỗi mã xã (ví dụ: "X1")
@@ -45,6 +45,16 @@ public:
      * Độ phức tạp không gian: O(MAX_CAPACITY) được cấp phát và giải phóng sạch trên Heap
      */
     void displayWardsOfProvince(const LicensePlateHashTable& table, const char* provinceCode);
+
+    /**
+     * @brief Thống kê tổng số lượng phương tiện và tỷ lệ phần trăm theo từng tỉnh thành trên toàn hệ thống.
+     * Sử dụng mảng động cấp phát trên Heap để gom nhóm mã tỉnh (KHÔNG sử dụng STL).
+     * @param table Tham chiếu tới Bảng Băm dữ liệu
+     * 
+     * Độ phức tạp thời gian: O(M + N * P) với P là số lượng tỉnh thành duy nhất
+     * Độ phức tạp không gian: O(MAX_PROVINCES) được giải phóng sạch trên Heap
+     */
+    void displayProvinceStatistics(const LicensePlateHashTable& table);
 };
 
 #endif // ADMINISTRATIVE_FILTER_H

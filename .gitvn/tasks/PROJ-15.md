@@ -1,14 +1,14 @@
 ---
 id: PROJ-15
 title: "Hiện thực Chức năng 4 (Lọc biển số theo Xã) & Thống kê Tỉnh"
-status: todo
+status: done
 priority: high
 assignee: nguyenngochung
 reporter: hnamhocit
 sprintId: sprint-3
 storyPoints: 3
 createdAt: 2026-11-02T14:30:00.000Z
-updatedAt: 2026-11-02T14:30:00.000Z
+updatedAt: 2026-11-20T12:26:02.860Z
 ---
 
 ### Mục tiêu
