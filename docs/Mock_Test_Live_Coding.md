@@ -41,18 +41,10 @@
 ⁠.
 4. **Tại sao trong struct PlateNode lại dùng mảng char[] cố định thay vì std::string?** 
 
-  * **Trả lời:** Dùng mảng char[] giúp kiểm soát chính xác kích thước byte của mỗi nút trên vùng nhớ Heap, tránh phân mảnh bộ nhớ và dễ đọc/ghi trực tiếp ra tệp văn bản.
+  * **Trả lời:** Mỗi trường dùng một mảng `char[]` có kích thước cố định nằm ngay trong node. Khi lưu, FileIO ghi từng trường ra TXT, phân cách bằng dấu `|`.
 5. **Khi xảy ra đụng độ (2 biển số trùng chỉ số băm), hệ thống chèn nút mới vào đầu hay cuối danh sách liên kết? Tại sao?** 
 
-  * **Trả lời:** Chèn vào đầu danh sách liên kết (Head Insertion) để thao tác thêm luôn đạt độ phức tạp 
-𝑂
-
-(
-
-1
-
-)
-⁠ mà không cần duyệt đến cuối chuỗi.
+  * **Trả lời:** Sau khi duyệt bucket để kiểm tra trùng, chương trình nối node mới với đầu cũ rồi cập nhật đầu bucket. Riêng bước nối đầu mất `O(1)`.
 6. **Giải thích cách hàm clear() giải phóng bộ nhớ mà không bị lỗi treo con trỏ (Dangling Pointer)?** 
 
   * **Trả lời:** Dùng vòng lặp duyệt qua 10.007 buckets; tại mỗi bucket dùng con trỏ tạm temp giữ nút hiện tại, cho current nhảy sang current->next trước rồi mới gọi delete temp, sau cùng gán buckets[i] = nullptr.
@@ -61,10 +53,10 @@
   * **Trả lời:** Nếu xóa nút đầu (prev == nullptr), phải cập nhật trực tiếp buckets[index] = current->next. Nếu xóa nút giữa, cập nhật prev->next = current->next rồi mới delete current.
 8. **Làm sao hàm lọc danh sách mã xã của một tỉnh (displayWardsOfProvince) loại bỏ được các mã xã trùng nhau khi không được dùng std::set hay std::unordered_set?** 
 
-  * **Trả lời:** Tự tạo một mảng tĩnh/động phụ hoặc danh sách liên kết phụ để lưu các mã xã đã gặp; trước khi in hoặc thêm mã xã mới thì duyệt kiểm tra xem mã đó đã có trong danh sách phụ chưa.
+  * **Trả lời:** Duyệt các node khớp mã tỉnh. Với mỗi node, dò mã xã trong mảng tạm và chỉ thêm mã mới nếu mảng còn chỗ. Mảng hiện giữ tối đa 1.000 mã xã.
 9. **Khi dữ liệu tăng lên tới 100.000 xe (gấp 10 lần TABLE_SIZE), chương trình có bị lỗi tràn mảng không?** 
 
-  * **Trả lời:** Không bị lỗi tràn mảng vì dùng cơ chế Separate Chaining (danh sách liên kết động trên Heap có thể nối dài không giới hạn), tuy nhiên thời gian tìm kiếm sẽ chậm đi do chuỗi dài ra.
+  * **Trả lời:** Mỗi bucket giữ đầu một danh sách liên kết. Khi thêm bản ghi, danh sách có thể dài thêm nếu còn bộ nhớ. Danh sách dài hơn có thể làm tra cứu chậm hơn.
 10. **Tỷ lệ sử dụng AI trong dự án này là bao nhiêu và làm sao chứng minh cả 6 thành viên tự làm chủ code?** 
 
   * **Trả lời:** AI chỉ dùng để gợi ý công thức DJB2, sinh 1.000 dữ liệu mẫu và gợi ý test case (đã ghi rõ trong Mục 6). Toàn bộ code con trỏ thuần đều do các thành viên tự viết lại, biên dịch sạch với -Wall -Wextra -Wpedantic và sẵn sàng sửa trực tiếp khi vấn đáp.

@@ -32,7 +32,8 @@ make clean
 ```bash
 # Biên dịch sạch với chuẩn C++17 và các cờ cảnh báo tối ưu
 mkdir -p bin
-g++ -std=c++17 -Wall -Wextra -Wpedantic -O2 -Iinclude src/*.cpp -o bin/main
+g++ -std=c++17 -Wall -Wextra -Wpedantic -O2 -Iinclude \
+    "-DLICENSE_PLATE_DATA_DIR=\"$(pwd)/data\"" src/*.cpp -o bin/main
 
 # Chạy file thực thi
 ./bin/main
@@ -41,11 +42,14 @@ g++ -std=c++17 -Wall -Wextra -Wpedantic -O2 -Iinclude src/*.cpp -o bin/main
 
 ### Cách 3: Sử dụng CMake (Chuẩn công nghiệp đa nền tảng)
 ```bash
-mkdir -p build && cd build
-cmake ..
-make -j4
-./bin/main
+cmake -S . -B build -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+cmake --build build --parallel 4
+./build/bin/main
 ```
+
+Với clangd trong Neovim, lệnh cấu hình trên tạo `build/compile_commands.json` để editor đọc cùng cờ tìm header và định nghĩa macro như khi build.
+
+Ứng dụng nạp và lưu `sample_plates.txt` trong thư mục `data/` của mã nguồn đã dùng để build, dù chạy từ thư mục làm việc nào. Nếu di chuyển thư mục mã nguồn, hãy build lại để cập nhật đường dẫn dữ liệu.
 
 ### Cách 4: Kiểm tra an toàn bộ nhớ (Valgrind trên Linux)
 ```bash

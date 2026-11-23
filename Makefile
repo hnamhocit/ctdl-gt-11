@@ -7,7 +7,8 @@ CXXFLAGS := -std=c++17 -Wall -Wextra -Wpedantic -O2 -Iinclude
 SRC_DIR  := src
 INC_DIR  := include
 BIN_DIR  := bin
-DATA_DIR := data
+DATA_DIR := $(CURDIR)/data
+DATA_CPPFLAGS := -DLICENSE_PLATE_DATA_DIR='"$(DATA_DIR)"'
 
 TARGET   := $(BIN_DIR)/main
 
@@ -20,16 +21,19 @@ all: setup $(TARGET)
 
 setup:
 	@mkdir -p $(BIN_DIR)
-	@mkdir -p $(DATA_DIR)
+	@mkdir -p "$(DATA_DIR)"
 
 $(TARGET): $(OBJS)
 	@echo "==> Đang liên kết: $(TARGET)..."
 	$(CXX) $(CXXFLAGS) $^ -o $@
 	@echo "==> Biên dịch thành công! Chạy bằng lệnh: ./$(TARGET)"
 
-$(BIN_DIR)/%.o: $(SRC_DIR)/%.cpp
+$(BIN_DIR)/main.o: CPPFLAGS += $(DATA_CPPFLAGS)
+$(BIN_DIR)/main.o: Makefile
+
+$(BIN_DIR)/%.o: $(SRC_DIR)/%.cpp | setup
 	@echo "==> Biên dịch: $<"
-	$(CXX) $(CXXFLAGS) -c $< -o $@
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $< -o $@
 
 run: all
 	@echo "==> Khởi chạy: ./$(TARGET)"

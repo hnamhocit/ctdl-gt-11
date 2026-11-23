@@ -11,7 +11,8 @@ namespace
     const char *const HEADER_LINE =
         "fullPlate|provinceCode|wardCode|serialNum|registeredDate|ownerName";
 
-    // 8 tỉnh x 8 xã x 100000 số thứ tự => tối đa 6.4 triệu biển số không trùng
+    // Bộ mẫu dùng 8 mã tỉnh và 8 mã xã mỗi tỉnh, tạo 8 × 8 = 64 cặp.
+    // Mỗi cặp có 100.000 số thứ tự (00000–99999), tổng cộng 6.400.000 biển số.
     const int PROVINCE_COUNT = 8;
     const int WARD_COUNT = 8;
     const int MAX_SAMPLE_COUNT = PROVINCE_COUNT * WARD_COUNT * 100000;
@@ -158,12 +159,7 @@ namespace
 
 } // namespace
 
-/**
- * @brief Kiểm tra định dạng ngày dùng trong tệp dữ liệu.
- * @param d Chuỗi ngày đăng ký.
- * @return true nếu đúng yyyy-mm-dd với tháng 01-12 và ngày 01-31.
- * @note Thời gian và không gian O(1).
- */
+/** Kiểm tra d theo dạng yyyy-mm-dd, tháng 01–12 và ngày 01–31. O(1). */
 bool isValidRegistrationDate(const std::string &d)
 {
     if (d.size() != 10 || d[4] != '-' || d[7] != '-')
@@ -178,13 +174,10 @@ bool isValidRegistrationDate(const std::string &d)
     return month >= 1 && month <= 12 && day >= 1 && day <= 31;
 }
 
-/*
- * loadFromFile
- * Mục đích : đọc file TXT, kiểm tra từng dòng, chèn vào bảng băm.
- * Tham số  : table (ra), filepath (vào), stats (ra, tùy chọn).
- * Trả về   : false nếu không mở được file.
- * Thời gian: O(N * L) với N là số dòng, L là độ dài dòng; mỗi insert trung bình O(1).
- * Không gian: O(L) cho một dòng, ngoài các node được cấp phát trong bảng băm.
+/**
+ * Nạp filepath vào table, ghi số dòng đã nạp, lỗi và trùng vào stats nếu có.
+ * Trả false nếu không mở được tệp. Bộ nhớ phụ O(L) cho một dòng dài L.
+ * Thời gian trung bình O(N × L) với N dòng và chuỗi bucket ngắn.
  */
 bool loadFromFile(LicensePlateHashTable &table, const char *filepath, LoadStats *stats)
 {
@@ -236,13 +229,9 @@ bool loadFromFile(LicensePlateHashTable &table, const char *filepath, LoadStats 
     return true;
 }
 
-/*
- * saveToFile
- * Mục đích : ghi mọi bản ghi trong bảng băm ra file TXT.
- * Tham số  : table (vào), filepath (vào).
- * Trả về   : false nếu có trường chứa '|' hoặc xuống dòng, hoặc không ghi được file.
- * Thời gian: O(M + N) (duyệt M bucket và N node, hai lượt: kiểm tra rồi ghi).
- * Không gian: O(1).
+/**
+ * Ghi table vào filepath. Trả false nếu dữ liệu không ghi được theo định dạng TXT hoặc ghi tệp thất bại.
+ * Thời gian O(M + N) với M bucket và N node. Bộ nhớ phụ O(1) theo kích thước bảng.
  */
 bool saveToFile(const LicensePlateHashTable &table, const char *filepath)
 {
@@ -297,17 +286,9 @@ bool saveToFile(const LicensePlateHashTable &table, const char *filepath)
     return std::rename(tmpPath.c_str(), filepath) == 0;
 }
 
-/*
- * generateSampleDataset
- * Mục đích : sinh file mẫu hợp lệ, không trùng biển số, chia đều các tỉnh lớn.
- * Tham số  : filepath (vào), count (vào), seed (vào, quyết định phần ngẫu nhiên).
- * Trả về   : false nếu count không hợp lệ hoặc không ghi được file.
- * Thời gian: O(count). Không gian: O(1).
- * Ghi chú  : bản ghi thứ i có (tỉnh, xã) = (i % 8, (i / 8) % 8) nên mỗi tỉnh nhận
- *            số bản ghi gần như bằng nhau. Số thứ tự = ((i / 64) + 1) * 7919 + offset
- *            (mod 100000). Vì gcd(7919, 100000) = 1 nên với mỗi cặp (tỉnh, xã) các số
- *            thứ tự khác nhau, nghĩa là biển số không bao giờ trùng, dù offset (lấy từ
- *            seed) có là bao nhiêu.
+/**
+ * Ghi count biển số mẫu vào filepath. seed quyết định phần ngẫu nhiên.
+ * Trả false nếu đầu vào không hợp lệ hoặc ghi thất bại. Thời gian O(count), bộ nhớ phụ O(1).
  */
 bool generateSampleDataset(const char *filepath, int count, unsigned int seed)
 {
@@ -335,8 +316,11 @@ bool generateSampleDataset(const char *filepath, int count, unsigned int seed)
     out << HEADER_LINE << '\n';
     for (int i = 0; i < count; ++i)
     {
+        // Đổi tỉnh mỗi dòng và đổi xã sau mỗi lượt qua 8 tỉnh.
         const char *prov = provinces[i % PROVINCE_COUNT];
         const char *ward = wards[(i / PROVINCE_COUNT) % WARD_COUNT];
+        // Sau mỗi 64 dòng, số thứ tự tiến thêm 7919 theo modulo 100000.
+        // Hai số nguyên tố cùng nhau nên số thứ tự không lặp trong một cặp tỉnh–xã.
         long serial = ((static_cast<long>(i / (PROVINCE_COUNT * WARD_COUNT)) + 1) * 7919 +
                        serialOffset) %
                       100000;
