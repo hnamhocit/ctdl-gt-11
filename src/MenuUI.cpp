@@ -15,11 +15,8 @@ namespace LicensePlateManager {
 namespace {
 
 /**
- * @brief In lời nhắc và đọc một dòng, giữ khoảng trắng bên trong.
- * @param prompt Lời nhắc nhập liệu.
- * @param value Chuỗi nhận kết quả đã bỏ khoảng trắng ở hai đầu.
- * @return true khi đọc được một dòng, false khi luồng kết thúc hoặc lỗi.
- * @note Thời gian và không gian O(L) với L là chiều dài dòng.
+ * In prompt, đọc một dòng vào value và bỏ khoảng trắng ở hai đầu.
+ * Trả false khi hết luồng hoặc đọc lỗi. Thời gian và bộ nhớ O(L) với dòng dài L.
  */
 bool readInput(const char* prompt, std::string& value) {
     std::cout << prompt;
@@ -37,10 +34,8 @@ bool readInput(const char* prompt, std::string& value) {
 }
 
 /**
- * @brief Nhập và lưu một biển số mới vào bảng băm.
- * @param table Bảng băm nhận bản ghi hợp lệ.
- * @note Không trả về giá trị. Thời gian O(L + C), không gian O(L),
- * với L là tổng độ dài đầu vào và C là độ dài chuỗi bucket cần tra cứu.
+ * Nhập biển số và chèn bản ghi hợp lệ vào table.
+ * Thời gian O(L + C), bộ nhớ phụ O(L), với L là độ dài đầu vào và C là độ dài chuỗi bucket.
  */
 void registerPlate(LicensePlateHashTable& table) {
     const std::string plate = MenuUI::inputAndValidateLicensePlate();
@@ -83,10 +78,8 @@ void registerPlate(LicensePlateHashTable& table) {
 }
 
 /**
- * @brief Hiển thị thông tin đăng ký của một biển số.
- * @param table Bảng băm được tra cứu.
- * @note Không trả về giá trị. Thời gian O(L + C), không gian O(L),
- * với L là tổng độ dài đầu vào và C là độ dài chuỗi bucket cần tra cứu.
+ * Nhập biển số và tra cứu trong table.
+ * Thời gian O(L + C), bộ nhớ phụ O(L), với L là độ dài đầu vào và C là độ dài chuỗi bucket.
  */
 void searchPlate(LicensePlateHashTable& table) {
     const std::string plate = MenuUI::inputAndValidateLicensePlate();
@@ -104,13 +97,8 @@ void searchPlate(LicensePlateHashTable& table) {
 }
 
 /**
- * @brief Hiển thị danh sách mã xã của tỉnh hoặc biển số của một xã.
- * @param table Bảng băm được lọc.
- * @param byWard true để lọc biển số theo tỉnh và xã.
- * @note Không trả về giá trị. Thời gian O(L + M + N * K) khi liệt kê xã,
- * O(L + M + N) khi liệt kê biển số. Không gian O(L + W), với L là độ dài
- * đầu vào, M là số bucket, N là số bản ghi, K là số xã tìm được và W là
- * dung lượng bộ đệm cố định của bộ lọc.
+ * Lọc table theo tỉnh, hoặc theo cả tỉnh và xã nếu byWard là true.
+ * Thời gian và bộ nhớ gồm đọc đầu vào và gọi bộ lọc trong AdministrativeFilter.
  */
 void showAdministrativeList(const LicensePlateHashTable& table, bool byWard) {
     std::string province;
@@ -141,12 +129,8 @@ void showAdministrativeList(const LicensePlateHashTable& table, bool byWard) {
 }
 
 /**
- * @brief Nạp bổ sung hoặc lưu dữ liệu theo đường dẫn người dùng chọn.
- * @param table Bảng băm dùng để nạp và lưu.
- * @note Không trả về giá trị. Khi nạp R dòng dài tối đa L, thời gian O(R * (L + C))
- * với C là độ dài chuỗi bucket lớn nhất. Khi lưu, thời gian O(M + N)
- * với M bucket và N bản ghi. Không gian phụ O(P + L) khi nạp và O(P)
- * khi lưu, với P là độ dài đường dẫn.
+ * Đọc đường dẫn, rồi nạp hoặc lưu table theo lựa chọn.
+ * Thời gian và bộ nhớ gồm đọc đường dẫn và thao tác FileIO tương ứng.
  */
 void showFileMenu(LicensePlateHashTable& table) {
     std::cout << "\n1. Nạp bổ sung dữ liệu từ tệp TXT\n"
@@ -183,7 +167,7 @@ void showFileMenu(LicensePlateHashTable& table) {
 
 } // namespace
 
-/** Hiển thị menu chính. Không có tham số hay giá trị trả về. Thời gian và không gian O(1). */
+/** In menu chính. O(1) thời gian và bộ nhớ. */
 void MenuUI::displayMenu() {
     std::cout << "\n========================================================\n"
               << " HỆ THỐNG QUẢN LÝ BIỂN SỐ XE - NHÓM 11\n"
@@ -197,12 +181,8 @@ void MenuUI::displayMenu() {
 }
 
 /**
- * @brief Đọc lựa chọn nguyên trong khoảng [minVal, maxVal].
- * @param minVal Cận dưới của lựa chọn.
- * @param maxVal Cận trên của lựa chọn.
- * @return Lựa chọn hợp lệ hoặc -1 nếu luồng nhập kết thúc hoặc lỗi.
- * @note Thời gian O(L) với L là tổng độ dài các dòng đã đọc.
- * Không gian O(K) với K là chiều dài dòng dài nhất.
+ * Đọc lựa chọn trong [minVal, maxVal], trả -1 nếu hết luồng hoặc đọc lỗi.
+ * Thời gian theo tổng độ dài các dòng đã đọc, bộ nhớ theo độ dài dòng dài nhất.
  */
 int MenuUI::getValidChoice(int minVal, int maxVal) {
     std::string line;
@@ -220,10 +200,8 @@ int MenuUI::getValidChoice(int minVal, int maxVal) {
 }
 
 /**
- * @brief Đọc và chuẩn hóa biển số đến khi hợp lệ.
- * @return Biển số đã chuẩn hóa hoặc chuỗi rỗng nếu luồng nhập kết thúc hoặc lỗi.
- * @note Không có tham số. Thời gian O(L) với L là tổng độ dài các dòng đã đọc.
- * Không gian O(K) với K là chiều dài dòng dài nhất.
+ * Trả biển số đã chuẩn hóa, hoặc chuỗi rỗng nếu hết luồng hay đọc lỗi.
+ * Thời gian theo tổng độ dài các dòng đã đọc, bộ nhớ theo độ dài dòng dài nhất.
  */
 std::string MenuUI::inputAndValidateLicensePlate() {
     std::string rawInput;
@@ -238,24 +216,13 @@ std::string MenuUI::inputAndValidateLicensePlate() {
     return {};
 }
 
-/**
- * @brief Chạy menu độc lập với bảng băm rỗng.
- * @note Không có tham số hay giá trị trả về. Thời gian O(M) để tạo và
- * hủy bảng rỗng cộng với thao tác trong phiên. Không gian O(M + N)
- * cho M bucket và N bản ghi, cộng bộ đệm nhập và FileIO.
- */
+/** Chạy menu với bảng mới. Khởi tạo M bucket trong O(M) thời gian và bộ nhớ, cộng chi phí của phiên. */
 void MenuUI::run() {
     LicensePlateHashTable table;
     run(table);
 }
 
-/**
- * @brief Chạy menu trên bảng băm đã được ứng dụng khởi tạo.
- * @param table Bảng băm dùng chung trong suốt phiên làm việc.
- * @note Không trả về giá trị. Thời gian O(T + S), với T là số lượt chọn và
- * S là tổng thời gian thực hiện chúng. Không gian bằng mức sử dụng lớn nhất
- * của một thao tác, cộng các bản ghi mới được giữ trong bảng.
- */
+/** Chạy menu trên table dùng chung. Thời gian cộng dồn theo lượt chọn, bộ nhớ phụ theo thao tác lớn nhất. */
 void MenuUI::run(LicensePlateHashTable& table) {
     while (std::cin) {
         displayMenu();

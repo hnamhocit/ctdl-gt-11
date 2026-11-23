@@ -9,10 +9,8 @@
 #endif
 
 /**
- * @brief Nạp dữ liệu, chạy menu và lưu các bản ghi được thêm trong phiên.
- * @return 0 khi hoàn tất, 1 nếu tự động lưu thất bại.
- * @note Thời gian phụ thuộc vào các thao tác trong phiên. Không gian O(M + N)
- * với M là số bucket và N là số bản ghi, chưa tính bộ đệm nhập liệu.
+ * Nạp dữ liệu, chạy menu và lưu khi có bản ghi mới. Trả 1 nếu lưu thất bại, ngược lại trả 0.
+ * Thời gian theo các thao tác trong phiên. Bộ nhớ O(M + N) cho M bucket và N bản ghi, cộng bộ đệm nhập liệu.
  */
 int main()
 {

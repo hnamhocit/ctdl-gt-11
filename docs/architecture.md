@@ -4,7 +4,7 @@
 
 ## Dữ liệu và các module
 
-Biển số có dạng `ab-cd-ghxyz`. `ab` gồm hai chữ số, `cd` gồm hai ký tự thuộc `A–Z` hoặc `0–9`, `ghxyz` gồm năm chữ số. Mã xã được xác định cùng mã tỉnh khi lọc biển số. Tệp TXT dùng thứ tự trường `fullPlate|provinceCode|wardCode|serialNum|registeredDate|ownerName`.
+Biển số có dạng `ab-cd-ghxyz`. `ab` gồm hai chữ số, `cd` gồm hai ký tự thuộc `A–Z` hoặc `0–9`, `ghxyz` gồm năm chữ số. Ví dụ `59-X1-12345` có mã tỉnh `59`, mã xã `X1` và số thứ tự `12345`. Mã xã được xác định cùng mã tỉnh khi lọc biển số. Tệp TXT dùng thứ tự trường `fullPlate|provinceCode|wardCode|serialNum|registeredDate|ownerName`.
 
 | Module | Trách nhiệm |
 |---|---|
@@ -16,7 +16,9 @@ Biển số có dạng `ab-cd-ghxyz`. `ab` gồm hai chữ số, `cd` gồm hai 
 | [MenuUI](../include/MenuUI.h) | Đọc lựa chọn người dùng và gọi các module xử lý. |
 | [Benchmark](../include/Benchmark.h) | Đo thời gian thực thi. |
 
-Tại commit `c508041`, [main.cpp](../src/main.cpp) nạp file mẫu vào bảng băm và lưu khi thoát. [MenuUI.cpp](../src/MenuUI.cpp) có vòng lặp giao diện riêng, hiện chưa được gọi từ `main()`.
+[main.cpp](../src/main.cpp) nạp tệp mẫu, truyền bảng băm vào [MenuUI](../src/MenuUI.cpp) và lưu lại vào tệp mẫu khi số bản ghi thay đổi trong phiên.
+
+Bộ sinh mẫu trong [FileIO.cpp](../src/FileIO.cpp) dùng 8 mã tỉnh và 8 mã xã mỗi tỉnh, tạo 64 cặp. Mỗi cặp có 100.000 số thứ tự từ `00000` đến `99999`, nên có tối đa 6.400.000 biển số khác nhau. Sau mỗi vòng qua 64 cặp, số thứ tự tăng thêm 7.919 theo modulo 100.000. Hai số nguyên tố cùng nhau nên số thứ tự chỉ lặp lại sau khi đã đi qua đủ 100.000 giá trị.
 
 ## Bảng băm và độ phức tạp
 

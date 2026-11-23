@@ -5,11 +5,7 @@
 #include <cstddef>
 #include <iostream>
 
-/**
- * @brief Cấu trúc dữ liệu đại diện cho một bản ghi biển số xe trong hệ thống.
- * Sử dụng mảng ký tự tĩnh char[] thuần để tối ưu bộ nhớ Heap, tránh phân mảnh bộ nhớ
- * và phục vụ việc ghi/đọc tệp tin trực tiếp theo chuẩn kiến trúc CTDL&GT.
- */
+/** Một bản ghi biển số, ví dụ "59-X1-12345" với tỉnh "59" và xã "X1". */
 struct PlateNode {
     char fullPlate[16];      // Chuỗi biển số chuẩn: "59-X1-12345\0" (tối đa 15 ký tự)
     char provinceCode[4];    // Mã tỉnh: "59\0" (2 số + '\0')
@@ -19,9 +15,7 @@ struct PlateNode {
     char ownerName[50];      // Tên chủ sở hữu phương tiện (UTF-8, tối đa 49 byte + '\0')
     PlateNode* next;         // Con trỏ trỏ tới Node kế tiếp trong cùng một Bucket (Separate Chaining)
 
-    /**
-     * @brief Constructor mặc định: khởi tạo chuỗi rỗng và con trỏ next = nullptr.
-     */
+    /** Tạo bản ghi rỗng với next = nullptr. O(1). */
     PlateNode() : next(nullptr) {
         fullPlate[0] = '\0';
         provinceCode[0] = '\0';
@@ -31,9 +25,7 @@ struct PlateNode {
         ownerName[0] = '\0';
     }
 
-    /**
-     * @brief Constructor đầy đủ tham số để tạo bản ghi nhanh chóng.
-     */
+    /** Tạo bản ghi từ sáu trường đầu vào. O(L) với L là tổng độ dài các chuỗi, bộ nhớ phụ O(1). */
     PlateNode(const char* plate, const char* prov, const char* ward,
               const char* serial, const char* date, const char* owner)
         : next(nullptr) {
@@ -45,9 +37,7 @@ struct PlateNode {
         copySafe(ownerName, sizeof(ownerName), owner);
     }
 
-    /**
-     * @brief Copy Constructor: sao chép dữ liệu, con trỏ next luôn khởi tạo nullptr.
-     */
+    /** Sao chép dữ liệu từ other và đặt next = nullptr. O(1). */
     PlateNode(const PlateNode& other) : next(nullptr) {
         std::memcpy(fullPlate, other.fullPlate, sizeof(fullPlate));
         std::memcpy(provinceCode, other.provinceCode, sizeof(provinceCode));
@@ -57,9 +47,7 @@ struct PlateNode {
         std::memcpy(ownerName, other.ownerName, sizeof(ownerName));
     }
 
-    /**
-     * @brief Toán tử gán (Copy Assignment): gán dữ liệu trường, không đè con trỏ next.
-     */
+    /** Gán dữ liệu từ other, giữ nguyên next và trả về *this. O(1). */
     PlateNode& operator=(const PlateNode& other) {
         if (this != &other) {
             std::memcpy(fullPlate, other.fullPlate, sizeof(fullPlate));
@@ -73,9 +61,7 @@ struct PlateNode {
     }
 
 private:
-    /**
-     * @brief Tiện ích chép chuỗi an toàn chống tràn bộ đệm.
-     */
+    /** Chép src vào dest, chừa chỗ cho '\0' theo destSize. Thời gian O(L), bộ nhớ phụ O(1). */
     static void copySafe(char* dest, std::size_t destSize, const char* src) {
         if (!dest || destSize == 0) return;
         if (!src) {
@@ -92,31 +78,15 @@ private:
 };
 
 /**
- * @brief Phân tích chuỗi biển số định dạng ab-cd-ghxyz và trích xuất ra các trường trong PlateNode.
- * @param rawInput Chuỗi biển số gốc
- * @param outNode Node đích nhận dữ liệu
- * @return true nếu tách thành công và hợp lệ cú pháp cơ bản
- * Độ phức tạp thời gian: O(1)
- * Độ phức tạp không gian: O(1)
+ * Tách rawInput (ví dụ "59-X1-12345") vào outNode.
+ * Trả true nếu đúng độ dài và vị trí dấu gạch. Thời gian O(L), bộ nhớ phụ O(1).
  */
 bool parseLicensePlate(const char* rawInput, PlateNode& outNode);
 
-/**
- * @brief In thông tin một Node biển số xe ra màn hình theo dạng bảng đẹp.
- * @param node Con trỏ tới PlateNode cần in
- * Độ phức tạp thời gian: O(1)
- * Độ phức tạp không gian: O(1)
- */
+/** In bản ghi node ra console. O(1) thời gian và bộ nhớ phụ. */
 void printPlateNode(const PlateNode* node);
 
-/**
- * @brief So sánh hai chuỗi biển số xe (phân biệt hoa thường hoặc chuẩn hóa).
- * @param plateA Biển số A
- * @param plateB Biển số B
- * @return true nếu hai biển số giống nhau
- * Độ phức tạp thời gian: O(1)
- * Độ phức tạp không gian: O(1)
- */
+/** Trả true nếu plateA và plateB trùng khớp, có phân biệt hoa thường. O(1) với biển số chuẩn. */
 bool isSamePlate(const char* plateA, const char* plateB);
 
 #endif // PLATE_H

@@ -3,11 +3,6 @@
 
 namespace LicensePlateManager {
 
-/**
- * @brief Chuẩn hóa biển số: bỏ khoảng trắng và chuyển chữ thường thành chữ hoa.
- * Độ phức tạp thời gian: O(L) với L là độ dài chuỗi (L <= 20 ký tự).
- * Độ phức tạp không gian: O(L) cấp phát chuỗi kết quả.
- */
 std::string Validator::normalizePlateString(const std::string& rawInput) {
     std::string result;
     result.reserve(rawInput.size());
@@ -23,10 +18,6 @@ std::string Validator::normalizePlateString(const std::string& rawInput) {
     return result;
 }
 
-/**
- * @brief Kiểm tra mã tỉnh gồm đúng 2 chữ số (00 - 99).
- * Độ phức tạp: O(1) thời gian, O(1) không gian.
- */
 bool Validator::isValidProvinceCode(const std::string& provinceCode) {
     if (provinceCode.length() != 2) return false;
 
@@ -34,10 +25,6 @@ bool Validator::isValidProvinceCode(const std::string& provinceCode) {
            std::isdigit(static_cast<unsigned char>(provinceCode[1]));
 }
 
-/**
- * @brief Kiểm tra mã xã gồm đúng 2 ký tự chữ hoặc số (A-Z, 0-9).
- * Độ phức tạp: O(1) thời gian, O(1) không gian.
- */
 bool Validator::isValidCommuneCode(const std::string& communeCode) {
     if (communeCode.length() != 2) return false;
 
@@ -50,10 +37,6 @@ bool Validator::isValidCommuneCode(const std::string& communeCode) {
     return true;
 }
 
-/**
- * @brief Kiểm tra số serial gồm đúng 5 chữ số (00000 - 99999).
- * Độ phức tạp: O(1) thời gian, O(1) không gian.
- */
 bool Validator::isValidSerialNumber(const std::string& serialNumber) {
     if (serialNumber.length() != 5) return false;
 
@@ -66,18 +49,10 @@ bool Validator::isValidSerialNumber(const std::string& serialNumber) {
     return true;
 }
 
-/**
- * @brief Kiểm tra nhanh biển số có hợp lệ hay không.
- * Độ phức tạp: O(1) thời gian, O(1) không gian.
- */
 bool Validator::isValidLicensePlateFormat(const std::string& plate) {
     return validateDetailed(plate).isValid;
 }
 
-/**
- * @brief Kiểm tra chi tiết từng thành phần của biển số theo cấu trúc ab-cd-ghxyz.
- * Độ phức tạp: O(1) thời gian (chuỗi dài 11), O(1) không gian.
- */
 ValidationResult Validator::validateDetailed(const std::string& plate) {
     // Bước 1: Kiểm tra độ dài biển số (phải đúng 11 ký tự)
     if (plate.length() != 11) {
