@@ -11,11 +11,13 @@ else()
     add_compile_options(-Wall -Wextra -Wpedantic -O2)
 endif()
 
-include_directories(include)
-
-file(GLOB SOURCES "src/*.cpp")
+file(GLOB SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp")
 
 add_executable(main ${SOURCES})
+target_include_directories(main PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/include")
+target_compile_definitions(main PRIVATE
+    LICENSE_PLATE_DATA_DIR="${CMAKE_CURRENT_SOURCE_DIR}/data"
+)
 
 set_target_properties(main PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin"
